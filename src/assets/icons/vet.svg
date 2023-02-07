@@ -1,0 +1,46 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
+ <defs>
+  <linearGradient y2="1.037076" y1="1.037076" x1="1" x2="-0.000005" id="svg_82">
+   <stop stop-color="#9d4abe"/>
+   <stop stop-color="#9055c4" offset="0.03"/>
+   <stop stop-color="#6b74d6" offset="0.15"/>
+   <stop stop-color="#4c8fe5" offset="0.26"/>
+   <stop stop-color="#34a3f0" offset="0.39"/>
+   <stop stop-color="#22b2f9" offset="0.52"/>
+   <stop stop-color="#18bafd" offset="0.66"/>
+   <stop stop-color="#15bdff" offset="0.83"/>
+   <stop stop-color="#28bad5" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="34" width="34" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <defs>
+   <style>.cls-1{fill:url(#linear-gradient);}.cls-2{fill:#fff;opacity:0.1;isolation:isolate;}</style>
+  </defs>
+  <ellipse ry="16" rx="16" id="svg_83" cy="15.999999" cx="16" stroke-width="0" stroke="#000" fill="#fff"/>
+  <style transform="matrix(0.0032896624411393872,0,0,0.0032896624411393872,0,0) " type="text/css">.st0{clip-path:url(#SVGID_2_);fill:url(#SVGID_3_);}
+	.st1{opacity:0.1;}
+	.st2{clip-path:url(#SVGID_5_);fill:#FFFFFF;}
+	.st3{clip-path:url(#SVGID_7_);fill:#FFFFFF;}
+	.st4{fill:#15BDFF;}
+	.st5{clip-path:url(#SVGID_9_);fill:url(#SVGID_10_);}
+	.st6{clip-path:url(#SVGID_12_);fill:#FFFFFF;}
+	.st7{clip-path:url(#SVGID_14_);fill:#FFFFFF;}</style>
+
+  <g stroke="null" transform="rotate(180 15.999999999999998,17.941741943359375) " id="svg_81">
+   <path stroke="null" id="svg_77" fill="url(#svg_82)" d="m17.503375,8.729054l9.174321,18.686477c0.149291,0.298582 -0.074646,0.650574 -0.405402,0.650574l-3.178977,0c-0.170634,0 -0.33065,-0.096524 -0.405402,-0.245279l-6.699328,-13.556313c-0.597379,-1.215885 -2.325594,-1.215885 -2.922973,0l-6.677986,13.545588c-0.075075,0.149291 -0.234661,0.245279 -0.405402,0.245279l-0.394677,0c-0.234661,0 -0.38406,-0.245279 -0.277347,-0.44798l9.270202,-18.878346c0.597379,-1.215564 2.325594,-1.215564 2.922973,0z"/>
+   <g stroke="null" transform="matrix(-0.010724931266236994,0,0,-0.010724931266236994,379.516859025671,380.67232440071433) " id="svg_78" fill="#fff">
+    <path stroke="null" id="svg_79" opacity="0.1" d="m33754.386043,34680.249316l-483.41,-1779.13c-6.96,-14.87 -22.88,-22.87 -35.81,-22.87l-297.41,0c-32.82,0 -51.72,32.81 -38.79,60.66l855.42,1741.34z"/>
+    <path stroke="null" id="svg_80" opacity="0.1" d="m33895.626043,34165.089316l-996.66,-1227.18c-11.93,-28.84 5.97,-57.66 33.82,-60.66l301.39,0c16.91,1 29.84,11.93 35.81,22.87l625.64,1264.97z"/>
+   </g>
+  </g>
+ </g>
+</svg>

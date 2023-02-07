@@ -1,0 +1,15 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1">
+
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="16" rx="16" id="svg_14" cy="16" cx="16" fill="#ffffff"/>
+  <g stroke="null" id="svg_12">
+   <ellipse stroke="null" id="svg_6" fill="#E6007A" ry="3.19737" rx="5.49757" cy="3.9542" cx="16.00054" class="st0"/>
+   <ellipse stroke="null" id="svg_7" fill="#E6007A" ry="3.19737" rx="5.49757" cy="28.0458" cx="16.00054" class="st0"/>
+   <ellipse stroke="null" id="svg_8" fill="#E6007A" ry="148" rx="254.3" cy="-4235.81966" cx="-2150.6219" class="st0" transform="matrix(0.0108092 -0.0187216 0.0187216 0.0108092 108.116 15.5006)"/>
+   <ellipse stroke="null" id="svg_9" fill="#E6007A" ry="147.9" rx="254.3" cy="-3678.61966" cx="-1185.5219" class="st0" transform="matrix(0.0108092 -0.0187216 0.0187216 0.0108092 108.116 39.5913)"/>
+   <ellipse stroke="null" id="svg_10" fill="#E6007A" ry="254.3" rx="148" cy="-1888.53683" cx="-4169.39764" class="st0" transform="matrix(0.0187216 -0.0108092 0.0108092 0.0187216 104.041 12.3109)"/>
+   <ellipse stroke="null" id="svg_11" fill="#E6007A" ry="254.3" rx="147.9" cy="-2445.63683" cx="-3204.29764" class="st0" transform="matrix(0.0187216 -0.0108092 0.0108092 0.0187216 112.858 21.1286)"/>
+  </g>
+ </g>
+</svg>

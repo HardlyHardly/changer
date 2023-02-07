@@ -1,0 +1,118 @@
+.footer{
+  background-color: #0f0965;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  &__paddings{
+    padding: 75px 0 35px 0;
+  }
+  &__links-item{
+    margin-right: 50px;
+    margin-bottom: 30px;
+    min-width: 48px;
+    min-height: 48px;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  &__links-list{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 500;
+  }
+  &__link{
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+  &__banners{
+    &-img{
+      width: 100%;
+    }
+    &-link{
+      width: 88px;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.follow{
+  background: linear-gradient(90.16deg, #201283 0, #5a37b1 100%);
+  &__wrap{
+    padding: 22px 0 22px 120px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &:before{
+      content: '';
+      position: absolute;
+      left: 2px;
+      z-index: 5;
+      background: url('../../../assets/horn.svg');
+      width: 110px;
+      height: 110px;
+      background-size: 110px;
+      top: -22px;
+    }
+  }
+  &__title{
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.25;
+    color: #fff;
+  }
+  &__form{
+    width: 460px;
+    display: flex;
+    align-items: center;
+    margin-left: 65px;
+    &-input{        
+      position: relative;
+      width: calc(100% - 154px);
+      &-icon{
+        z-index: 4;
+        pointer-events: none;
+        width: 21px;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+      }
+      &-input{
+        border: none;
+        outline: none;
+        background-color: #fff;
+        box-shadow: 0 3px 2px rgb(0 0 0 / 15%);
+        border-radius: 3px 0 0 3px;
+        width: 100%;
+        padding: 18px 65px;
+        color: #000 !important;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 1.25;
+      }
+    }
+  }
+}
+
+.btn-yellow{
+  background-color: #fcbf11;
+  box-shadow: 0 0 10px rgb(252 191 17 / 25%);
+  transition: box-shadow .24s ease, background-color .24s ease;
+  width: 150px;
+  padding: 18px 18px 19px;
+  border-radius: 0 3px 3px 0;
+  color: #000;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 600;
+
+  &:hover{
+    box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+  }
+}

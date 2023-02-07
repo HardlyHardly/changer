@@ -1,0 +1,20 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="34" width="34" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="1" x="1" height="400" width="580"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_8">
+   <circle stroke="null" transform="matrix(0.25558315247560154,0,0,0.25558315247560154,-675.6598118328586,-485.4204861490272) " id="svg_4" fill="#26a17b" r="62.200001" cy="1961.710438" cx="2706.360385"/>
+   <g stroke="null" transform="matrix(0.25558315247560154,0,0,0.25558315247560154,-675.6598118328586,-485.4204861490272) " id="svg_5" fill="#fff">
+    <path stroke="null" id="svg_6" d="m2712.990297,1967.450328l0,-0.01c-0.43,0.03 -2.65,0.16 -7.59,0.16c-3.95,0 -6.72,-0.11 -7.7,-0.16l0,0.01c-15.19,-0.67 -26.52,-3.31 -26.52,-6.48c0,-3.16 11.34,-5.81 26.52,-6.48l0,10.33c0.99,0.07 3.84,0.24 7.77,0.24c4.72,0 7.08,-0.2 7.52,-0.24l0,-10.32c15.16,0.68 26.46,3.32 26.46,6.48s-11.31,5.8 -26.46,6.48m0,-14.03l0,-9.24l21.15,0l0,-14.09l-57.58,0l0,14.09l21.15,0l0,9.24c-17.19,0.79 -30.11,4.19 -30.11,8.27s12.93,7.48 30.11,8.28l0,29.62l15.29,0l0,-29.62c17.16,-0.79 30.06,-4.19 30.06,-8.27c0,-4.07 -12.9,-7.48 -30.06,-8.27"/>
+   </g>
+  </g>
+ </g>
+</svg>

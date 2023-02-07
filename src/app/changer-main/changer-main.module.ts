@@ -10,7 +10,8 @@ import { ContactsPageComponent } from './contacts-page/contacts-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {MatSelectModule} from '@angular/material/select';
-
+import {DropdownModule} from 'primeng/dropdown';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,6 +28,8 @@ import {MatSelectModule} from '@angular/material/select';
     ChangerMainRoutingModule,
     ShareModule,
     MatSelectModule,
+    DropdownModule,
+    FormsModule
   ]
 })
 export class ChangerMainModule { }

@@ -1,0 +1,40 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <g id="Layer_1">
+  <title>Layer 1</title>
+  <ellipse stroke-width="0" ry="16" rx="16" id="svg_8" cy="16" cx="16" stroke="#000" fill="#fff"/>
+  <g stroke="null" id="svg_7">
+   <g stroke="null">
+    <path stroke="null" fill="url(#svg_3)" d="m16,0.16352l-13.71841,7.91792l0,15.83711l13.71841,7.91792l13.71841,-7.91792l0,-15.83711l-13.71841,-7.91792z" class="st0"/>
+    <path stroke="null" fill="url(#svg_2)" d="m16,0.16352l-13.71841,7.91792l0,15.83711l13.71841,7.91792l0,-31.67295z"/>
+    <path stroke="null" fill="#FFFFFF" d="m21.34738,7.00564l-10.76564,0l-1.25046,5.4866l13.33618,0l-1.32008,-5.4866zm-8.85577,13.02356l0,-3.64634l-3.19451,-2.01492l-3.61217,2.67432l4.93098,8.57859l1.98075,0l2.32627,-2.18831l0,-1.07707l-2.43132,-2.32627z" class="st2"/>
+    <path stroke="null" fill="#FFFFFF" d="m19.47295,13.32631l-6.9459,0l1.14668,3.05655l-0.34679,3.43878l5.34865,0l-0.34679,-3.43878l1.14415,-3.05655z" class="st2"/>
+    <path stroke="null" fill="#FFFFFF" d="m22.66746,14.3325l-3.16033,2.04909l0,3.64634l-2.39588,2.32627l0,1.07707l2.32627,2.15287l1.94531,0l4.89681,-8.54315l-3.61217,-2.7085z" class="st2"/>
+   </g>
+   <g stroke="null">
+    <path stroke="null" fill="url(#svg_6)" d="m16,0.16352l-13.71841,7.91792l0,15.83711l13.71841,7.91792l13.71841,-7.91792l0,-15.83711l-13.71841,-7.91792z" class="st0"/>
+    <path stroke="null" fill="url(#svg_5)" d="m16,0.16352l-13.71841,7.91792l0,15.83711l13.71841,7.91792l0,-31.67295z"/>
+    <path stroke="null" fill="#FFFFFF" d="m21.34738,7.00564l-10.76564,0l-1.25046,5.4866l13.33618,0l-1.32008,-5.4866zm-8.85577,13.02356l0,-3.64634l-3.19451,-2.01492l-3.61217,2.67432l4.93098,8.57859l1.98075,0l2.32627,-2.18831l0,-1.07707l-2.43132,-2.32627z" class="st2"/>
+    <path stroke="null" fill="#FFFFFF" d="m19.47295,13.32631l-6.9459,0l1.14668,3.05655l-0.34679,3.43878l5.34865,0l-0.34679,-3.43878l1.14415,-3.05655z" class="st2"/>
+    <path stroke="null" fill="#FFFFFF" d="m22.66746,14.3325l-3.16033,2.04909l0,3.64634l-2.39588,2.32627l0,1.07707l2.32627,2.15287l1.94531,0l4.89681,-8.54315l-3.61217,-2.7085z" class="st2"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <linearGradient gradientTransform="matrix(0.3472924828529358,0,0,-0.3472924828529358,-260.1670837402344,590.9727554321289)" y2="1608.7477" x2="795.8919" y1="1699.9476" x1="795.8919" gradientUnits="userSpaceOnUse" id="svg_3">
+   <stop stop-color="#25376C" offset="0"/>
+   <stop stop-color="#1F1F49" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.3472924828529358,0,0,-0.3472924828529358,-260.1670837402344,590.9727554321289)" y2="1699.9476" x2="776.1419" y1="1608.7477" x1="776.1419" gradientUnits="userSpaceOnUse" id="svg_2">
+   <stop stop-color="#25376C" offset="0"/>
+   <stop stop-color="#1F1F49" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.3472924828529358,0,0,-0.3472924828529358,-260.1670837402344,590.9727554321289)" y2="1608.7477" x2="795.8919" y1="1699.9476" x1="795.8919" gradientUnits="userSpaceOnUse" id="svg_6">
+   <stop stop-color="#25376C" offset="0"/>
+   <stop stop-color="#1F1F49" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.3472924828529358,0,0,-0.3472924828529358,-260.1670837402344,590.9727554321289)" y2="1699.9476" x2="776.1419" y1="1608.7477" x1="776.1419" gradientUnits="userSpaceOnUse" id="svg_5">
+   <stop stop-color="#25376C" offset="0"/>
+   <stop stop-color="#1F1F49" offset="1"/>
+  </linearGradient>
+ </defs>
+</svg>

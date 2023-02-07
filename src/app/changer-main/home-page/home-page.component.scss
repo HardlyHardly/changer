@@ -1,9 +1,9 @@
-.main{
+.welcome{
   background-image: url('../../../assets/welcome_bg.webp');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 80vh;
+  min-height: 35vh;
   &__title{
     padding: 40px 0 15px 0;
     font-size: 30px;
@@ -74,6 +74,9 @@
 }
 
 
-
+.img-select{
+  width: 24px;
+  margin-right: 10px;
+}
 
 
