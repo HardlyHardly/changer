@@ -1,0 +1,21 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="34" width="34" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="15" rx="15" id="svg_8" cy="15.999999" cx="16" stroke-width="0" stroke="#000" fill="#fff"/>
+  <g stroke="null" transform="rotate(180 16.001340866088867,16.001083374023438) " id="svg_7">
+   <g stroke="null" transform="matrix(-0.015893353003064364,0,0,-0.015893353003064364,8977.504832543567,8945.674335376552) " id="svg_4" fill="#c2a633">
+    <path stroke="null" id="svg_5" d="m563876.293757,561508.580824l-142.88,0l0,281.69l224.79,0l0,117.94l-224.79,0l0,281.67l149.88,0c38.51,0 316.16,4.35 315.73,-327.72s-269.29,-353.58 -322.73,-353.58z"/>
+    <path stroke="null" id="svg_6" d="m563852.293757,560849.580824c-552.29,0 -1000,447.71 -1000,1000s447.71,1000 1000,1000s1000,-447.71 1000,-1000s-447.71,-1000 -1000,-1000zm39.29,1540.1l-362.15,0l0,-481.46l-127.66,0l0,-117.94l127.65,0l0,-481.49l310.82,0c73.53,0 560.56,-15.27 560.56,549.48c0,574.09 -509.21,531.41 -509.21,531.41l-0.01,0z"/>
+   </g>
+  </g>
+ </g>
+</svg>

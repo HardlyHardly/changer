@@ -1,0 +1,64 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <g id="Layer_1">
+  <title>Layer 1</title>
+  <g stroke="null">
+   <circle stroke="null" fill="white" r="15.71126" cy="16" cx="16"/>
+   <path stroke="null" fill="url(#svg_9)" d="m15.79693,12.95247l0,-8.73593l-7.11059,11.58019l7.11059,-2.84426z"/>
+   <path stroke="null" fill="#6A84E2" d="m15.79693,21.40533l0,6.37805l-7.11059,-10.44131l7.11059,4.06326z"/>
+   <path stroke="null" fill="url(#svg_8)" d="m15.79674,12.95247l0,-8.73593l7.11066,11.58019l-7.11066,-2.84426z"/>
+   <path stroke="null" fill="#C9CBF8" d="m15.79687,21.405l0,6.33799l7.51692,-10.40118l-7.51692,4.06319z"/>
+   <path stroke="null" fill="url(#svg_7)" d="m8.68634,15.79084l7.11059,-2.84426l0,7.11059l-7.11059,-4.26633z"/>
+   <path stroke="null" fill="url(#svg_6)" d="m22.90739,15.79084l-7.11066,-2.84426l0,7.11059l7.11066,-4.26633z"/>
+   <path stroke="null" fill="#B0B4E9" d="m19.7131,10.87027l-0.4555,6.84939l-3.544,-4.53231l-3.49477,5.03664l-0.42185,-7.22358l0.3245,-0.01898l0.36699,6.28378l3.20948,-4.62553l3.29177,4.20964l0.399,-6.00059l0.32437,0.02154z" clip-rule="evenodd" fill-rule="evenodd"/>
+   <circle stroke="null" fill="url(#svg_5)" r="0.94423" cy="10.34499" cx="12.02021"/>
+   <ellipse stroke="null" transform="matrix(0.54334 0.365144 -0.365144 0.54334 14.5046 10.1869)" fill="#DADCF4" ry="0.23243" rx="0.39511" cy="1.34903" cx="-2.87469"/>
+   <circle stroke="null" fill="url(#svg_4)" r="0.94423" cy="17.4766" cx="12.34897"/>
+   <ellipse stroke="null" transform="matrix(0.54334 0.365144 -0.365144 0.54334 18.5384 11.216)" fill="#DADCF4" ry="0.23243" rx="0.39511" cy="12.24313" cx="-2.37249"/>
+   <circle stroke="null" fill="url(#svg_3)" r="0.94423" cy="12.57979" cx="15.84302"/>
+   <ellipse stroke="null" transform="matrix(0.54334 0.365144 -0.365144 0.54334 16.401 8.4345)" fill="#DADCF4" ry="0.23243" rx="0.39511" cy="4.76263" cx="2.96511"/>
+   <circle stroke="null" fill="url(#svg_2)" r="0.94423" cy="17.4766" cx="19.27763"/>
+   <ellipse stroke="null" transform="matrix(0.54334 0.365144 -0.365144 0.54334 19.7163 7.35136)" fill="#DADCF4" ry="0.23243" rx="0.39511" cy="12.24313" cx="8.21151"/>
+   <circle stroke="null" fill="url(#svg_1)" r="0.94423" cy="10.34499" cx="19.57333"/>
+   <ellipse stroke="null" transform="matrix(0.54334 0.365144 -0.365144 0.54334 15.7887 5.97399)" fill="#DADCF4" ry="0.23243" rx="0.39511" cy="1.34903" cx="8.66311"/>
+
+  </g>
+ </g>
+ <defs>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="7.56697" x2="24.224" y1="24.0151" x1="13.6724" id="svg_9">
+   <stop stop-color="#A795F2"/>
+   <stop stop-color="#BAD8EC" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="24.6358" x2="34.7754" y1="9.11868" x1="24.5341" id="svg_8">
+   <stop stop-color="#E1F0F3"/>
+   <stop stop-color="#B2DBF5" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="24.6268" x2="13.6724" y1="20.282" x1="23.6033" id="svg_7">
+   <stop stop-color="#DEE1F9"/>
+   <stop stop-color="#D6CDFB" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="30.5233" x2="24.2237" y1="24.0061" x1="35.396" id="svg_6">
+   <stop stop-color="#FBFCF7"/>
+   <stop stop-color="#ECF2F1" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="17.7502" x2="18.4548" y1="15.2225" x1="19.3701" id="svg_5">
+   <stop stop-color="#C6CBF4"/>
+   <stop stop-color="#758ED6" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="28.6443" x2="18.957" y1="26.1165" x1="19.8723" id="svg_4">
+   <stop stop-color="#C6CBF4"/>
+   <stop stop-color="#758ED6" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="21.1641" x2="24.2944" y1="18.6363" x1="25.2097" id="svg_3">
+   <stop stop-color="#C6CBF4"/>
+   <stop stop-color="#758ED6" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="28.6443" x2="29.541" y1="26.1165" x1="30.4562" id="svg_2">
+   <stop stop-color="#C6CBF4"/>
+   <stop stop-color="#758ED6" offset="1"/>
+  </linearGradient>
+  <linearGradient gradientTransform="matrix(0.6546360850334167,0,0,0.6546360850334167,-0.06096721068024635,-0.3307441473007202)" gradientUnits="userSpaceOnUse" y2="17.7502" x2="29.9927" y1="15.2225" x1="30.9079" id="svg_1">
+   <stop stop-color="#C6CBF4"/>
+   <stop stop-color="#758ED6" offset="1"/>
+  </linearGradient>
+ </defs>
+</svg>

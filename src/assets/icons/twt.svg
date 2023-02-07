@@ -1,0 +1,16 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" fill="none">
+ <g id="Layer_1">
+  <title>Layer 1</title>
+  <g id="svg_2" stroke="null">
+   <g id="svg_3" clip-path="url(#svg_1)" stroke="null">
+    <path id="svg_4" d="m16,31.98388c8.82765,0 15.98388,-7.15623 15.98388,-15.98388c0,-8.82765 -7.15623,-15.98388 -15.98388,-15.98388c-8.82765,0 -15.98388,7.15623 -15.98388,15.98388c0,8.82765 7.15623,15.98388 15.98388,15.98388z" fill="#3375BB" stroke="null"/>
+    <path id="svg_5" d="m16.11329,7.00907c3.15886,2.63814 6.78126,2.47545 7.81627,2.47545c-0.22642,15.00377 -1.95138,12.02857 -7.81627,16.23568c-5.86489,-4.20711 -7.57906,-1.23191 -7.80548,-16.23568c1.02422,0 4.64661,0.16269 7.80548,-2.47545z" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+   </g>
+   <defs transform="translate(0 -1.39785) translate(1.39785 0) translate(0 -3.11827) translate(3.11827 0) translate(0 -11.5) translate(8.5 0) translate(3 0) translate(-16.3999 0) translate(0 -16) translate(-13 48) scale(0.640625 0.640625) translate(13 -48) translate(-7.02439 56.9756) scale(0.847889 0.847889) translate(7.02439 -56.9756) translate(-2.54378 61.4562) scale(0.91958 0.91958) translate(2.54378 -61.4562)" stroke="null">
+    <clipPath id="svg_1" stroke="null">
+     <rect id="svg_6" width="64" height="64" fill="white" y="-32.01612" x="0.01612" stroke="null"/>
+    </clipPath>
+   </defs>
+  </g>
+ </g>
+</svg>

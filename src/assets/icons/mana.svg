@@ -1,0 +1,66 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" style="vector-effect: non-scaling-stroke;" stroke="null">
+ <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
+
+ <g stroke="null">
+  <title stroke="null">background</title>
+ </g>
+ <g stroke="null">
+  <title stroke="null">Layer 1</title>
+  <defs stroke="null">
+   <linearGradient stroke="null" id="svg_6" y2="85.355%" x2="14.645%" y1="14.645%" x1="85.355%">
+    <stop stroke="null" offset="0%" stop-color="#FF2D55"/>
+    <stop stroke="null" offset="100%" stop-color="#FFBC5B"/>
+   </linearGradient>
+   <linearGradient stroke="null" id="svg_5" y2="100%" x2="49.966%" y1="0%" x1="49.966%">
+    <stop stroke="null" offset="0%" stop-color="#A524B3"/>
+    <stop stroke="null" offset="100%" stop-color="#FF2D55"/>
+   </linearGradient>
+  </defs>
+  <g stroke="null" id="svg_19">
+   <g stroke="null" transform="matrix(0.0010240108261394543,0,0,0.0010240108261394543,0,0) " id="svg_8" fill-rule="evenodd" fill="none">
+    <circle stroke="null" id="svg_9" r="200" cy="15624.833984" cx="200" fill="url(#svg_6)"/>
+    <path stroke="null" id="svg_10" d="m141.7,15554.833984l0,150l125,0l-125,-150z" fill="url(#svg_5)"/>
+    <path stroke="null" id="svg_11" d="m16.7,15704.833984l125,0l0,-150l-125,150z" fill="#FFF"/>
+    <path stroke="null" id="svg_12" fill="#FC9965" d="m40,15744.833984c11.4,15.1 24.9,28.6 40,40l240,0c15.1,-11.4 28.6,-24.9 40,-40l-320,0z"/>
+    <path stroke="null" id="svg_13" fill="#FF2D55" d="m80,15784.833984c33.4,25.1 75,40 120,40s86.6,-14.9 120,-40l-240,0z"/>
+    <path stroke="null" id="svg_14" d="m268.3,15634.833984l0,110l91.7,0l-91.7,-110z" fill="url(#svg_5)"/>
+    <path stroke="null" id="svg_15" fill="#FFBC5B" d="m268.3,15704.833984l-251.6,0c6.2,14.3 14.1,27.7 23.3,40l228.4,0l0,-40l-0.1,0z"/>
+    <path stroke="null" id="svg_16" d="m176.7,15744.833984l91.6,0l0,-110l-91.6,110z" fill="#FFF"/>
+    <circle stroke="null" id="svg_17" r="50" cy="15554.833984" cx="268.3" fill="#FFC95B"/>
+    <circle stroke="null" id="svg_18" r="25" cy="15499.833984" cx="141.7" fill="#FFC95B"/>
+   </g>
+  </g>
+  <defs>
+   <linearGradient id="svg_25" y2="85.355%" x2="14.645%" y1="14.645%" x1="85.355%">
+    <stop offset="0%" stop-color="#FF2D55"/>
+    <stop offset="100%" stop-color="#FFBC5B"/>
+   </linearGradient>
+   <linearGradient id="svg_24" y2="100%" x2="49.966%" y1="0%" x1="49.966%">
+    <stop offset="0%" stop-color="#A524B3"/>
+    <stop offset="100%" stop-color="#FF2D55"/>
+   </linearGradient>
+  </defs>
+  <g stroke="null" id="svg_38">
+   <g stroke="null" id="svg_27" fill-rule="evenodd" fill="none">
+    <circle stroke="null" id="svg_28" r="15.978822" cy="15.978822" cx="15.978822" fill="url(#svg_25)"/>
+    <path stroke="null" id="svg_29" d="m11.320995,10.386234l0,11.984117l9.986764,0l-9.986764,-11.984117z" fill="url(#svg_24)"/>
+    <path stroke="null" id="svg_30" d="m1.334232,22.370351l9.986764,0l0,-11.984117l-9.986764,11.984117z" fill="#FFF"/>
+    <path stroke="null" id="svg_31" fill="#FC9965" d="m3.195764,25.566115c0.910793,1.206401 1.989363,2.284972 3.195764,3.195764l19.174587,0c1.206401,-0.910793 2.284972,-1.989363 3.195764,-3.195764l-25.566115,0z"/>
+    <path stroke="null" id="svg_32" fill="#FF2D55" d="m6.391529,28.76188c2.668463,2.005342 5.992058,3.195764 9.587293,3.195764s6.91883,-1.190422 9.587293,-3.195764l-19.174587,0z"/>
+    <path stroke="null" id="svg_33" d="m21.43559,16.777763l0,8.788352l7.32629,0l-7.32629,-8.788352z" fill="url(#svg_24)"/>
+    <path stroke="null" id="svg_34" fill="#FFBC5B" d="m21.43559,22.370351l-20.101358,0c0.495343,1.142486 1.126507,2.213067 1.861533,3.195764l18.247815,0l0,-3.195764l-0.007989,0z"/>
+    <path stroke="null" id="svg_35" d="m14.117289,25.566115l7.318301,0l0,-8.788352l-7.318301,8.788352z" fill="#FFF"/>
+    <circle stroke="null" id="svg_36" r="3.994706" cy="10.386234" cx="21.43559" fill="#FFC95B"/>
+    <circle stroke="null" id="svg_37" r="1.997353" cy="5.992058" cx="11.320995" fill="#FFC95B"/>
+   </g>
+  </g>
+
+
+
+
+ </g>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+</svg>

@@ -1,0 +1,29 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="34" width="34" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <style transform="matrix(0.1619707723254038,0,0,0.1619707723254038,0,0) " type="text/css">.st0{fill:#FF007A;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FF007A;}</style>
+  <style transform="matrix(0.011147959669575214,0,0,0.011147959669575214,0,0) " type="text/css">.st0{fill:#0AC18E;}
+	.st1{fill:#FFFFFF;}</style>
+  <ellipse ry="16" rx="16" id="svg_52" cy="16" cx="16" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#fff"/>
+  <defs>
+   <style>.cls-1{fill:#2a5ada;}</style>
+  </defs>
+  <g stroke="null" id="svg_61">
+   <g stroke="null" transform="matrix(0.5576054629567698,0,0,0.5576054629567698,-27.10155147882191,-33.43245373287423) " id="svg_57">
+    <g stroke="null" id="svg_58">
+     <path stroke="null" id="svg_60" d="m77.29757,66.851303l-4,2.3l-10.9,6.3l-4,2.3l0,21.8l4,2.3l11,6.3l4,2.3l4,-2.3l10.8,-6.3l4,-2.3l0,-21.8l-4,-2.3l-10.9,-6.3l-4,-2.3zm-10.9,28.1l0,-12.6l10.9,-6.3l10.9,6.3l0,12.6l-10.9,6.3l-10.9,-6.3z" class="cls-1"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

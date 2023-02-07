@@ -1,28 +1,46 @@
-<app-header></app-header>
-<main class="main">
+<section class="welcome">
   <div class="container">
-    <h3 class="main__title text-center text-light ">
+    <h3 class="welcome__title text-center text-light">
       Самый реактивный обменник
     </h3>
-    <p class="main__subtitle text-center text-light my-2">
+    <p class="welcome__subtitle text-center text-light">
       Быстрый и безопасный способ обменять более 20 популярных криптовалют
     </p>
-    <div class="main__select-btns-wrap">
-      <form class="main__form">
-        <select title="Select your surfboard" class="selectpicker">
-          <option>Select...</option>
-          <option data-thumbnail="assets/icons/adv.svg">Adv</option>
-          <option data-thumbnail="images/icon-firefox.png">Firefox</option>
-          <option data-thumbnail="images/icon-ie.png">IE</option>
-          <option data-thumbnail="images/icon-opera.png">Opera</option>
-          <option data-thumbnail="images/icon-safari.png">Safari</option>
-        </select>
-        <div class="main__select-change-btn">
-          <div class="main__btn"></div>
-          <div class="main__btn-drop-content"></div>
+    <form class="welcome__form">
+      <div class="col-5">
+        <p-dropdown class="drop-crypto" autoWidth="false" [style]="{'width':'100%'}" [options]="cryptos" [(ngModel)]="selectedCrypto" optionLabel="name" [filter]="true" filterBy="name"
+        name="crypto"
+        [showClear]="true" placeholder="Select a Crypto">
+        <ng-template pTemplate="selectedItem">
+          <div class="country-item country-item-value" *ngIf="selectedCrypto">
+            <div><img class="img-select" [src]="selectedCrypto.imageSrc" alt="">{{selectedCrypto.name}}</div>
+          </div>
+        </ng-template>
+        <ng-template let-crypto pTemplate="item">
+          <div class="country-item">
+            <div><img class="img-select" [src]="crypto.imageSrc" alt="">{{crypto.name}}</div>
+          </div>
+        </ng-template>
+        </p-dropdown>
+      </div>
+      <div class="col-5">
+        <p-dropdown autoWidth="false" [style]="{'width':'100%'}" [options]="changed" [(ngModel)]="selectedChanged" optionLabel="name" [filter]="true" filterBy="name"
+        name="changed"
+      [showClear]="true" placeholder="Select a Crypto or Bank">
+      <ng-template pTemplate="selectedItem">
+        <div class="country-item country-item-value" *ngIf="selectedChanged">
+          <div><img class="img-select" [src]="selectedChanged.imageSrc" alt="">{{selectedChanged.name}}</div>
         </div>
-        <div class="btn btn-warning">Обменять</div>
-      </form>
-    </div>
+      </ng-template>
+      <ng-template let-changed pTemplate="item">
+        <div class="country-item">
+          <div><img class="img-select" [src]="changed.imageSrc" alt="">{{changed.name}}</div>
+        </div>
+      </ng-template>
+        </p-dropdown>
+      </div>
+      <button ></button>
+    </form>
+    
   </div>
-</main>
+</section>
