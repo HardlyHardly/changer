@@ -1,0 +1,79 @@
+.main{
+  background-image: url('../../../assets/welcome_bg.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 80vh;
+  &__title{
+    padding: 40px 0 15px 0;
+    font-size: 30px;
+  }
+  &__subtitle{
+    font-size: 18px;
+  }
+  &__form{
+    max-width: 894px;
+    margin: 40px auto 0;
+    display: flex;
+  }
+  &__select-crypto-btn{
+    width: calc(100% / 2 - 100px);
+    border-radius: 3px 0 0 3px;
+    border-right: 3px solid transparent;
+  }
+  &__btn{
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #dae0e7;
+    box-shadow: 0 0 15px rgb(255 255 255 / 25%);
+    padding: 13px 32px 13px 15px;
+    cursor: pointer;
+    transition: box-shadow .24s ease;
+    &-icon{
+      width: 30px;
+      height: 30px;
+    }
+    &-text{
+      margin-left: 17px;
+    }
+    &:after{
+      content: '';
+      position: absolute;
+      display: inline-block;
+      height: 12px;
+      width: 12px;
+      border-bottom: 3px solid #333;
+      border-right: 3px solid #333;
+      right: 20px;
+      top: calc(50% - 6px);
+      transform: rotate(45deg);
+    }
+  }
+  &__select-change-btn{
+    width: calc(100% / 2 - 100px);
+  }
+
+  &__btn-crypto-filter__item{
+    margin-right: 9px;
+    background: #fff;
+    border: 2px solid #d8dadc;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+    border-radius: 7px;
+    padding: 3px 7px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.25;
+    color: grey;
+    transition: box-shadow .24s ease;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
+
+
+
+
+

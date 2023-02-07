@@ -1,0 +1,22 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="34" width="34" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_12">
+   <ellipse ry="16" rx="16" id="svg_14" cy="16" cx="16" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="null" fill="#0f2d38"/>
+   <g stroke="null" id="svg_13">
+    <path stroke="null" id="svg_5" fill="#009a61" d="m25.041868,18.133822l-6.6073,0l1.18012,2.687289l3.412285,0l2.014895,-2.687289zm3.295645,-5.042955l-12.114526,0l1.177833,2.687289l8.921799,0l2.014895,-2.687289z"/>
+    <path stroke="null" id="svg_6" fill="#fff" d="m16.190968,5.708256l-9.408941,20.562905l3.583814,0l5.820553,-13.262628l5.829701,13.283211l3.581527,0l-9.406654,-20.583488z"/>
+    <path stroke="null" id="svg_7" fill="#009a61" d="m3.662485,13.090867l1.971441,2.687289l11.766894,0l-1.177833,-2.687289l-12.560502,0zm3.583814,5.042955l1.969154,2.687289l10.399236,0l-1.18012,-2.687289l-11.188269,0z"/>
+   </g>
+  </g>
+ </g>
+</svg>
