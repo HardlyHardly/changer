@@ -1,1 +1,20 @@
-<p>news-page works!</p>
+<div class="rules">
+  <div class="container">
+    <h1 class="text-center rules__title">НОВОСТИ</h1>
+    <div class="rules__content">
+      <div class="margin-block">
+        <div class="card-wrap">
+          <a class="card" href="#" *ngFor="let card of news">
+            <div class="card__title d-flex justify-content-between">
+              <p class="d-block">{{card.title}}</p>
+              <p class="d-block text-muted">{{card.date}}</p>
+            </div>
+            <div class="newsbody">
+              {{card.body}}
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
