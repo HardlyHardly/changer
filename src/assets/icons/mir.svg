@@ -1,0 +1,37 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="34" width="34" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="16" rx="16" id="svg_46" cy="16" cx="16" stroke-width="0" stroke="#000" fill="#fff"/>
+  <metadata transform="matrix(0.027163166796997595,0,0,0.027163166796997595,0,0) " id="svg_27">image/svg+xml</metadata>
+
+  <style transform="matrix(0.027163166796997595,0,0,0.027163166796997595,0,0) " type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#4DB45E;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);}</style>
+  <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+  <desc transform="matrix(0.11111111773384952,0,0,0.11111111773384952,0,0) ">Created with Sketch.</desc>
+  <defs>
+   <linearGradient id="svg_42" y2="62.9043048%" x2="0%" y1="62.9043048%" x1="100%">
+    <stop offset="0%" stop-color="#1F5CD7"/>
+    <stop offset="100%" stop-color="#02AEFF"/>
+   </linearGradient>
+  </defs>
+  <g stroke="null" id="svg_45">
+   <g transform="matrix(0.08130165354070237,0,0,0.08130165354070237,-124.68788775655491,-80.6235146444873) " fill-rule="evenodd" fill="none" id="svg_38">
+    <g stroke="null" id="svg_39">
+     <g stroke="null" id="svg_40">
+      <path stroke="null" fill="#0F754E" id="svg_43" d="m1586.993631,1140.464872c3.14472,-0.01881 12.49067,-0.86056 16.44943,12.50027c2.66667,9 6.91451,23.74242 12.74352,44.22725l0,0l2.37392,0c6.2511,-21.59655 10.54529,-36.33897 12.88256,-44.22725c4,-13.5 14,-12.5 18,-12.5l30.86096,0.00004l0,95.99975l-31.45433,0l0,-56.57425l-2.10923,0l-17.53423,56.57425l-23.66538,0l-17.53423,-56.61617l-2.10923,0l0,56.61617l-31.45433,0l0,-95.99975l32.55057,-0.00031zm138.47816,0.00031l0,56.61638l2.50927,0l21.32879,-46.55525c4.14029,-9.26463 12.96456,-10.06113 12.96456,-10.06113l0,0l30.43839,0l0,95.99996l-32.11124,0l0,-56.61638l-2.50927,0l-20.91058,46.55525c-4.14029,9.2227 -13.38277,10.06113 -13.38277,10.06113l-30.43839,0l0,-95.99996l32.11124,0zm178.23178,45.61981c-4.47917,12.69294 -18.54559,21.78327 -34.11902,21.78327l0,0l-33.67498,0l0,28.59688l-30.5359,0l0,-50.38015l98.3299,0z"/>
+      <path stroke="null" fill="url(#svg_42)" id="svg_41" d="m1871.057281,1140.465182l-67.28492,0c1.60131,21.37285 20.00707,39.6694 39.06083,39.6694l62.99217,0c3.6351,-17.76335 -8.87886,-39.6694 -34.76808,-39.6694z"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>
