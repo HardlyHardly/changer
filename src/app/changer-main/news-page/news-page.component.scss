@@ -1,0 +1,29 @@
+
+
+.card{
+  width: calc(100% / 2 - 20px);
+  display: block;
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #000;
+  text-decoration: none;
+  padding: 15px;
+  margin: 10px;
+  @media(max-width: 1200px){
+    width: 100%;
+  }
+  &__title{
+    border-bottom: 2px solid #fcbf11;
+    margin-bottom: 10px;
+  }
+  &-wrap{
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.newsbody{
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
