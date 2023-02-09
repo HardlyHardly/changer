@@ -3,7 +3,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 35vh;
+  min-height: 42vh;
   &__title{
     padding: 40px 0 15px 0;
     font-size: 30px;
@@ -79,4 +79,72 @@
   margin-right: 10px;
 }
 
+.btn-yellow{
+  width: 200px;
+  background-color: #fcbf11;
+  border: none;
+  border-radius: 0 3px 3px 0;
+}
 
+
+::ng-deep .p-dropdown{
+  border-radius: 0;
+  border: 0;
+  &:nth-child(1){
+    border-radius: 3px 0 0 3px;
+  }
+}
+
+
+// CARDS
+
+.reserve{
+  padding: 44px 0 80px;
+  background: #f4f7f9;
+  min-height: 100vh;
+  &__filter{
+    &-item{
+      box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+    }
+  }
+  &__cards-wrap{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 15px 0;
+  }
+  &__card{
+    display: flex;
+    align-items: center;
+    width: calc(100% / 4 - 30px);
+    padding: 15px;
+    margin: 15px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 16%);
+    background-color: #fff;
+    border-radius: 4px;
+    &-title{
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 1.25;
+      color: rgb(88,88,88);
+    }
+    &-img{
+      max-width: 100%;
+      height: auto;
+      &-wrap{
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.video{
+  background-color: #f4f7f9;
+  &-wrap{
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,39 @@
+
+
+ol {
+  counter-reset: item;
+}
+li {
+  display: block;
+}
+li:before {
+  content: counters(item, ".") " ";
+  counter-increment: item;
+}
+
+ol > li {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #212121;
+}
+
+ol > li > ol > li {
+  margin-top: 8px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #212121;
+}
+
+ol > li > ol > li > a{
+  color: #0601fd;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+ol > li > ol {
+  padding: 0;   
+}
