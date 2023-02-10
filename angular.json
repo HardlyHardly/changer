@@ -75,6 +75,7 @@
             },
             "development": {
               "browserTarget": "changer:build:development"
+     
             }
           },
           "defaultConfiguration": "development"

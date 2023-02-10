@@ -42,9 +42,9 @@
       <button type="button" class="btn-yellow fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Обменять
       </button>
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content modal-bgc">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngSwitch]="$changeModal | async">
+        <div class="modal-dialog" >
+          <div class="modal-content modal-bgc" *ngSwitchCase="''">
             <div class="modal-header">
               <div class="btn-close-wrap">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -56,45 +56,61 @@
               
             </div>
             <div class="modal-body">
-              <div class="col-12">
-                <p-dropdown class="drop-crypto" autoWidth="false" [style]="{'width':'100%'}"  [options]="cryptos" [(ngModel)]="selectedCrypto" optionLabel="name" [filter]="true" filterBy="name"
-                name="crypto"
-                [showClear]="true" placeholder="Select a Crypto">
+                <div class="col-12">
+                  <p-dropdown class="drop-crypto" autoWidth="false" [style]="{'width':'100%'}"  [options]="cryptos" [(ngModel)]="selectedCrypto" optionLabel="name" [filter]="true" filterBy="name"
+                  name="crypto"
+                  [showClear]="true" placeholder="Select a Crypto"
+                  (onChange)="setCalculatedDataFrom()"
+                  >
+                  <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value" *ngIf="selectedCrypto">
+                      <div><img class="img-select" [src]="selectedCrypto.imageSrc" alt="">{{selectedCrypto.name}}</div>
+                    </div>
+                  </ng-template>
+                  <ng-template let-crypto pTemplate="item">
+                    <div class="country-item">
+                      <div><img class="img-select" [src]="crypto.imageSrc" alt="">{{crypto.name}}</div>
+                    </div>
+                  </ng-template>
+                  </p-dropdown>
+                </div>
+                <input type="tel" class="form-input" [(ngModel)]="amountFrom" [ngModelOptions]="{standalone: true}" (input)="setCalculatedDataFrom()">
+                <div class="change-icon-wrap">
+                  <i class="pi pi-sort-alt change-icon"></i>
+                </div>
+                <input type="tel" class="form-input" [(ngModel)]="amountTo" [ngModelOptions]="{standalone: true}" (input)="setCalculatedDataTo()" >
+                <div class="col-12">
+                  <p-dropdown autoWidth="false" [style]="{'width':'100%'}" [options]="changed" [(ngModel)]="selectedChanged" optionLabel="name" [filter]="true" filterBy="name"
+                  name="changed"
+                [showClear]="true" placeholder="Select a Crypto or Bank"
+                (onChange)="setCalculatedDataFrom()"
+                >
                 <ng-template pTemplate="selectedItem">
-                  <div class="country-item country-item-value" *ngIf="selectedCrypto">
-                    <div><img class="img-select" [src]="selectedCrypto.imageSrc" alt="">{{selectedCrypto.name}}</div>
+                  <div class="country-item country-item-value" *ngIf="selectedChanged">
+                    <div><img class="img-select" [src]="selectedChanged.imageSrc" alt="">{{selectedChanged.name}}</div>
                   </div>
                 </ng-template>
-                <ng-template let-crypto pTemplate="item">
+                <ng-template let-changed pTemplate="item">
                   <div class="country-item">
-                    <div><img class="img-select" [src]="crypto.imageSrc" alt="">{{crypto.name}}</div>
+                    <div><img class="img-select" [src]="changed.imageSrc" alt="">{{changed.name}}</div>
                   </div>
                 </ng-template>
-                </p-dropdown>
-              </div>
-              <input class="form-control my-2" type="tel">
-              <div class="col-12">
-                <p-dropdown autoWidth="false" [style]="{'width':'100%'}" [options]="changed" [(ngModel)]="selectedChanged" optionLabel="name" [filter]="true" filterBy="name"
-                name="changed"
-              [showClear]="true" placeholder="Select a Crypto or Bank">
-              <ng-template pTemplate="selectedItem">
-                <div class="country-item country-item-value" *ngIf="selectedChanged">
-                  <div><img class="img-select" [src]="selectedChanged.imageSrc" alt="">{{selectedChanged.name}}</div>
+                  </p-dropdown>
                 </div>
-              </ng-template>
-              <ng-template let-changed pTemplate="item">
-                <div class="country-item">
-                  <div><img class="img-select" [src]="changed.imageSrc" alt="">{{changed.name}}</div>
+                <div class="btn-wrap d-flex">  
+                  <button type="button" class="btn-yellow btn-big my-2 w-100 btn-font">Продолжить</button>
                 </div>
-              </ng-template>
-                </p-dropdown>
-              </div>
-              <input class="form-control my-2" type="tel">
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+          <ng-container class="modal-content" *ngSwitchCase="'BANK'">
+            <div class="modal-header">
+              bank
             </div>
+          </ng-container>
+          <ng-container class="modal-content" *ngSwitchCase="'CRYPTO'">
+            <div class="modal-header">
+              crypto
+            </div>
+          </ng-container>
           </div>
         </div>
       </div>

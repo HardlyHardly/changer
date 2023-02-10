@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ChangeI } from 'src/app/interfaces/changeI';
 import { CryptoI } from 'src/app/interfaces/cryptoI';
 import { GlobaldataService } from 'src/app/share/globaldata.service';
+import { DatabaseService } from 'src/app/share/database.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 
 
@@ -15,6 +18,20 @@ import { GlobaldataService } from 'src/app/share/globaldata.service';
 export class HomePageComponent implements OnInit{
 
   public styleConditionForDrops: string = 'width: 100%; border-radius: 3px 0 0 3px';
+
+    $changeModal: Observable<'CRYPTO' | 'BANK' | ''> = new Observable((suber) => {
+      if(this.selectedChanged){
+        suber.next(this.selectedChanged.type)
+      } else {
+        suber.next('')
+      }
+    });
+
+    userFormSwitchCond: 'CRYPTO' | 'BANK' | '' = '';
+
+    public amountTo: number = 0;
+
+    public amountFrom: number = 0;
     
   
     changed: ChangeI[] = [];
@@ -27,7 +44,8 @@ export class HomePageComponent implements OnInit{
 
 
     constructor(
-      private readonly dataService: GlobaldataService
+      private readonly dataService: GlobaldataService,
+      private readonly dataBaseService: DatabaseService
     ){
     }
 
@@ -61,8 +79,37 @@ export class HomePageComponent implements OnInit{
 
     private initChanged(){
       this.changed = this.dataService.getChanged()
+      if(this.selectedChanged)
+      this.userFormSwitchCond = this.selectedChanged?.type
+    }
+
+    public setCalculatedDataFrom(): void{
+      if(this.selectedCrypto && this.selectedChanged)
+      this.setCalculatedData(this.selectedCrypto.index, this.selectedChanged.index, this.amountFrom)
+      .subscribe((amonuntTo: number) => {
+        this.amountTo = amonuntTo;
+      })
+    }
+
+    public setCalculatedDataTo(): void{
+      if(this.selectedCrypto && this.selectedChanged)
+      this.setCalculatedData(this.selectedCrypto.index, this.selectedChanged.index, this.amountTo)
+      .subscribe((amonuntFrom: number) => {
+        this.amountFrom = amonuntFrom;
+      })
+    }
+    
+
+    private setCalculatedData(symbolFrom: string, symbolTo: string, amount: number): Observable<number>{
+      return this.dataBaseService.
+        changeCurrencies({
+          symbolFrom,
+          symbolTo,
+          amount
+        })
     }
 
 
+    
     
 }
