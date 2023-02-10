@@ -148,3 +148,32 @@
     justify-content: center;
   }
 }
+
+::ng-deep .modal-header{
+  display: block;
+}
+
+::ng-deep .modal-header .btn-close{
+  margin: 0;
+
+}
+
+::ng-deep .modal-title{
+  justify-self: center
+}
+
+.modal-bgc{
+  background-color: #ececec;
+}
+
+.btn-close-wrap{
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+::ng-deep .modal-body{
+  padding: 20px 60px;
+}

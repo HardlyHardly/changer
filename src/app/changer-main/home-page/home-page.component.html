@@ -39,9 +39,65 @@
       </ng-template>
         </p-dropdown>
       </div>
-      <button class="btn-yellow fw-bold">
+      <button type="button" class="btn-yellow fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Обменять
       </button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content modal-bgc">
+            <div class="modal-header">
+              <div class="btn-close-wrap">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              
+              <div class="modal-title w-100">
+                <h5 class="text-center fw-bold" id="exampleModalLabel">Создать заявку на обмен</h5>
+              </div>
+              
+            </div>
+            <div class="modal-body">
+              <div class="col-12">
+                <p-dropdown class="drop-crypto" autoWidth="false" [style]="{'width':'100%'}"  [options]="cryptos" [(ngModel)]="selectedCrypto" optionLabel="name" [filter]="true" filterBy="name"
+                name="crypto"
+                [showClear]="true" placeholder="Select a Crypto">
+                <ng-template pTemplate="selectedItem">
+                  <div class="country-item country-item-value" *ngIf="selectedCrypto">
+                    <div><img class="img-select" [src]="selectedCrypto.imageSrc" alt="">{{selectedCrypto.name}}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-crypto pTemplate="item">
+                  <div class="country-item">
+                    <div><img class="img-select" [src]="crypto.imageSrc" alt="">{{crypto.name}}</div>
+                  </div>
+                </ng-template>
+                </p-dropdown>
+              </div>
+              <input class="form-control my-2" type="tel">
+              <div class="col-12">
+                <p-dropdown autoWidth="false" [style]="{'width':'100%'}" [options]="changed" [(ngModel)]="selectedChanged" optionLabel="name" [filter]="true" filterBy="name"
+                name="changed"
+              [showClear]="true" placeholder="Select a Crypto or Bank">
+              <ng-template pTemplate="selectedItem">
+                <div class="country-item country-item-value" *ngIf="selectedChanged">
+                  <div><img class="img-select" [src]="selectedChanged.imageSrc" alt="">{{selectedChanged.name}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-changed pTemplate="item">
+                <div class="country-item">
+                  <div><img class="img-select" [src]="changed.imageSrc" alt="">{{changed.name}}</div>
+                </div>
+              </ng-template>
+                </p-dropdown>
+              </div>
+              <input class="form-control my-2" type="tel">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </section>
@@ -50,14 +106,42 @@
     <h2 class="reserve__title">
       Резервы
     </h2>
-    <div class="reserve__filter-group d-flex">
-      <div class="mx-1 btn btn-light reserve__filter-item">All</div>
-      <div class="mx-1 btn btn-light reserve__filter-item">RUB</div>
-      <div class="mx-1 btn btn-light reserve__filter-item">USD</div>
-      <div class="mx-1 btn btn-light reserve__filter-item">EUR</div>
-      <div class="mx-1 btn btn-light reserve__filter-item">UAN</div>
-      <div class="mx-1 btn btn-light reserve__filter-item">CRYPTO</div>
-      <div class="mx-1 btn btn-light reserve__filter-item">DeFi</div>
+    <div class="reserve__filter-group d-flex" (click)="filterCards($event)">
+      <option 
+        class="mx-1 btn reserve__filter-item" 
+        value="All"
+        [ngClass]="selectedCardFilter === 'All' ? 'btn-warning' : 'btn-light'"
+        >All</option>
+      <option 
+        class="mx-1 btn reserve__filter-item" 
+        value="RUB"
+        [ngClass]="selectedCardFilter === 'RUB' ? 'btn-warning' : 'btn-light'"
+        >RUB</option>
+      <option 
+        class="mx-1 btn reserve__filter-item" 
+        value="USD"
+        [ngClass]="selectedCardFilter === 'USD' ? 'btn-warning' : 'btn-light'"
+        >USD</option>
+      <option 
+        class="mx-1 btn reserve__filter-item" 
+        value="EUR"
+        [ngClass]="selectedCardFilter === 'EUR' ? 'btn-warning' : 'btn-light'"
+        >EUR</option>
+      <option 
+        class="mx-1 btn reserve__filter-item" 
+        value="UAN"
+        [ngClass]="selectedCardFilter === 'UAN' ? 'btn-warning' : 'btn-light'"
+        >UAN</option>
+      <option 
+        class="mx-1 btn reserve__filter-item" 
+        value="CRYPTO"
+        [ngClass]="selectedCardFilter === 'CRYPTO' ? 'btn-warning' : 'btn-light'"
+        >CRYPTO</option>
+      <option 
+        class="mx-1 btn reserve__filter-item" 
+        value="DeFi"
+        [ngClass]="selectedCardFilter === 'DeFi' ? 'btn-warning' : 'btn-light'"
+        >DeFi</option>
     </div>
     <div class="reserve__cards-wrap">
       <div *ngFor="let card of cards" class="reserve__card d-flex">
@@ -78,5 +162,5 @@
       <iframe width="988" height="555" src="https://www.youtube.com/embed/DwkkfaHy-6M" title="Безопасный обмен криптовалют | CosmoChanger - Самый реактивный обменник" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
-</section>
-  
+</section>  
+

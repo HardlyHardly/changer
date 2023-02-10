@@ -4,5 +4,6 @@ export interface CardI{
   imageSrc: string,
   name: string,
   valute: '' | valute,
-  value: string
+  value: string,
+  type?: string
 }
