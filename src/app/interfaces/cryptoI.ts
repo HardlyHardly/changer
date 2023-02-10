@@ -1,6 +1,6 @@
 export interface CryptoI {
-  type: string,
+  type: 'CRYPTO',
   name: string,
   imageSrc: string,
-  index?: string;
+  index: string;
 }

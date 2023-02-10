@@ -177,3 +177,31 @@
 ::ng-deep .modal-body{
   padding: 20px 60px;
 }
+
+.change-icon{
+  font-size: 3.5rem;
+  &-wrap{
+    text-align: center;
+  }
+}
+
+.btn-big{
+  height: 64px;
+  transition: box-shadow .24s ease, background-color .24s ease;
+  &:hover{
+    box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+  }
+}
+
+.form-input{
+  border: none;
+  border-bottom: 1px solid #0500ff;
+  outline: none;
+  font-weight: 700;
+  font-size: 24px;
+  padding-bottom: 4px;
+  text-align: center;
+  background-color: #ececec;
+  width: 100%;
+  margin: 5px 0 15px 0;
+}
