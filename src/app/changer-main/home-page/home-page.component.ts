@@ -1,7 +1,8 @@
 import { CardI } from './../../interfaces/cardI';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChangeI } from 'src/app/interfaces/changeI';
 import { CryptoI } from 'src/app/interfaces/cryptoI';
+import { GlobaldataService } from 'src/app/share/globaldata.service';
 
 
 
@@ -11,198 +12,57 @@ import { CryptoI } from 'src/app/interfaces/cryptoI';
   styleUrls: ['./home-page.component.scss']
 })
 
-export class HomePageComponent {
+export class HomePageComponent implements OnInit{
 
   public styleConditionForDrops: string = 'width: 100%; border-radius: 3px 0 0 3px';
-
-  private iconsPath: string = 'assets/icons/'
-
-  cryptos: CryptoI[] = [
-    {name: 'AdvCash', imageSrc: this.iconsPath + 'adv.svg'},
-    {name: 'Avalanche', imageSrc: this.iconsPath + 'avax.svg'},
-    {name: 'Algorand', imageSrc: this.iconsPath + 'algo.svg'},
-    {name: 'Binance Coin', imageSrc: this.iconsPath + 'bnb.svg'},
-    {name: 'Binance USD', imageSrc: this.iconsPath + 'busd.svg'},
-    {name: 'Bitcoin', imageSrc: this.iconsPath + 'btc.svg'},
-    {name: 'Bitcoin Cash', imageSrc: this.iconsPath + 'bch.svg'},
-    {name: 'Bitcoin Gold', imageSrc: this.iconsPath + 'btg.svg'},
-    {name: 'Bitcoin SV', imageSrc: this.iconsPath + 'bsv.svg'},
-    {name: 'Bitcoin без AML', imageSrc: this.iconsPath + 'btc.svg'},
-    {name: 'Cardano', imageSrc: this.iconsPath + 'ada.svg'},
-    {name: 'ChainLink', imageSrc: this.iconsPath + 'link.svg'},
-    {name: 'Cosmos', imageSrc: this.iconsPath + 'atom.svg'},
-    {name: 'Cronos', imageSrc: this.iconsPath + 'cro.svg'},
-    {name: 'Dai', imageSrc: this.iconsPath + 'dai.svg'},
-    {name: 'Dash', imageSrc: this.iconsPath + 'dash.svg'},
-    {name: 'Decentraland', imageSrc: this.iconsPath + 'mana.svg'},
-    {name: 'Dogecoin', imageSrc: this.iconsPath + 'doge.svg'},
-    {name: 'EOS', imageSrc: this.iconsPath + 'eos.svg'},
-    {name: 'Ether Classic', imageSrc: this.iconsPath + 'etc.svg'},
-    {name: 'Ethereum', imageSrc: this.iconsPath + 'eth.svg'},
-    {name: 'EthereumPoW', imageSrc: this.iconsPath + 'ethw.svg'},
-    {name: 'Litecoin', imageSrc: this.iconsPath + 'ltc.svg'},
-    {name: 'Monero', imageSrc: this.iconsPath + 'xmr.svg'},
-    {name: 'NEAR Protocol', imageSrc: this.iconsPath + 'near.svg'},
-    {name: 'Paxos', imageSrc: this.iconsPath + 'pax.svg'},
-    {name: 'Polkadot  ', imageSrc: this.iconsPath + 'dot.svg'},
-    {name: 'Polygon', imageSrc: this.iconsPath + 'matic.svg'},
-    {name: 'Qtum', imageSrc: this.iconsPath + 'qtum.svg'},
-    {name: 'Ravencoin', imageSrc: this.iconsPath + 'rvn.svg'},
-    {name: 'Ripple', imageSrc: this.iconsPath + 'xrp.svg'},
-    {name: 'Shiba Inu', imageSrc: this.iconsPath + 'shib.svg'},
-    {name: 'Solana', imageSrc: this.iconsPath + 'sol.svg'},
-    {name: 'Stellar', imageSrc: this.iconsPath + 'xlm.svg'},
-    {name: 'Terra', imageSrc: this.iconsPath + 'luna.svg'},
-    {name: 'Terra Classic', imageSrc: this.iconsPath + 'lunc.svg'},
-    {name: 'Tether BEP-20', imageSrc: this.iconsPath + 'usdt.svg'},
-    {name: 'Tether ERC-20', imageSrc: this.iconsPath + 'usdt.svg'},
-    {name: 'Tether Omni', imageSrc: this.iconsPath + 'usdt.svg'},
-    {name: 'Tether SPL', imageSrc: this.iconsPath + 'usdt.svg'},
-    {name: 'Tether TRC-20', imageSrc: this.iconsPath + 'usdt.svg'},
-    {name: 'Tezos', imageSrc: this.iconsPath + 'xtz.svg'},
-    {name: 'Toncoin', imageSrc: this.iconsPath + 'ton.svg'},
-    {name: 'TRON', imageSrc: this.iconsPath + 'trx.svg'},
-    {name: 'TrueUSD', imageSrc: this.iconsPath + 'tusd.svg'},
-    {name: 'Trust Wallet Token', imageSrc: this.iconsPath + 'twt.svg'},
-    {name: 'Uniswap', imageSrc: this.iconsPath + 'uni.svg'},
-    {name: 'USD Coin', imageSrc: this.iconsPath + 'usdc.svg'},
-    {name: 'VeChain', imageSrc: this.iconsPath + 'vet.svg'},
-    {name: 'Waves', imageSrc: this.iconsPath + 'waves.svg'},
-    {name: 'Wrapped Bitcoin', imageSrc: this.iconsPath + 'wbtc.svg'},
-    {name: 'Yearn.finance', imageSrc: this.iconsPath + 'yfi.svg'},
-    {name: 'Zcash', imageSrc: this.iconsPath + 'zec.svg'}
-];
-
-  changed: Array<ChangeI | CryptoI> = [
-    ...this.cryptos,
-    {name: 'Alfa Bank', imageSrc: this.iconsPath + 'alfa_bank.svg'},
-    {name: 'Raiffeisen Bank', imageSrc: this.iconsPath +  'raiffeisen.svg'},
-    {name: 'МИР', imageSrc: this.iconsPath +  'mir.svg'},
-    {name: 'Sberbank', imageSrc: this.iconsPath +  'sberbank.svg'},
-    {name: 'Tinkoff', imageSrc: this.iconsPath +  'tinkoff.svg'},
-    {name: 'Tinkoff QR-коды', imageSrc: this.iconsPath +  'tinkoff.svg'},
-    {name: 'Visa/MasterCard', imageSrc: this.iconsPath +  'visamc.svg'},
-    {name: 'VTB', imageSrc: this.iconsPath +  'vtb.svg'},
-    {name: 'Ак Барс', imageSrc: this.iconsPath +  'akbrub.svg'},
-    {name: 'Payer', imageSrc: this.iconsPath + 'payeer.svg'},
-    {name: 'Qiwi', imageSrc: this.iconsPath + 'qwrub.svg'},
-    {name: 'Виртуальная карта', imageSrc: this.iconsPath +  'bankcard.svg'},
-    {name: 'Газпромбанк', imageSrc: this.iconsPath +  'gpb.svg'},
-    {name: 'Кукуруза', imageSrc: this.iconsPath +  'kuk.svg'},
-    {name: 'Открытие', imageSrc: this.iconsPath +  'openbank.svg'},
-    {name: 'Почта Банк', imageSrc: this.iconsPath +  'pochtabank.svg'},
-    {name: 'Росбанк', imageSrc: this.iconsPath +  'ros.svg'},
-    {name: 'Русский Стандарт', imageSrc: this.iconsPath +  'russt.svg'},
-    {name: 'Яндекс.Деньги', imageSrc: this.iconsPath +  'yamoney.svg'},
-    {name: 'Home Bank', imageSrc: this.iconsPath + 'homebank.svg'},
-  ]
-
+    
+  
+    changed: ChangeI[] = [];
+    cryptos: CryptoI[] = [];
     selectedCrypto: CryptoI | null = null;
     selectedChanged: ChangeI | CryptoI | null = null;
+    selectedCardFilter: string = 'All';
+    display: boolean = false;
+    cards: CardI[] = [];
 
 
-    cards: CardI[] = [
-      {name: 'AdvCash', imageSrc: this.iconsPath + 'adv.svg', valute: 'EUR', value: '39588,78'},
-      {name: 'AdvCash', imageSrc: this.iconsPath + 'adv.svg', valute: 'RUB', value: '3741073,82'},
-      {name: 'AdvCash', imageSrc: this.iconsPath + 'adv.svg', valute: 'RUB', value: '3741073,82'},
-      {name: 'Alfa Bank', imageSrc: this.iconsPath + 'alfa_bank.svg', valute: '', value: '2931365,17'},
-      {name: 'Algorand', imageSrc: this.iconsPath + 'algo.svg', valute: '', value: '199661,8213'},
-      {name: 'Avalanche', imageSrc: this.iconsPath + 'avax.svg', valute: '', value: '58756,3622'},
-      {name: 'Avalanche', imageSrc: this.iconsPath + 'avax.svg', valute: 'BEP-20', value: '58756,3622'},
-      {name: 'Binance Coin', imageSrc: this.iconsPath + 'bnb.svg', valute: '', value: '13674,7406'},
-      {name: 'Binance Coin', imageSrc: this.iconsPath + 'bnb.svg', valute: 'BEP-20', value: '13724,7358'},
-      {name: 'Binance USD', imageSrc: this.iconsPath + 'busd.svg', valute: '', value: '3075716'},
-      {name: 'Binance USD', imageSrc: this.iconsPath + 'busd.svg', valute: 'BEP-20', value: '3122751,3756'},
-      {name: 'Bitcoin', imageSrc: this.iconsPath + 'btc.svg', valute: '', value: '37,2305'},
-      {name: 'Bitcoin', imageSrc: this.iconsPath + 'btc.svg', valute: 'BEP-20', value: '65,1095'},
-      {name: 'Bitcoin Cash', imageSrc: this.iconsPath + 'bch.svg', valute: '', value: '3152,7883'},
-      {name: 'Bitcoin Cash', imageSrc: this.iconsPath + 'bch.svg', valute: 'BEP-20', value: '2350'},
-      {name: 'Bitcoin Gold', imageSrc: this.iconsPath + 'btg.svg', valute: '', value: '15008,9455'},
-      {name: 'Bitcoin SV', imageSrc: this.iconsPath + 'bsv.svg', valute: 'SV', value: '17476,3444'},
-      {name: 'Bitcoin без AML', imageSrc: this.iconsPath + 'btc.svg', valute: '', value: '57,9798'},
-      {name: 'Cardano', imageSrc: this.iconsPath + 'ada.svg', valute: '', value: '7276533,7574'},
-      {name: 'Cardano', imageSrc: this.iconsPath + 'ada.svg', valute: 'BEP-20', value: '7276533,7574'},
-      {name: 'ChainLink', imageSrc: this.iconsPath + 'link.svg', valute: '', value: '23005,0229'},
-      {name: 'ChainLink', imageSrc: this.iconsPath + 'link.svg', valute: 'BEP-20', value: '23005,0229'},
-      {name: 'Cosmos', imageSrc: this.iconsPath + 'atom.svg', valute: '', value: '372906,7112'},
-      {name: 'Cronos', imageSrc: this.iconsPath + 'cro.svg', valute: '', value: '998828,4483'},
-      {name: 'Dai', imageSrc: this.iconsPath + 'dai.svg', valute: '', value: '1591037,6868'},
-      {name: 'Dai', imageSrc: this.iconsPath + 'dai.svg', valute: 'BEP-20', value:  '828665,8701'},
-      {name: 'Dash', imageSrc: this.iconsPath + 'dash.svg', valute: '', value: '5258,7467'},
-      {name: 'Decentraland', imageSrc: this.iconsPath + 'mana.svg', valute: '', value: '192548,0437'},
-      {name: 'Dogecoin', imageSrc: this.iconsPath + 'doge.svg', valute: '', value: '2068907,347'},
-      {name: 'Dogecoin', imageSrc: this.iconsPath + 'doge.svg', valute: 'BEP-20', value: '2068907,347'},
-      {name: 'EOS', imageSrc: this.iconsPath + 'eos.svg', valute: '', value: '2171548,5895'},
-      {name: 'EOS', imageSrc: this.iconsPath + 'eos.svg', valute: 'BEP-20', value: '2174458,5895'},
-      {name: 'Ether Classic', imageSrc: this.iconsPath + 'etc.svg', valute: '', value: '180634,2389'},
-      {name: 'Ether Classic', imageSrc: this.iconsPath + 'etc.svg', valute: 'BEP-20', value: '180545,5513'},
-      {name: 'Ethereum', imageSrc: this.iconsPath + 'eth.svg', valute: '', value: '7298,8209'},
-      {name: 'Ethereum', imageSrc: this.iconsPath + 'eth.svg', valute: 'BEP-20', value: '7507,9529'}, 
-      {name: 'EthereumPoW', imageSrc: this.iconsPath + 'ethw.svg', valute: '', value: '20000'},
-      {name: 'Litecoin', imageSrc: this.iconsPath + 'ltc.svg', valute: '', value: '70358,7356'},
-      {name: 'Litecoin', imageSrc: this.iconsPath + 'ltc.svg', valute: 'BEP-20', value: '47521,5463'},
-      {name: 'Monero', imageSrc: this.iconsPath + 'xmr.svg', valute: '', value: '70199,7857'},
-      {name: 'NEAR Protocol', imageSrc: this.iconsPath + 'near.svg', valute: '', value: '18273,4269'},
-      {name: 'Paxos', imageSrc: this.iconsPath + 'pax.svg', valute: '', value: '577126,4584'},
-      {name: 'Payer', imageSrc: this.iconsPath + 'payeer.svg', valute: 'EUR', value: '72721,72'},
-      {name: 'Payer', imageSrc: this.iconsPath + 'payeer.svg', valute: 'RUB', value: '7018048,63'}, 
-      {name: 'Payer', imageSrc: this.iconsPath + 'payeer.svg', valute: 'USD', value: '50444,39'},
-      {name: 'Polkadot  ', imageSrc: this.iconsPath + 'dot.svg', valute: '', value: '69312,1991'},
-      {name: 'Polkadot  ', imageSrc: this.iconsPath + 'dot.svg', valute: 'BEP-20', value: '93067,2147'},
-      {name: 'Polygon', imageSrc: this.iconsPath + 'matic.svg', valute: '', value: '132427,5193'},
-      {name: 'Polygon', imageSrc: this.iconsPath + 'matic.svg', valute: 'BEP-20', value: '107392,8311'},
-      {name: 'Qiwi', imageSrc: this.iconsPath + 'qwrub.svg', valute: '', value: '3234242,27'},
-      {name: 'Qtum', imageSrc: this.iconsPath + 'qtum.svg', valute: '', value: '27481,0825'},
-      {name: 'Raiffeisen Bank', imageSrc: this.iconsPath +  'raiffeisen.svg', valute: '', value: '2989566,84'},
-      {name: 'Ravencoin', imageSrc: this.iconsPath + 'rvn.svg', valute: '', value: '1251595,763'},
-      {name: 'Ripple', imageSrc: this.iconsPath + 'xrp.svg', valute: '', value: '815733,0099'},
-      {name: 'Ripple', imageSrc: this.iconsPath + 'xrp.svg', valute: 'BEP-20', value: '219851,195'},
-      {name: '', imageSrc: this.iconsPath +  'mir.svg', valute: 'RUB', value: '2805130,35'},
-      {name: 'Sberbank', imageSrc: this.iconsPath +  'sberbank.svg', valute: '', value: '3546530,02'},
-      {name: 'Shiba Inu', imageSrc: this.iconsPath + 'shib.svg', valute: '', value: '824780621815,7935'},
-      {name: 'Shiba Inu', imageSrc: this.iconsPath + 'shib.svg', valute: 'BEP-20', value: '821773511552,3556'},
-      {name: 'Solana', imageSrc: this.iconsPath + 'sol.svg', valute: '', value: '54146,1828'},
-      {name: 'Solana', imageSrc: this.iconsPath + 'sol.svg', valute: 'BEP-20', value: '49903,7573'},
-      {name: 'Stellar', imageSrc: this.iconsPath + 'xlm.svg', valute: '', value: '1964943,5033'},
-      {name: 'Stellar', imageSrc: this.iconsPath + 'xlm.svg', valute: 'BEP-20', value: '900000'},
-      {name: 'Terra', imageSrc: this.iconsPath + 'luna.svg', valute: '', value: '301693,1'},
-      {name: 'Terra Classic', imageSrc: this.iconsPath + 'lunc.svg', valute: '', value: '560269171,6'},
-      {name: 'Tether BEP-20', imageSrc: this.iconsPath + 'usdt.svg', valute: '', value: '1901053,1996'},
-      {name: 'Tether ERC-20', imageSrc: this.iconsPath + 'usdt.svg', valute: '', value: '840806,3123'},
-      {name: 'Tether Omni', imageSrc: this.iconsPath + 'usdt.svg', valute: '', value: '816411,3615'},
-      {name: 'Tether SPL', imageSrc: this.iconsPath + 'usdt.svg', valute: '', value: '1442388'},
-      {name: 'Tether TRC-20', imageSrc: this.iconsPath + 'usdt.svg', valute: '', value: '2962735,9908'},
-      {name: 'Tezos', imageSrc: this.iconsPath + 'xtz.svg', valute: '', value: '38509,3022'},
-      {name: 'Tezos', imageSrc: this.iconsPath + 'xtz.svg', valute: 'BEP-20', value: '15000'},
-      {name: 'Tinkoff', imageSrc: this.iconsPath +  'tinkoff.svg', valute: '', value: '2201724,62'},
-      {name: 'Toncoin', imageSrc: this.iconsPath + 'ton.svg', valute: '', value: '339115,9081'},
-      {name: 'TRON', imageSrc: this.iconsPath + 'trx.svg', valute: '', value: '5652832,4681'},
-      {name: 'TRON', imageSrc: this.iconsPath + 'trx.svg', valute: 'BEP-20', value: '3000000'},
-      {name: 'TrueUSD', imageSrc: this.iconsPath + 'tusd.svg', valute: '', value: '297601,3346'},
-      {name: 'TrueUSD', imageSrc: this.iconsPath + 'tusd.svg', valute: 'BEP-20', value: '285647,25'},
-      {name: 'Trust Wallet Token', imageSrc: this.iconsPath + 'twt.svg', valute: '', value: '46647'},
-      {name: 'Uniswap', imageSrc: this.iconsPath + 'uni.svg', valute: '', value: '49450,9497'},
-      {name: 'Uniswap', imageSrc: this.iconsPath + 'uni.svg', valute: '', value: '49450,9497'},
-      {name: 'USD Coin', imageSrc: this.iconsPath + 'usdc.svg', valute: '', value: '1939566,5381'},
-      {name: 'USD Coin', imageSrc: this.iconsPath + 'usdc.svg', valute: 'BEP-20', value: '2047832,8337'},
-      {name: 'VeChain', imageSrc: this.iconsPath + 'vet.svg', valute: '', value: '980758,2216'},
-      {name: 'Visa/MasterCard', imageSrc: this.iconsPath +  'visamc.svg', valute: '', value: '2759548,94'},
-      {name: 'VTB', imageSrc: this.iconsPath +  'vtb.svg', valute: '', value: '3534663,12'},
-      {name: 'Waves', imageSrc: this.iconsPath + 'waves.svg', valute: '', value: '196760,9473'},
-      {name: 'Wrapped Bitcoin', imageSrc: this.iconsPath + 'wbtc.svg', valute: '', value: '26,5407'},
-      {name: 'Yearn.finance', imageSrc: this.iconsPath + 'yfi.svg', valute: '', value: '32,4337'},
-      {name: 'Yearn.finance', imageSrc: this.iconsPath + 'yfi.svg', valute: 'BEP-20', value: '32,4337'},
-      {name: 'Zcash', imageSrc: this.iconsPath + 'zec.svg', valute: '', value: '6323,5673'},
-      {name: 'Zcash', imageSrc: this.iconsPath + 'zec.svg', valute: 'BEP-20', value: '3250'},
-      {name: 'Виртуальная карта', imageSrc: this.iconsPath +  'bankcard.svg', valute: '', value: '3500000'},
-      {name: 'Газпромбанк', imageSrc: this.iconsPath +  'gpb.svg', valute: '', value: '2690724,17'},
-      {name: 'Кукуруза', imageSrc: this.iconsPath +  'kuk.svg', valute: '', value: '2911936,34'},
-      {name: 'Открытие', imageSrc: this.iconsPath +  'openbank.svg', valute: '', value: '2877868,54'},
-      {name: 'Почта Банк', imageSrc: this.iconsPath +  'pochtabank.svg', valute: '', value: '2697933,17'},
-      {name: 'Росбанк', imageSrc: this.iconsPath +  'ros.svg', valute: '', value: '2835965,11'},
-      {name: 'Русский Стандарт', imageSrc: this.iconsPath +  'russt.svg', valute: '', value: '2905024,07'},
-      {name: 'Яндекс.Деньги', imageSrc: this.iconsPath +  'yamoney.svg', valute: '', value: '4915950,88'},
-    ]
-    constructor(){
+    constructor(
+      private readonly dataService: GlobaldataService
+    ){
     }
+
+    ngOnInit(): void {
+      this.initCards();
+      this.initCryptos();
+      this.initChanged();
+    }
+
+
+    public filterCards(event: Event){
+      const cur = event.target as HTMLInputElement;
+      this.initCards()
+      this.selectedCardFilter = cur.value;
+      if(cur.value !== 'All'){
+        this.cards = this.cards.filter((el: CardI) => el.valute === cur.value || el.type === cur.value)
+      }
+    }
+
+    public openChangeDialog(){
+      this.display = true;
+    }
+
+    private initCards(){
+      this.cards = this.dataService.getCards()
+    }
+
+    private initCryptos(){
+      this.cryptos = this.dataService.getCryptos()
+    }
+
+    private initChanged(){
+      this.changed = this.dataService.getChanged()
+    }
+
+
+    
 }

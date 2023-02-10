@@ -9,10 +9,9 @@ import { PartnersPageComponent } from './partners-page/partners-page.component';
 import { ContactsPageComponent } from './contacts-page/contacts-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import {MatSelectModule} from '@angular/material/select';
 import {DropdownModule} from 'primeng/dropdown';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -27,9 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ChangerMainRoutingModule,
     ShareModule,
-    MatSelectModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    DialogModule
   ]
 })
 export class ChangerMainModule { }
