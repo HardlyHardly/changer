@@ -19,13 +19,14 @@ export class HomePageComponent implements OnInit{
 
   public styleConditionForDrops: string = 'width: 100%; border-radius: 3px 0 0 3px';
 
-    $changeModal: Observable<'CRYPTO' | 'BANK' | ''> = new Observable((suber) => {
-      if(this.selectedChanged){
-        suber.next(this.selectedChanged.type)
-      } else {
-        suber.next('')
-      }
-    });
+    // $changeModal: Observable<'CRYPTO' | 'BANK' | ''> = new Observable((suber) => {
+    //   if(this.selectedChanged){
+    //     suber.next(this.selectedChanged.type)
+    //   } else {
+    //     suber.next('')
+    //   }
+    // });
+    changeUserForm: boolean = false;
 
     userFormSwitchCond: 'CRYPTO' | 'BANK' | '' = '';
 
@@ -79,8 +80,6 @@ export class HomePageComponent implements OnInit{
 
     private initChanged(){
       this.changed = this.dataService.getChanged()
-      if(this.selectedChanged)
-      this.userFormSwitchCond = this.selectedChanged?.type
     }
 
     public setCalculatedDataFrom(): void{
@@ -109,7 +108,9 @@ export class HomePageComponent implements OnInit{
         })
     }
 
-
+    public changeForm(): void{
+      this.changeUserForm = !this.changeUserForm;
+    }
     
     
 }
