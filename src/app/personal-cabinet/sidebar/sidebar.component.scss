@@ -1,0 +1,77 @@
+.sidebar{
+    padding: 11px 49px 62px 30px;
+    &__link{
+        display: block;
+        width: 100%;
+        padding: 24px 0 24px 44px;
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+        text-decoration: none;
+        position: relative;
+        font-weight: 500;
+        color: rgba(255, 255, 255, .7);
+        transition: color .24s ease;
+        line-height: 1.25;
+        font-size: 14px;
+        & > svg{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: opacity .24s ease;
+            opacity: .75;
+            & path{
+                fill: #fff;
+            }
+        }
+        &:hover{
+            color: rgba(255, 255, 255, 1);
+            & svg {
+                opacity: 1;
+            }
+        }
+    }
+    &__link-text{
+        
+    }
+    & ul{
+        padding-left: 0;
+    }
+}
+
+.btn-escape{
+    border: none;
+    outline: none;
+    position: relative;
+    padding-left: 44px;
+    transition: opacity .24s ease;
+    background-color: transparent;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 400;
+    &-icon{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &__wrap{
+        margin-top: 80px;
+    }
+    &:hover{
+        opacity: .75;
+    }
+}
+
+.active{
+    color: #fff;
+    border-bottom: 1px solid #f1b300;
+    & > svg{
+        & path{
+            fill: #f1b300;
+        }
+    }   
+}
+
+
+
