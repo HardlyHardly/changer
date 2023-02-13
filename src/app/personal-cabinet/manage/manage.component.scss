@@ -1,0 +1,51 @@
+.manage{
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(33, 33, 33, .1);
+        border-bottom: 1px solid rgba(33, 33, 33, .1);
+        padding: 6px 62px;
+    }
+    &__title{
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 1.25;
+        color: #212121;
+    }
+    &__body{
+        margin-top: 45px;
+        & table{
+            border: 1px solid rgba(33, 33, 33, .1);
+            & > thead > tr > th{
+                text-align: center;
+                border: 1px solid rgba(33, 33, 33, .1);
+                font-weight: 500;
+                line-height: 1.25;
+                color: #212121;
+                padding: 24px 0;
+            }
+            & > tbody > tr > td{
+                text-align: center;
+                background-color: #fff;
+                font-weight: 500;
+                line-height: 1.25;
+                color: #212121;
+            }
+        }
+    }
+    
+}
+
+.btn-yellow{
+    background-color: #fcbf11;
+    font-weight: 600;
+    border: none;
+    border-radius: 0 3px 3px 0;
+    padding: 19px 22px;
+    transition: box-shadow .24s ease, background-color .24s ease;
+    box-shadow: 0 0 10px rgb(252 191 17 / 25%);
+    &:hover{
+        box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+    }
+}

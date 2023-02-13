@@ -1,0 +1,26 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    background-color: #0629a6;
+    padding: 33px 40px 46px 33px;
+    color: #fff;
+}
+
+.logo-wrap{
+    max-width: 186px;
+}
+
+.user{
+    &__text{
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.25;
+        margin-top: 27px;
+    }
+    &__mail{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.25;
+        text-decoration: underline;
+    }
+}

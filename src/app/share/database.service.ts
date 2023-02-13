@@ -1,6 +1,7 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { CreateOrder } from '../interfaces/createOrderI';
 import { CurrenciesCalculateI } from '../interfaces/currenciesCalculateI';
 
 
@@ -10,7 +11,7 @@ import { CurrenciesCalculateI } from '../interfaces/currenciesCalculateI';
 export class DatabaseService {
   private httpWithoutInterceptor: HttpClient;
 
-  private baseUrl: string = 'https://9965-195-49-215-148.eu.ngrok.io';
+  private baseUrl: string = 'https://9965-195-49-215-148.eu.ngrok.io/api/';
 
   constructor(
     private http: HttpClient,
@@ -26,6 +27,10 @@ export class DatabaseService {
 
   private formatErrors(error: any) {
     return throwError(error.error);
+  }
+
+  public createOrder(data: CreateOrder){
+
   }
 
 }

@@ -4,7 +4,7 @@ import { ChangeI } from 'src/app/interfaces/changeI';
 import { CryptoI } from 'src/app/interfaces/cryptoI';
 import { GlobaldataService } from 'src/app/share/globaldata.service';
 import { DatabaseService } from 'src/app/share/database.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 
@@ -19,16 +19,17 @@ export class HomePageComponent implements OnInit{
 
   public styleConditionForDrops: string = 'width: 100%; border-radius: 3px 0 0 3px';
 
-    // $changeModal: Observable<'CRYPTO' | 'BANK' | ''> = new Observable((suber) => {
-    //   if(this.selectedChanged){
-    //     suber.next(this.selectedChanged.type)
-    //   } else {
-    //     suber.next('')
-    //   }
-    // });
+    showPromoFieldCond: boolean = false;
+
     changeUserForm: boolean = false;
 
     userFormSwitchCond: 'CRYPTO' | 'BANK' | '' = '';
+    
+    userForm = new FormGroup({
+      'card': new FormControl(''),
+      'fio': new FormControl(''),
+      'wallet': new FormControl('')
+    })
 
     public amountTo: number = 0;
 
@@ -112,5 +113,40 @@ export class HomePageComponent implements OnInit{
       this.changeUserForm = !this.changeUserForm;
     }
     
+    public showPromoField(): void{
+      this.showPromoFieldCond = !this.showPromoFieldCond;
+    }
+
+    public resetForm(): void{
+      this.changeUserForm = false;
+    }
     
+
+    public createOrder(): void{
+      if(this.selectedCrypto && this.selectedChanged){
+        if(this.selectedChanged.type === 'BANK'){
+          this.dataBaseService
+          .createOrder({
+            symbolFrom: this.selectedCrypto?.index,
+            valueFrom: this.amountFrom,
+            symbolTo: this.selectedChanged?.index,
+            valueTo: this.amountTo,
+            card: this.userForm.value.card,
+            fio: this.userForm.value.fio,
+          })
+        }
+        if(this.selectedChanged.type === 'CRYPTO'){
+          this.dataBaseService
+          .createOrder({
+            symbolFrom: this.selectedCrypto?.index,
+            valueFrom: this.amountFrom,
+            symbolTo: this.selectedChanged?.index,
+            valueTo: this.amountTo,
+            wallet: this.userForm.value.wallet
+          })
+        }
+      }
+      
+
+    }
 }

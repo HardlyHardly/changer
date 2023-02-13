@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '', 
     loadChildren: () => import('./changer-main/changer-main.module').then(m => m.ChangerMainModule)
+  },
+  {
+    path: 'Identity',
+    loadChildren: () => import('./personal-cabinet/personal-cabinet.module').then(m => m.PersonalCabinetModule)
   }
 ];
 

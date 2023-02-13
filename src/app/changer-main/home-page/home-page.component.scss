@@ -82,6 +82,7 @@
 .btn-yellow{
   width: 200px;
   background-color: #fcbf11;
+  font-weight: 600;
   border: none;
   border-radius: 0 3px 3px 0;
 }
@@ -223,3 +224,82 @@
   margin: 5px 0 15px 0;
 }
 
+.icon-wrap{
+  left: 18px;
+  max-width: 18px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
+  & > img{
+    width: 100%;
+    height: auto;
+  }
+}
+
+::ng-deep .user-form{
+  & .field-input > input[type="text"],
+  & .field-input > input[type="email"]{
+    background: rgba(227, 227, 227, .4);
+    border-radius: 7px;
+    width: 100%;
+    padding: 22px 17px 17px 42px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #212121;
+    border: 1px solid rgba(17, 17, 17, .1);
+    box-sizing: border-box;
+    transition: border .5s ease;
+    &:focus{
+      border: 1px solid rgba(17, 17, 17, .3);
+    }
+    &::placeholder{
+      font-weight: 400;
+      transition: color .5s ease;
+    }
+    &:focus::placeholder{
+      color: transparent
+    }
+  }
+
+  & .field-title{
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+::ng-deep .form-control{
+  &:focus{
+    box-shadow: none;
+  }
+}
+
+.cursor-p{
+  cursor: pointer;
+}
+
+::ng-deep .form-check-label{
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #212121;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+::ng-deep .form-check-input{
+  &:focus{
+    box-shadow: none;
+  }
+  &:checked[type="checkbox"]{
+    background-image: none;
+  }
+  &:checked{
+    background-color: #fcbf11;
+    padding: 3px;
+  }
+}
