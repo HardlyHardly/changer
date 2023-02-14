@@ -12,6 +12,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {DialogModule} from 'primeng/dialog';
     ShareModule,
     DropdownModule,
     FormsModule,
-    DialogModule
+    DialogModule,
+    MatDialogModule
   ]
 })
 export class ChangerMainModule { }

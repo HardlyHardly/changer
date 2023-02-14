@@ -1,0 +1,46 @@
+<section class="login">
+    <div class="login__header">
+        <button 
+            [ngClass]="changeDialogLogin ? 'active' : ''"
+            (click)="changeDialog()"
+            >Войти
+        </button>
+        <button
+            [ngClass]="!changeDialogLogin ? 'active' : ''"
+            (click)="changeDialog()"
+        >Регистрация</button>
+    </div>
+    <div class="login__body">
+        <h1 class="login__title">
+            {{changeDialogLogin ? 'Авторизация' : 'Регистрация'}}
+        </h1>
+        <div class="login__content" *ngIf="changeDialogLogin">
+            <input type="email" placeholder="E-mail">
+            <input type="password" placeholder="Пароль">
+            <a href="">Забыли пароль?</a><br>
+            <div class="btn-wrap">
+                <button class="btn-yellow">
+                    {{changeDialogLogin ? 'Войти' : 'Зарегистрироваться'}}
+                </button>
+            </div>
+        </div>
+        <div class="login__content" *ngIf="!changeDialogLogin">
+            <input type="email" placeholder="E-mail" name="email">
+            <input type="password" placeholder="Пароль" name="pass">
+            <input type="password" placeholder="Повторите пароль" name="check-pass">
+            <label for="remember">
+                <input id="remember" type="checkbox">
+                <span>Запомнить меня?</span>
+ 
+            </label>
+            <div class="btn-wrap">
+                <button [ngClass]="changeDialogLogin ? 'btn-yellow' : 'btn-yellow-big'">
+                    {{changeDialogLogin ? 'Войти' : 'Зарегистрироваться'}}
+                </button>
+            </div>
+        </div>
+        
+        
+    </div>
+</section>
+

@@ -159,7 +159,7 @@
                     <div class="icon-wrap">
                       <img src="assets/icons/i1.svg" alt="">
                     </div>
-                    <input class="form-control position-relative mt-2" type="email" placeholder="user@email.com" id="email">
+                    <input [(ngModel)]="userEmail" name="user-email" class="form-control position-relative mt-2" type="email" placeholder="user@email.com" id="email">
                   </div>
                   <div class="field-title mt-4 cursor-p" (click)="showPromoField()">
                     Есть промокод?
@@ -171,7 +171,7 @@
                     <input class="form-control position-relative mt-2" type="email" placeholder="user@email.com" id="email">
                   </div>
                   <div class="btn-wrap d-flex">  
-                    <button type="button" class="btn-yellow btn-big my-2 w-100 btn-font" (click)="changeForm()" >Продолжить</button>
+                    <button type="button" class="btn-yellow btn-big my-2 w-100 btn-font" (click)="createOrder()" >Продолжить</button>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="defaultCheck1">
