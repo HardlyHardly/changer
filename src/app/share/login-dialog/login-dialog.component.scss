@@ -1,0 +1,123 @@
+.login{
+    background-color: #ececec;
+    display: flex;
+    flex-direction: column;
+    min-height: 60vh;
+    &__header{
+        display: flex;
+        & > button{
+            border: none;
+            outline: none;
+            width: 50%;
+            height: auto;
+            background-color: #180bc1;
+            color: #fff;
+            padding: 20px 56px;
+            font-weight: 500;
+            font-size: 23px;
+            line-height: 1.25;
+            transition: background-color .24s ease;
+        }
+    }
+    &__title{
+        font-weight: 500;
+        font-size: 23px;
+        line-height: 1.25;
+        color: #000;
+        text-align: center;
+    }
+    &__body{
+        padding: 20px;
+        & .login__content{
+            & > input[type="email"],
+            & > input[type="password"]{
+                width: 100%;
+                border: none;
+                outline: none;
+                padding: 25px;
+                border-radius: 7px;
+                color: #212121;
+                margin: 25px 0;
+                font-size: 23px;
+                line-height: 1.25;
+                font-weight: 500;
+                transition: all .5s ease;
+                background-color: #e3e3e3;
+                border: 1px solid rgba(17, 17, 17, .1);
+                &::placeholder{
+                    transition:  all .5s ease;
+                }
+                &:focus{
+                    border: 1px solid rgba(17, 17, 17, .5);
+                }
+                &:focus::placeholder{
+                    color: transparent;
+                }
+            }
+        }
+    }
+}
+
+.login{
+    &__body{
+        & .login__content{
+            & > input[name="email"],
+            & > input[name="pass"],
+            & > input[name="check-pass"] {
+                margin: 15px 0 !important;
+            }
+        }
+    }
+}
+
+::ng-deep mat-dialog-container{
+    min-height: 60vh !important;
+    width: 540px !important;
+}
+
+.btn-yellow,
+.btn-yellow-big{
+    width: 50%;
+    border: none;
+    outline: none;
+    background-color: #fcbf11;
+    box-shadow: 0 0 10px rgb(252 191 17 / 25%);
+    border-radius: 0 3px 3px 0;
+    transition: box-shadow .24s ease background-color .24s ease;
+    padding: 18px 62px;
+    font-weight: 600;
+    &:hover{
+        box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+    }
+}
+
+.btn-yellow-big{
+    width: 75%;
+}
+
+.btn-wrap{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.active{
+    background-color: #fff !important;
+    color: black !important;
+}
+
+.login__content{
+    & > label {
+        display: flex;
+        align-items: center;
+        & > input {
+            width: 26px;
+            height: 26px;
+            border: 1px solid #180bc1;
+            border-radius: 1px;
+        }
+        & > span{
+            margin-left: 20px;
+        }
+    }
+}

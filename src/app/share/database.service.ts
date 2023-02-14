@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { CreateOrder } from '../interfaces/createOrderI';
 import { CurrenciesCalculateI } from '../interfaces/currenciesCalculateI';
+import { UserResponse } from '../interfaces/userRessponseI';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { CurrenciesCalculateI } from '../interfaces/currenciesCalculateI';
 export class DatabaseService {
   private httpWithoutInterceptor: HttpClient;
 
-  private baseUrl: string = 'https://9965-195-49-215-148.eu.ngrok.io/api/';
+  private baseUrl: string = 'https://6091-95-47-122-109.eu.ngrok.io';
 
   constructor(
     private http: HttpClient,
@@ -29,8 +30,17 @@ export class DatabaseService {
     return throwError(error.error);
   }
 
-  public createOrder(data: CreateOrder){
+  public createOrder(data: CreateOrder, accessHeader: string): Observable<null>{
+    return this.http.post<null>(this.baseUrl + '/orders', data, {
+      headers: {
+        'Authorization': 'Bearer ' + accessHeader
+      }
+    })
+  }
 
+  public registerUserFromOrder(data: {email: string}){
+    return this.http.post<UserResponse>(this.baseUrl + '/users/register', data)
+    .pipe(catchError(this.formatErrors))
   }
 
 }

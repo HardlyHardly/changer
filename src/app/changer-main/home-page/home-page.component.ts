@@ -6,6 +6,7 @@ import { GlobaldataService } from 'src/app/share/globaldata.service';
 import { DatabaseService } from 'src/app/share/database.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { UserResponse } from 'src/app/interfaces/userRessponseI';
 
 
 
@@ -17,7 +18,7 @@ import { Observable } from 'rxjs';
 
 export class HomePageComponent implements OnInit{
 
-  public styleConditionForDrops: string = 'width: 100%; border-radius: 3px 0 0 3px';
+    userEmail: string = '';
 
     showPromoFieldCond: boolean = false;
 
@@ -47,7 +48,7 @@ export class HomePageComponent implements OnInit{
 
     constructor(
       private readonly dataService: GlobaldataService,
-      private readonly dataBaseService: DatabaseService
+      private readonly dataBaseService: DatabaseService,
     ){
     }
 
@@ -124,29 +125,45 @@ export class HomePageComponent implements OnInit{
 
     public createOrder(): void{
       if(this.selectedCrypto && this.selectedChanged){
-        if(this.selectedChanged.type === 'BANK'){
-          this.dataBaseService
-          .createOrder({
-            symbolFrom: this.selectedCrypto?.index,
-            valueFrom: this.amountFrom,
-            symbolTo: this.selectedChanged?.index,
-            valueTo: this.amountTo,
-            card: this.userForm.value.card,
-            fio: this.userForm.value.fio,
-          })
-        }
-        if(this.selectedChanged.type === 'CRYPTO'){
-          this.dataBaseService
-          .createOrder({
-            symbolFrom: this.selectedCrypto?.index,
-            valueFrom: this.amountFrom,
-            symbolTo: this.selectedChanged?.index,
-            valueTo: this.amountTo,
-            wallet: this.userForm.value.wallet
-          })
-        }
-      }
-      
+        this.dataBaseService
+          .registerUserFromOrder({email: this.userEmail})
+          .subscribe((body: UserResponse) => {
 
+            console.log(body)
+            const {accessToken} = body.tokens;
+            if(this.selectedCrypto && this.selectedChanged){
+              if(this.selectedChanged.type === 'BANK'){
+                this.dataBaseService
+                .createOrder({
+                  symbolFrom: this.selectedCrypto?.index,
+                  valueFrom: this.amountFrom,
+                  symbolTo: this.selectedChanged?.index,
+                  valueTo: this.amountTo,
+                  card: this.userForm.value.card,
+                  fio: this.userForm.value.fio,
+                }, accessToken)
+                .subscribe((res: null) => {
+                  console.log(res);
+                })
+              }
+              if(this.selectedChanged.type === 'CRYPTO'){
+                this.dataBaseService
+                .createOrder({
+                  symbolFrom: this.selectedCrypto?.index,
+                  valueFrom: this.amountFrom,
+                  symbolTo: this.selectedChanged?.index,
+                  valueTo: this.amountTo,
+                  wallet: this.userForm.value.wallet
+                }, accessToken)
+                .subscribe((res: null) => {
+                  console.log(res);
+                })
+              }
+            }
+          })
+        
+      }
     }
+
+    
 }
