@@ -15,7 +15,9 @@
     }
     &__body{
         display: flex;
+        flex-wrap: wrap;
         margin-top: 20px;
+        gap: 20px;
     }
 }
 
@@ -26,6 +28,15 @@
     box-shadow: 0 2px 2px rgb(33 33 33 / 10%);
     padding: 20px 15px 16px 16px;
     border-radius: 8px;
+    &:nth-child(2){
+        height: 165px;
+        font-size: 2rem;
+    }
+    &:nth-child(3){
+        width: 40%;
+        height: 165px;
+        font-size: 2rem;
+    }
     &__title{
         font-size: 1.5rem;
         line-height: 1.4;
@@ -35,18 +46,152 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     }
     &__content-wrap{
-
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+    & > p{
+        color: darkgrey;
+        font-weight: 600;
     }
 }
 
 .form-block{
+    width: 50%;
     & select{
         background: rgba(227, 227, 227, .4);
         border: 1px solid rgba(17, 17, 17, .1);
-        border: 7px;
+        border-radius: 7px;
+        padding: 17px;
+        width: 100%;
+        line-height: 20px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #212121;
         &:focus{
             box-shadow: none;
         }
     }
+
     
+}
+
+.select-wrap > p{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #000;
+    margin-bottom: 0;
+}
+
+.arrow-down{
+    &_img{
+        width: 100%;
+        height: auto;
+    }
+    &_wrap{
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 60%;
+        right: 20px;
+        z-index: 100;
+        transform: translateY(-60%);
+    }
+}
+
+.form-field__wrap{
+    position: relative;
+    & > input[type="text"],
+    & > input[type="number"]{
+        border: 1px solid rgba(17, 17, 17, 0.1);
+        background: rgba(227, 227, 227, .4);
+        border-radius: 7px;
+        width: 100%;
+        padding: 17px 17px 17px 42px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        color: #212121;
+        outline: none;
+        opacity: .75;
+        &:focus{
+            opacity: 1;
+            font-weight: 400;
+        }
+        &::placeholder{
+            font-weight: 400;
+            transition: color .5s ease;
+
+        }
+        &:focus::placeholder{
+            color: transparent
+        }
+    }
+    & > input[type="number"]{
+        padding: 17px;
+        margin-bottom: 10px;
+        &::placeholder{
+            font-weight: 500;
+            opacity: .75;
+        }
+    }
+    & > p{
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.25;
+        color: #000;
+        margin: 0;
+    }
+}
+
+.input-icon__wrap{
+    left: 18px;
+    max-width: 18px;
+    pointer-events: none;
+    position: absolute;
+    z-index: 100;
+    top: 75%;
+    transform: translateY(-75%);
+    opacity: .75;
+    & > img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+.btn-yellow{
+    border: none;
+    outline: none;
+    width: 100%;
+    border-radius: 7px;
+    padding: 20px 56px;
+    box-shadow: 0 0 10px rgb(252 191 17 / 25%);
+    transition: box-shadow .24s ease, background-color .24s ease;
+    margin-top: 5px;
+    background-color: #fcbf11;
+    &:hover{
+        box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+    }
+}
+
+.info-block{
+    width: 45%;
+    &__elem{
+        padding-bottom: 15px;
+        & > p{
+            margin: 0;
+            font-weight: 500;
+        }
+        & > a {
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.color-yellow{
+    color: #fcbf11;
 }
