@@ -1,0 +1,108 @@
+.payment{
+    &__header{
+        display: flex;
+        padding-top: 20px;
+        & > p{
+            &:last-child{   
+                font-weight: 600;
+                margin-left: 20px;
+            }
+        }
+    }
+    &__body{
+        margin: 20px 0 40px 0;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: minmax(55%) minmax(15%);
+        grid-template-rows: minmax(165px) minmax(50px) minmax(330px);
+        grid-template-areas: 
+        'change loader'
+        'alert alert'
+        'qr qr'
+    }
+}
+
+.card-type{
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 16%);
+    &__change{
+        grid-area: change;
+        font-weight: 500;
+        & > p:last-child{
+            font-size: 14px;
+            font-weight: 400;
+        }
+        & > p:nth-child(2){
+            margin: 0;
+        }
+    }
+    &__loader{
+        grid-area: loader;
+        &-content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    }
+    &__alert{
+        grid-area: alert;
+    }
+    &__qr{
+        grid-area: qr;
+    }
+}
+
+.text-yellow{
+    color: #fcbf11;
+}
+
+.timer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timer-wrap{
+    width: 70px;
+    height: 70px;
+    position: relative;
+}
+
+.btn-wrap{
+    display: flex;
+}
+
+.btn-yellow{
+    width: 30%;
+    border: none;
+    outline: none;
+    background-color: #fcbf11;
+    box-shadow: 0 0 10px rgb(252 191 17 / 25%);
+    border-radius: 0 3px 3px 0;
+    transition: box-shadow .24s ease background-color .24s ease;
+    padding: 18px 62px;
+    font-weight: 600;
+    &:hover{
+        box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+    }
+}
+
+.btn-grey{
+    width: 30%;
+    border: none;
+    outline: none;
+    background-color: darkgrey;
+    box-shadow: 0 0 10px rgb(252 191 17 / 25%);
+    border-radius: 0 3px 3px 0;
+    transition: box-shadow .24s ease background-color .24s ease;
+    padding: 18px 62px;
+    font-weight: 600;
+    &:hover{
+        box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+    }
+}
+

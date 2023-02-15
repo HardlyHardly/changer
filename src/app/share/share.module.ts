@@ -5,6 +5,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { OrderModalComponent } from './order-modal/order-modal.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -12,17 +16,23 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
     HeaderComponent,
     FooterComponent,
     LoginDialogComponent,
+    OrderModalComponent,
+    SpinnerComponent,
 
   ],
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    DropdownModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    OrderModalComponent,
+    SpinnerComponent
   ]
 })
 export class ShareModule { }

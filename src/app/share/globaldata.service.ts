@@ -10,7 +10,7 @@ export class GlobaldataService {
 
   private iconsPath: string = 'assets/icons/';
 
-  cryptos: CryptoI[] = [
+  private cryptos: CryptoI[] = [
     // {type: 'CRYPTO', name: 'AdvCash', imageSrc: this.iconsPath + 'adv.svg'},
     // {type: 'CRYPTO', name: 'Avalanche', imageSrc: this.iconsPath + 'avax.svg'},
     // {type: 'CRYPTO', name: 'Algorand', imageSrc: this.iconsPath + 'algo.svg'},

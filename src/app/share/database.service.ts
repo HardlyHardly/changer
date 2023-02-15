@@ -30,8 +30,8 @@ export class DatabaseService {
     return throwError(error.error);
   }
 
-  public createOrder(data: CreateOrder, accessHeader: string): Observable<null>{
-    return this.http.post<null>(this.baseUrl + '/orders', data, {
+  public createOrder(data: CreateOrder, accessHeader: string): Observable<any>{
+    return this.http.post<any>(this.baseUrl + '/orders', data, {
       headers: {
         'Authorization': 'Bearer ' + accessHeader
       }
