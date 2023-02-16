@@ -1,0 +1,42 @@
+<section class="payment" *ngIf="orderData !== null">
+    <div class="container">
+        <div class="payment__header">
+            <p>Ожидание оплаты</p>
+            <p>№204{{orderData.id}} от {{orderData.createdAt}}</p>
+        </div> 
+        <div class="payment__body">
+            <div class="card-type card-type__change">
+                <h5>Вы меняете {{orderData.valueFrom  }} 
+                    Bitcoin {{orderData.symbolFrom  }} на {{orderData.valueTo  }} Bitcoin {{orderData.symbolTo}}</h5>
+                <p>Получаете на</p>
+                <p class="text-yellow">{{orderData.wallet  }}</p> 
+                <p>Чтобы совершить обмен выполните следующие шаги.</p> 
+            </div>
+            <div class="card-type__loader">
+                <div class="card-type__loader-content">
+                    <div class="timer-wrap">
+                        <app-spinner></app-spinner>
+                        <div class="timer">15:00</div>
+                    </div>
+                    <p>Оплатите заявку до окончания этого времени</p>
+                </div>
+            </div>
+            <div class="card-type card-type__alert">
+                <h5 class="card-type__alert">Внимание</h5>
+                <p>Уважаемый клиент, в данном направлении мы ждем 3-5 подтверждение в сети</p>
+            </div>
+            <div class="card-type card-type__qr">
+                <h5>1.Для совершения обмена Вам необходимо перевести <span class="fw-bold">{{orderData.valueFrom}}</span> на реквизиты</h5>
+                <p>Адрес получения</p>
+                <p class="text-yellow">dsadp12313981dfsohfuah913</p>
+                <h5>QR код для оплаты через приложение</h5>
+                <qrcode [allowEmptyString]="true" [qrdata]="orderData!.wallet" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                <div class="btn-wrap">
+                    <button class="btn-yellow mx-2">Я оплатил</button>
+                    <button class="btn-grey mx-2">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

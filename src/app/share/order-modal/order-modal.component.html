@@ -1,0 +1,138 @@
+<div mat-dialog-content>
+    <div *ngIf="!changeUserForm; else userDataForm">
+        <button type="button" class="btn-close" (click)="closeAllDialogs()"></button>
+        <div class="modal-header">
+        <div class="modal-title w-100">
+        <h5 class="text-center modal-title-content" id="exampleModalLabel">Создать заявку на обмен</h5>
+        </div>    
+    </div>
+    <div class="modal-body">
+        <div class="col-12">
+            <p-dropdown class="drop-crypto" autoWidth="false" [style]="{'width':'100%'}"  [options]="cryptos" [(ngModel)]="selectedCrypto" optionLabel="name" [filter]="true" filterBy="name"
+            name="crypto"
+            [showClear]="true" placeholder="Select a Crypto"
+            (onChange)="setCalculatedDataFrom()"
+            >
+            <ng-template pTemplate="selectedItem">
+            <div class="country-item country-item-value" *ngIf="selectedCrypto">
+                <div><img class="img-select" [src]="selectedCrypto.imageSrc" alt="">{{selectedCrypto.name}}</div>
+            </div>
+            </ng-template>
+            <ng-template let-crypto pTemplate="item">
+            <div class="country-item">
+                <div><img class="img-select" [src]="crypto.imageSrc" alt="">{{crypto.name}}</div>
+            </div>
+            </ng-template>
+            </p-dropdown>
+        </div>
+        <input type="tel" class="form-input" [(ngModel)]="amountFrom" [ngModelOptions]="{standalone: true}" (input)="setCalculatedDataFrom()">
+        <div class="change-icon-wrap">
+            <i class="pi pi-sort-alt change-icon my-2"></i>
+        </div>
+        <input type="tel" class="form-input" [(ngModel)]="amountTo" [ngModelOptions]="{standalone: true}" (input)="setCalculatedDataTo()" >
+        <div class="col-12 my-4">
+            <p-dropdown autoWidth="false" [style]="{'width':'100%'}" [options]="changed" [(ngModel)]="selectedChanged" optionLabel="name" [filter]="true" filterBy="name"
+            name="changed"
+        [showClear]="true" placeholder="Select a Crypto or Bank"
+        (onChange)="setCalculatedDataFrom()"
+        >
+        <ng-template pTemplate="selectedItem">
+            <div class="country-item country-item-value" *ngIf="selectedChanged">
+            <div><img class="img-select" [src]="selectedChanged.imageSrc" alt="">{{selectedChanged.name}}</div>
+            </div>
+        </ng-template>
+        <ng-template let-changed pTemplate="item">
+            <div class="country-item">
+            <div><img class="img-select" [src]="changed.imageSrc" alt="">{{changed.name}}</div>
+            </div>
+        </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="btn-wrap d-flex">  
+            <button type="button" class="btn-yellow btn-big my-2 w-100 btn-font" (click)="changeForm()" >Продолжить</button>
+        </div>
+    </div>
+    </div>
+    <ng-template #userDataForm>
+    <div class="modal-content">
+        <div class="modal-header">
+        <div class="btn-close-wrap">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
+        </div>
+        <div class="modal-title w-100">
+            <h5 class="text-center modal-title-content" id="exampleModalLabel">Введите реквизиты</h5>
+        </div>
+        
+        </div>
+        <div class="modal-body">
+        <form class="user-form">
+            <div *ngIf="selectedChanged?.type === 'BANK'">
+            <div class="field-title">
+                Реквизиты отправителя:
+            </div>
+            <div class="field-input position-relative">
+                <div class="icon-wrap">
+                <img src="assets/icons/i1.svg" alt="">
+                </div>
+                <input class="form-control my-3" type="text" placeholder="Номер карты" id="card">
+            </div>
+            <div class="field-input position-relative">
+                <div class="icon-wrap">
+                <img src="assets/icons/i2.svg" alt="">
+                </div>
+                <input class="form-control my-3" type="text" placeholder="ФИО" id="fio">
+            </div>
+            <div class="field-title mt-4">
+                Реквизиты получателя:
+            </div>
+            <div class="field-input position-relative">
+                <div class="icon-wrap">
+                <img src="assets/icons/i1.svg" alt="">
+                </div>
+                <input class="form-control position-relative mt-2" type="text" placeholder="Адрес получения" id="address">
+            </div>
+            </div>
+            <div *ngIf="selectedChanged?.type === 'CRYPTO'">
+            <div class="field-title">
+                Реквизиты получателя
+            </div>
+            <div class="field-input position-relative">
+                <div class="icon-wrap">
+                <img src="assets/icons/i1.svg" alt="">
+                </div>
+                <input class="form-control my-3" type="text" placeholder="Адрес получения" id="wallet">
+            </div>
+            </div>
+            <div class="field-title mt-4">
+            Email:
+            </div>
+            <div class="field-input position-relative">
+            <div class="icon-wrap">
+                <img src="assets/icons/i1.svg" alt="">
+            </div>
+            <input [(ngModel)]="userEmail" name="user-email" class="form-control position-relative mt-2" type="email" placeholder="user@email.com" id="email">
+            </div>
+            <div class="field-title mt-4 cursor-p" (click)="showPromoField()">
+            Есть промокод?
+            </div>
+            <div *ngIf="showPromoFieldCond" class="field-input position-relative">
+            <div class="icon-wrap">
+                <img src="assets/icons/i1.svg" alt="">
+            </div>
+            <input class="form-control position-relative mt-2" type="email" placeholder="user@email.com" id="email">
+            </div>
+            <div class="btn-wrap d-flex">  
+            <button type="button" class="btn-yellow btn-big my-2 w-100 btn-font" (click)="createOrder()" >Продолжить</button>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Вы соглашаетесь с <a routerLink="Rules">правилами</a> сервиса и регламентом проведения AML-проверок
+            </label>
+            </div>
+        </form>
+        </div>
+    </div>
+    </ng-template>
+</div>
+

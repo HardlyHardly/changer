@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from 'primeng/dynamicdialog';
 import { LoginDialogComponent } from 'src/app/share/login-dialog/login-dialog.component';
 import { LoginService } from 'src/app/share/login.service';
+import { OrderModalService } from 'src/app/share/order-modal.service';
+import { OrderModalComponent } from 'src/app/share/order-modal/order-modal.component';
 
 @Component({
   selector: 'app-main-page',
@@ -10,16 +12,17 @@ import { LoginService } from 'src/app/share/login.service';
   styleUrls: ['./main-page.component.scss'],
   providers: [DialogService]
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
 
   modalVar: boolean = false;
 
   constructor(
-    private loginService: LoginService,
-    public dialog: MatDialog
+    private readonly loginService: LoginService,
+    private readonly dialog: MatDialog,
+    private readonly orderModalService: OrderModalService
     ){}
 
-  public openOrCloseModal(): void{
+  public openOrCloseModalLogin(): void{
     this.loginService
     .$ModalLogin()
     .subscribe((bool: boolean) => {
@@ -28,6 +31,18 @@ export class MainPageComponent {
         data: bool
       })
     })
+  }
+
+  ngOnInit(): void {
+    this.orderModalService
+    .$eventFromHomePage
+    .subscribe((event: string) => {
+      if(event === 'event'){
+        this.dialog.open(OrderModalComponent)
+      } else {
+        return
+      }
+    })   
   }
 
   

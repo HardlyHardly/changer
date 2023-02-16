@@ -6,6 +6,7 @@ import { ContactsPageComponent } from './contacts-page/contacts-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'Home'},
@@ -15,11 +16,11 @@ const routes: Routes = [
     {path: 'Rules', component: RulesPageComponent},
     {path: 'Partners', component: PartnersPageComponent},
     {path: 'Contacts', component: ContactsPageComponent},
-    {path: 'News', component: NewsPageComponent}
+    {path: 'News', component: NewsPageComponent},
+    {path: 'Payment', component: PaymentComponent}
   ]
 },
-  {path: 'Home', component: HomePageComponent,
-  }
+  {path: 'Home', component: HomePageComponent}
 ];
 
 @NgModule({

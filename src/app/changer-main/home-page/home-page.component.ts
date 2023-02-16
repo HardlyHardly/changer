@@ -7,6 +7,11 @@ import { DatabaseService } from 'src/app/share/database.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { UserResponse } from 'src/app/interfaces/userRessponseI';
+import { Router } from '@angular/router';
+import { HomeSelectService } from 'src/app/share/home-select.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderModalComponent } from 'src/app/share/order-modal/order-modal.component';
+import { OrderModalService } from 'src/app/share/order-modal.service';
 
 
 
@@ -32,9 +37,7 @@ export class HomePageComponent implements OnInit{
       'wallet': new FormControl('')
     })
 
-    public amountTo: number = 0;
-
-    public amountFrom: number = 0;
+    
     
   
     changed: ChangeI[] = [];
@@ -48,7 +51,8 @@ export class HomePageComponent implements OnInit{
 
     constructor(
       private readonly dataService: GlobaldataService,
-      private readonly dataBaseService: DatabaseService,
+      private readonly homeSelectService: HomeSelectService,
+      private readonly orderModalService: OrderModalService
     ){
     }
 
@@ -68,6 +72,14 @@ export class HomePageComponent implements OnInit{
       }
     }
 
+    public setSelectedCrypto(newValue: CryptoI | null): void{
+      this.homeSelectService.setSelectedCrypto(newValue)
+    }
+
+    public setSelectedChanged(newValue: ChangeI | CryptoI | null): void{
+      this.homeSelectService.setSelectedChanged(newValue)
+    }
+
     public openChangeDialog(){
       this.display = true;
     }
@@ -83,32 +95,9 @@ export class HomePageComponent implements OnInit{
     private initChanged(){
       this.changed = this.dataService.getChanged()
     }
-
-    public setCalculatedDataFrom(): void{
-      if(this.selectedCrypto && this.selectedChanged)
-      this.setCalculatedData(this.selectedCrypto.index, this.selectedChanged.index, this.amountFrom)
-      .subscribe((amonuntTo: number) => {
-        this.amountTo = amonuntTo;
-      })
-    }
-
-    public setCalculatedDataTo(): void{
-      if(this.selectedCrypto && this.selectedChanged)
-      this.setCalculatedData(this.selectedCrypto.index, this.selectedChanged.index, this.amountTo)
-      .subscribe((amonuntFrom: number) => {
-        this.amountFrom = amonuntFrom;
-      })
-    }
     
 
-    private setCalculatedData(symbolFrom: string, symbolTo: string, amount: number): Observable<number>{
-      return this.dataBaseService.
-        changeCurrencies({
-          symbolFrom,
-          symbolTo,
-          amount
-        })
-    }
+    
 
     public changeForm(): void{
       this.changeUserForm = !this.changeUserForm;
@@ -121,49 +110,13 @@ export class HomePageComponent implements OnInit{
     public resetForm(): void{
       this.changeUserForm = false;
     }
+
+    public openOrderDialog(): void{
+      this.orderModalService.eventFromHomePage.next('event');
+    }
     
 
-    public createOrder(): void{
-      if(this.selectedCrypto && this.selectedChanged){
-        this.dataBaseService
-          .registerUserFromOrder({email: this.userEmail})
-          .subscribe((body: UserResponse) => {
-
-            console.log(body)
-            const {accessToken} = body.tokens;
-            if(this.selectedCrypto && this.selectedChanged){
-              if(this.selectedChanged.type === 'BANK'){
-                this.dataBaseService
-                .createOrder({
-                  symbolFrom: this.selectedCrypto?.index,
-                  valueFrom: this.amountFrom,
-                  symbolTo: this.selectedChanged?.index,
-                  valueTo: this.amountTo,
-                  card: this.userForm.value.card,
-                  fio: this.userForm.value.fio,
-                }, accessToken)
-                .subscribe((res: null) => {
-                  console.log(res);
-                })
-              }
-              if(this.selectedChanged.type === 'CRYPTO'){
-                this.dataBaseService
-                .createOrder({
-                  symbolFrom: this.selectedCrypto?.index,
-                  valueFrom: this.amountFrom,
-                  symbolTo: this.selectedChanged?.index,
-                  valueTo: this.amountTo,
-                  wallet: this.userForm.value.wallet
-                }, accessToken)
-                .subscribe((res: null) => {
-                  console.log(res);
-                })
-              }
-            }
-          })
-        
-      }
-    }
+    
 
     
 }

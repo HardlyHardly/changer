@@ -13,6 +13,9 @@ import {DropdownModule} from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
 import {MatDialogModule} from '@angular/material/dialog';
+import { PaymentComponent } from './payment/payment.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ContactsPageComponent,
     NewsPageComponent,
     HomePageComponent,
+    PaymentComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     DropdownModule,
     FormsModule,
     DialogModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    QRCodeModule
   ]
 })
 export class ChangerMainModule { }
