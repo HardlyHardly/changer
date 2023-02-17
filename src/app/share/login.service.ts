@@ -6,15 +6,21 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  loginVar: boolean = false;
+  private loginVar: boolean = false;
 
   loginModalVar: boolean = false;
 
   constructor() { }
 
   public isLoggin(): boolean{
-    // this.loginVar = true;
+    if(localStorage.getItem('accessToken')){
+      this.loginVar = true;
+    } 
     return this.loginVar
+  }
+
+  public setIsLoggin(value: boolean): void{
+    this.loginVar = value;
   }
 
   public $ModalLogin(): Observable<boolean>{

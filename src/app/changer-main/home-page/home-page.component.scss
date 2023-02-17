@@ -15,6 +15,10 @@
     max-width: 894px;
     margin: 40px auto 0;
     display: flex;
+    flex-wrap: wrap;
+    @media(max-width: 768px){
+      justify-content: center;
+    }
   }
   &__select-crypto-btn{
     width: calc(100% / 2 - 100px);
@@ -73,6 +77,11 @@
   }
 }
 
+.p-drop-container{
+  @media(max-width: 768px){
+    margin: 20px 0;
+  }
+}
 
 .img-select{
   width: 24px;
@@ -85,6 +94,12 @@
   font-weight: 600;
   border: none;
   border-radius: 0 3px 3px 0;
+  @media(max-width: 768px){
+    padding: 20px 0;
+    width: 60%;
+    border-radius: 3px;
+    margin: 20px;
+  }
 }
 
 
@@ -106,6 +121,13 @@
   &__filter{
     &-item{
       box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+      @media(max-width: 530px){
+        margin-bottom: 10px;
+      }
+    }
+    &-group{
+      display: flex;
+      flex-wrap: wrap;
     }
   }
   &__cards-wrap{
@@ -123,6 +145,16 @@
     box-shadow: 0 1px 2px rgb(0 0 0 / 16%);
     background-color: #fff;
     border-radius: 4px;
+    @media(max-width: 1200px){
+      width: calc(100% / 3 - 30px);
+    }
+    @media(max-width: 800px){
+      width: calc(100% / 2 - 30px);
+    }
+    @media(max-width: 450px){
+      justify-content: space-between;
+      width: calc(100% - 30px);
+    }
     &-title{
       font-weight: 500;
       font-size: 15px;
@@ -130,13 +162,20 @@
       color: rgb(88,88,88);
     }
     &-img{
-      max-width: 100%;
+      min-width: 25%;
       height: auto;
       &-wrap{
         width: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+    }
+    &-content{
+      display: flex;
+      flex-direction: column;
+      @media(max-width: 450px) {
+        width: 70%;
       }
     }
   }

@@ -4,14 +4,20 @@
     background-color: #ececec;
 }
 
+.modal-content{
+  width: 430px;
+  height: auto;
+  background-color: #ececec;
+}
 
-::ng-deep .modal-header{
+
+.modal-header{
     display: block;
     padding: 24px 10px 20px;
     background-color: #ececec;
 }
   
-::ng-deep .modal-header .btn-close{
+.modal-header .btn-close{
 margin: 0;
 }
   
