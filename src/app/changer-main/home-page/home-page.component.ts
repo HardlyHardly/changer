@@ -6,7 +6,7 @@ import { GlobaldataService } from 'src/app/share/globaldata.service';
 import { DatabaseService } from 'src/app/share/database.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { UserResponse } from 'src/app/interfaces/userRessponseI';
+import { UserResponseI } from 'src/app/interfaces/userRessponseI';
 import { Router } from '@angular/router';
 import { HomeSelectService } from 'src/app/share/home-select.service';
 import { MatDialog } from '@angular/material/dialog';

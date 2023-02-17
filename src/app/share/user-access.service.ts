@@ -11,6 +11,7 @@ export class UserAccessService {
   constructor() { }
 
   public getAccessToken(): string{
+    console.log('access', this.accessToken)
     return this.accessToken
   }
 
@@ -20,6 +21,7 @@ export class UserAccessService {
   }
 
   public getRefreshToken(): string{
+    console.log('refresh', this.refreshToken)
     return this.refreshToken
   }
 

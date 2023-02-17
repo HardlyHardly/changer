@@ -32,4 +32,8 @@ export class LoginService {
   public openOrCloseModal(): void{
     this.loginModalVar = !this.loginModalVar;
   }
+
+  public openCustomModal(bool: boolean): void{
+    this.loginModalVar = bool;
+  }
 }

@@ -7,6 +7,7 @@ import { ChangerMainModule } from './changer-main/changer-main.module';
 import { PersonalCabinetModule } from './personal-cabinet/personal-cabinet.module';
 import { ShareModule } from './share/share.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GlobalWindowService } from './share/global-window.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports: [
     AppRoutingModule
   ],
-  providers: [],
+  providers: [GlobalWindowService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

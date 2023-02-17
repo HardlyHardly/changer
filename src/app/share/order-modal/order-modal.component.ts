@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { ChangeI } from 'src/app/interfaces/changeI';
 import { CryptoI } from 'src/app/interfaces/cryptoI';
 import { orderDataResponseI } from 'src/app/interfaces/orderDataResponseI';
-import { UserResponse } from 'src/app/interfaces/userRessponseI';
+import { UserResponseI } from 'src/app/interfaces/userRessponseI';
 import { DatabaseService } from '../database.service';
+import { ErrorLoginDialogComponent } from '../error-login-dialog/error-login-dialog.component';
 import { GlobaldataService } from '../globaldata.service';
 import { HomeSelectService } from '../home-select.service';
 import { LoginService } from '../login.service';
@@ -107,7 +108,17 @@ export class OrderModalComponent implements OnInit{
     if(this.selectedCrypto && this.selectedChanged){
       this.dataBaseService
         .registerUserFromOrder({email: this.userEmail})
-        .subscribe((body: UserResponse) => {
+        .pipe(
+          catchError((error: any) => {
+            if(error.status === 500){
+              this.dialog.open(ErrorLoginDialogComponent, {
+                data: error.error
+              })
+            }
+            return throwError(error)
+            })
+        )
+        .subscribe((body: UserResponseI) => {
           if(body){
             this.loginService.setIsLoggin(true)
             this.dialog.closeAll();
@@ -179,6 +190,8 @@ export class OrderModalComponent implements OnInit{
   public closeAllDialogs(): void{
     this.dialog.closeAll();
   }
+
+ 
 
     
 }

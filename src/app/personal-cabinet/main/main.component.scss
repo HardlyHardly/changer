@@ -2,6 +2,9 @@
     background: rgb(6,41,166);
     background: linear-gradient(180deg, rgba(6,41,166,1) 30%, rgba(23,63,208,1) 30%);
     min-height: 100vh;
+    @media(max-width: 1025px){
+        background: linear-gradient(180deg, rgba(6,41,166,1) 10%, rgba(23,63,208,1) 10%);
+    }
 }
 
 .content__wrap{
@@ -11,9 +14,23 @@
     margin-left: -30px;
     border-radius: 40px 0 0 40px;
     padding: 60px 27px;
+    @media(max-width: 500px){
+        min-height: 129vh;
+        width: calc(100% - 70px)
+    }
 }
 
 .sidebar-wrap{
     width: 310px;
+    transition: width .24s ease;
+    @media(max-width: 1025px){
+        width: 110px;
+    }
 }
+
+:host {
+    ::ng-deep .modal-dialog {
+    width: 100% !important;
+    }
+  }
 

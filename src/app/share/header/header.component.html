@@ -27,7 +27,7 @@
           <div class="btn-login-wrap-mobile">
             <div *ngIf="checkUserLogin()" class="d-flex flex-column align-items-start">
               <button class="btn btn-login btn-outline-primary me-4 px-4" routerLink="Identity/Account/Manage">Личный кабинет</button>
-              <button class="btn btn-login btn-primary my-2 px-5">Выйти</button>
+              <button class="btn btn-login btn-primary my-2 px-5" (click)="logout()">Выйти</button>
             </div>
             <div *ngIf="!checkUserLogin()" class="d-flex flex-column align-items-start">
               <button class="btn btn-login btn-outline-primary me-4 px-4" (click)="openModal(true)">Войти</button>
@@ -38,7 +38,7 @@
       </div>
       <div *ngIf="checkUserLogin()" class="btn-login-wrap">
         <button class="btn btn-login btn-outline-primary me-4 px-4" routerLink="Identity/Account/Manage">Личный кабинет</button>
-        <button class="btn btn-login btn-primary ms-4 px-5">Выйти</button>
+        <button class="btn btn-login btn-primary ms-4 px-5" (click)="logout()">Выйти</button>
       </div>
       <div *ngIf="!checkUserLogin()" class="btn-login-wrap">
         <button class="btn btn-login btn-outline-primary me-4 px-4" (click)="openModal(true)">Войти</button>
