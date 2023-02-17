@@ -1,0 +1,19 @@
+.btn-login-wrap{
+    @media(max-width: 992px){
+        display: none;
+    }
+    &-mobile{
+        display: none;
+        @media(max-width: 992px){
+            display: block;
+        }
+    }
+}
+
+::ng-deep .navbar-toggler{
+    box-shadow: none;
+    border: none;
+    &:focus{
+        box-shadow: none;
+    }
+}

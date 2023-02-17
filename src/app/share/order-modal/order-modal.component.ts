@@ -10,8 +10,10 @@ import { UserResponse } from 'src/app/interfaces/userRessponseI';
 import { DatabaseService } from '../database.service';
 import { GlobaldataService } from '../globaldata.service';
 import { HomeSelectService } from '../home-select.service';
+import { LoginService } from '../login.service';
 import { OrderDataService } from '../order-data.service';
 import { OrderModalService } from '../order-modal.service';
+import { UserAccessService } from '../user-access.service';
 
 @Component({
   selector: 'app-order-modal',
@@ -50,7 +52,9 @@ export class OrderModalComponent implements OnInit{
     private readonly dataBaseService: DatabaseService,
     private readonly router: Router,
     private readonly dialog: MatDialog,
-    private readonly orderDataService: OrderDataService
+    private readonly orderDataService: OrderDataService,
+    private readonly loginService: LoginService,
+    private readonly userAccessService: UserAccessService
   ){
     this.changeUserForm = this.orderModalService.getChangeUserForm();
     this.homeSelectService
@@ -105,11 +109,13 @@ export class OrderModalComponent implements OnInit{
         .registerUserFromOrder({email: this.userEmail})
         .subscribe((body: UserResponse) => {
           if(body){
+            this.loginService.setIsLoggin(true)
             this.dialog.closeAll();
             this.router.navigate(['Payment']);
           }
-          console.log(body)
-          const {accessToken} = body.tokens;
+          const {accessToken, refreshToken} = body.tokens;
+          this.userAccessService.setAccessToken(accessToken);
+          this.userAccessService.setRefreshToken(refreshToken);
           if(this.selectedCrypto && this.selectedChanged){
             if(this.selectedChanged.type === 'BANK'){
               this.dataBaseService
@@ -147,11 +153,13 @@ export class OrderModalComponent implements OnInit{
   }
 
   public changeForm(){
+    if(this.selectedChanged && this.selectedCrypto && this.amountFrom !== 0 && this.amountTo !== 0)
     this.orderModalService.showHideChangeUserForm();
     this.getChangeUserForm();
   }
 
   public resetForm(){
+    if(this.selectedChanged && this.selectedCrypto && this.amountFrom !== 0 && this.amountTo !== 0)
     this.orderModalService.resetChangeUserForm();
     this.getChangeUserForm();
   }

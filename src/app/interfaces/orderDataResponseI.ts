@@ -1,6 +1,6 @@
 export interface orderDataResponseI{
     card: null | string,
-    createdAt: Date,
+    createdAt: string,
     fio: null,
     id: number,
     status: string,
@@ -10,7 +10,7 @@ export interface orderDataResponseI{
     valueTo: number,
     wallet: string
     user: {
-        createdAt: Date,
+        createdAt: string,
         email: string,
         id: number,
         password: string,

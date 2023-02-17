@@ -7,7 +7,7 @@
       Быстрый и безопасный способ обменять более 20 популярных криптовалют
     </p>
     <form class="welcome__form">
-      <div class="col-4">
+      <div class="col-md-4 col-8 p-drop-container">
         <p-dropdown class="drop-crypto" autoWidth="false" [style]="{'width':'100%'}"  [options]="cryptos" [(ngModel)]="selectedCrypto" (ngModelChange)="setSelectedCrypto($event)" optionLabel="name" [filter]="true" filterBy="name"
         name="crypto"
         [showClear]="true" placeholder="Select a Crypto">
@@ -23,7 +23,7 @@
         </ng-template>
         </p-dropdown>
       </div>
-      <div class="col-4">
+      <div class="col-md-4 col-8 p-drop-container">
         <p-dropdown autoWidth="false" [style]="{'width':'100%'}" [options]="changed" [(ngModel)]="selectedChanged" (ngModelChange)="setSelectedChanged($event)" optionLabel="name" [filter]="true" filterBy="name"
         name="changed"
       [showClear]="true" placeholder="Select a Crypto or Bank">
@@ -50,7 +50,7 @@
     <h2 class="reserve__title">
       Резервы
     </h2>
-    <div class="reserve__filter-group d-flex" (click)="filterCards($event)">
+    <div class="reserve__filter-group" (click)="filterCards($event)">
       <option 
         class="mx-1 btn reserve__filter-item" 
         value="All"
@@ -88,11 +88,11 @@
         >DeFi</option>
     </div>
     <div class="reserve__cards-wrap">
-      <div *ngFor="let card of cards" class="reserve__card d-flex">
+      <div *ngFor="let card of cards" class="reserve__card">
         <div class="reserve__card-img-wrap">
           <img class="reserve__card-img" [src]="card.imageSrc" alt="">
         </div>
-        <div class="d-flex flex-column ps-3">
+        <div class="reserve__card-content ps-3">
           <p class="reserve__card-title m-0">{{card.name}}<br><span>{{card.valute}}</span></p>
           <p class="m-0 mt-1">{{card.value}}</p>
         </div>
