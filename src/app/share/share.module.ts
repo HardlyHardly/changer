@@ -7,8 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { OrderModalComponent } from './order-modal/order-modal.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ErrorLoginDialogComponent } from './error-login-dialog/error-login-dialog.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     LoginDialogComponent,
     OrderModalComponent,
     SpinnerComponent,
+    ErrorLoginDialogComponent,
 
   ],
   imports: [
@@ -25,7 +27,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     RouterModule,
     HttpClientModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,

@@ -1,17 +1,31 @@
 .ref{
     &__header{  
+        height: 76px;
         padding: 6px 62px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-top: 1px solid rgba(33, 33, 33, .1);
         border-bottom: 1px solid rgba(33, 33, 33, .1);
+        @media (max-width: 1025px){
+            padding: 6px 21px;
+            height: 38px;
+        }
+        @media(max-width: 560px){
+            padding: 6px 0;
+        }
     }
     &__title{
         font-weight: 600;
         font-size: 25px;
         line-height: 1.25;
         color: #212121;
+        @media(max-width: 1025px){
+            font-size: 16px;
+        }
+        @media (max-width: 500px) {
+            font-size: 12px;
+        }
     }
     &__body{
         display: flex;
@@ -28,14 +42,24 @@
     box-shadow: 0 2px 2px rgb(33 33 33 / 10%);
     padding: 20px 15px 16px 16px;
     border-radius: 8px;
+    @media(max-width: 1025px){
+        font-size: 16px;
+        margin-right: 0;
+    }
+    @media (max-width: 500px) {
+        font-size: 12px;
+    }
     &:nth-child(2){
-        height: 165px;
+        height: auto;
         font-size: 2rem;
     }
     &:nth-child(3){
         width: 40%;
-        height: 165px;
+        height: auto;
         font-size: 2rem;
+        @media(max-width: 1025px){
+            width: 100%;
+        }
     }
     &__title{
         font-size: 1.5rem;
@@ -44,11 +68,23 @@
         margin-bottom: 20px;   
         color: #333;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        @media(max-width: 1025px){
+            font-size: 1.2rem;
+            margin-right: 0;
+        }
+        @media (max-width: 500px) {
+            font-size: 1rem;
+        }
     }
     &__content-wrap{
         display: flex;
         justify-content: space-between;
         margin-top: 40px;
+        @media(max-width: 1025px){
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
     }
     & > p{
         color: darkgrey;
@@ -58,6 +94,9 @@
 
 .form-block{
     width: 50%;
+    @media(max-width: 1025px){
+        width: 100%;
+    }
     & select{
         background: rgba(227, 227, 227, .4);
         border: 1px solid rgba(17, 17, 17, .1);
@@ -165,6 +204,7 @@
     outline: none;
     width: 100%;
     border-radius: 7px;
+    font-weight: 500;
     padding: 20px 56px;
     box-shadow: 0 0 10px rgb(252 191 17 / 25%);
     transition: box-shadow .24s ease, background-color .24s ease;
@@ -173,10 +213,17 @@
     &:hover{
         box-shadow: 0 0 35px rgb(252 191 17 / 45%);
     }
+    @media(max-width: 600px){
+        font-size: 14px;
+        padding: 20px 30px;
+    }
 }
 
 .info-block{
     width: 45%;
+    @media(max-width: 1025px){
+        width: 100%;
+    }
     &__elem{
         padding-bottom: 15px;
         & > p{

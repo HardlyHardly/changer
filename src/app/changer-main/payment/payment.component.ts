@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { debounceTime, delay, distinctUntilChanged, Observable } from 'rxjs';
 import { orderDataResponseI } from 'src/app/interfaces/orderDataResponseI';
 import { OrderDataService } from 'src/app/share/order-data.service';
@@ -15,17 +16,24 @@ export class PaymentComponent implements OnInit{
 
 
   $timer: Observable<{minutes: number, seconds: number}> = new Observable((suber) =>{
-    const ticker = setInterval(() => this.seconds = this.seconds - 1, 1000);
-    if(this.seconds === 0){
-      this.minutes = this.minutes - 1;
-      this.resetSeconds();
-    }
+    const ticker = setInterval(() => {
+      this.seconds = this.seconds - 1;
+      if(this.seconds === 0){
+        this.minutes = this.minutes - 1;
+        this.resetSeconds();
+      }
+      if(this.minutes == 0){
+        clearInterval(ticker);
+      }
+    }, 1000);
+    
     suber.next({minutes: this.minutes, seconds: this.seconds})
   }) 
 
   orderData: orderDataResponseI | null = null;
   constructor(
-    private readonly orderDataService: OrderDataService
+    private readonly orderDataService: OrderDataService,
+    private readonly dialog: MatDialog
   ){
     this.orderDataService
       .$getOrderData
@@ -44,15 +52,17 @@ export class PaymentComponent implements OnInit{
           }
         }
         this.orderData = data;
-        console.log(this.orderData?.createdAt)
       })
-    
   }
 
 
   ngOnInit(): void {
+    this.dialog.closeAll();
     this.$timer
-    .subscribe(time => (time))
+    .subscribe((time: {minutes: number, seconds: number}) => {
+      this.minutes = time.minutes;
+      this.seconds = time.seconds
+    })
   }
 
   private resetSeconds(): void{

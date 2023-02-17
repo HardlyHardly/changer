@@ -1,5 +1,6 @@
 .sidebar{
     padding: 11px 49px 62px 30px;
+    min-height: 50vh;
     &__link{
         display: block;
         width: 100%;
@@ -12,6 +13,9 @@
         transition: color .24s ease;
         line-height: 1.25;
         font-size: 14px;
+        @media(max-width: 1025px){
+            padding: 24px 0 24px 20px;
+        }
         & > svg{
             position: absolute;
             left: 0;
@@ -21,6 +25,12 @@
             opacity: .75;
             & path{
                 fill: #fff;
+            }
+        }
+        & > p{
+            margin: 0;
+            @media (max-width: 1025px) {
+                display: none;
             }
         }
         &:hover{
@@ -54,6 +64,11 @@
     }
     &__wrap{
         margin-top: 80px;
+    }
+    & > span{
+        @media (max-width: 1025px) {
+            display: none;
+        }
     }
     &:hover{
         opacity: .75;

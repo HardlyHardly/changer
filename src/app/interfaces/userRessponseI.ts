@@ -1,6 +1,6 @@
 import { tokenI } from "./tokenI";
 
-export interface UserResponse {
+export interface UserResponseI {
     email: string;
     tokens: tokenI
   }

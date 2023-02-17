@@ -4,6 +4,9 @@
     background-color: #0629a6;
     padding: 33px 40px 46px 33px;
     color: #fff;
+    @media(max-width: 1025px){
+        padding: 33px 40px 46px 27px;
+    }
 }
 
 .logo-wrap{
@@ -17,11 +20,17 @@
         font-size: 22px;
         line-height: 1.25;
         margin-top: 27px;
+        @media(max-width: 1025px){
+            display: none;
+        }
     }
     &__mail{
         font-weight: 500;
         font-size: 14px;
         line-height: 1.25;
         text-decoration: underline;
+        @media(max-width: 1025px){
+            display: none;
+        }
     }
 }

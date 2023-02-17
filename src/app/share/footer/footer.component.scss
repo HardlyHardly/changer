@@ -29,12 +29,45 @@
     line-height: 1.25;
   }
   &__banners{
+    @media(max-width: 800px){
+      display: flex;
+      justify-content: space-between;
+    }
+    & > a{
+      @media(max-width: 800px){
+        display: block;
+      }
+    }
+    &-wrap{
+      @media(max-width: 800px){
+        order: -1;
+      }
+    }
     &-img{
       width: 100%;
     }
     &-link{
       width: 88px;
       margin-bottom: 24px;
+    }
+  }
+  &__logo-wrap{
+    @media(max-width: 800px){
+        display: flex;
+        justify-content: center;
+      }
+    & > img{
+      cursor: pointer;
+      @media(max-width: 800px){
+        width: 100px;
+        height: auto;
+      }
+    }
+  }
+  &__text{
+    @media(max-width: 800px){
+      text-align: center;
+      margin-bottom: 20px;
     }
   }
 }
@@ -57,21 +90,40 @@
       background-size: 110px;
       top: -22px;
     }
+    @media(max-width: 900px){
+      flex-direction: column;
+      padding: 22px 0;
+    }
+    @media(max-width: 500px){
+      padding: 22px 0;
+    }
   }
   &__title{
     font-weight: 500;
     font-size: 26px;
     line-height: 1.25;
     color: #fff;
+    @media(max-width: 900px){
+      align-self: flex-end;
+    }
   }
   &__form{
     width: 460px;
     display: flex;
     align-items: center;
     margin-left: 65px;
+    @media(max-width: 900px){
+      width: 100%;
+      margin: 0;
+      flex-direction: column;
+      margin-top: 20px;
+    }
     &-input{        
       position: relative;
       width: calc(100% - 154px);
+      @media(max-width: 900px){
+        width: 100%;
+      }
       &-icon{
         z-index: 4;
         pointer-events: none;
@@ -111,8 +163,17 @@
   font-size: 16px;
   line-height: 1.25;
   font-weight: 600;
-
+  @media(max-width: 900px){
+    margin: 0 auto;
+    width: 100%;
+  }
   &:hover{
     box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+  }
+}
+
+nav{
+  @media(max-width: 800px){
+    padding: 0 20px;
   }
 }

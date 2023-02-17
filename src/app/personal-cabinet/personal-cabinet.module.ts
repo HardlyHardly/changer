@@ -9,7 +9,7 @@ import { RefComponent } from './ref/ref.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PersonalCabinetHeaderComponent } from './personal-cabinet-header/personal-cabinet-header.component';
 import { RouterModule } from '@angular/router';
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     PersonalCabinetRoutingModule,
-    RouterModule
+    RouterModule,
+    MatTableModule
   ]
 })
 export class PersonalCabinetModule { }

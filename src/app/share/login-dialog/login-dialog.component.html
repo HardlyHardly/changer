@@ -14,31 +14,42 @@
         <h1 class="login__title">
             {{changeDialogLogin ? 'Авторизация' : 'Регистрация'}}
         </h1>
-        <div class="login__content" *ngIf="changeDialogLogin">
-            <input type="email" placeholder="E-mail">
-            <input type="password" placeholder="Пароль">
+        <form [formGroup]="userLoginForm" class="login__content" *ngIf="changeDialogLogin">
+            <input formControlName="email" type="email" placeholder="E-mail">
+            <input formControlName="password" type="password" placeholder="Пароль">
             <a href="">Забыли пароль?</a><br>
             <div class="btn-wrap">
-                <button class="btn-yellow">
+                <button class="btn-yellow" (click)="login() ">
                     {{changeDialogLogin ? 'Войти' : 'Зарегистрироваться'}}
                 </button>
             </div>
-        </div>
-        <div class="login__content" *ngIf="!changeDialogLogin">
-            <input type="email" placeholder="E-mail" name="email">
-            <input type="password" placeholder="Пароль" name="pass">
-            <input type="password" placeholder="Повторите пароль" name="check-pass">
+        </form>
+        <form [formGroup]="userRegistrationForm" class="login__content" *ngIf="!changeDialogLogin">
+            <input formControlName="email" type="email" placeholder="E-mail" name="email">
+            <input 
+            formControlName="password"
+            type="password"
+            [ngClass]="errorField ? 'success-border' : 'error-border'"
+            placeholder="Пароль"
+            name="pass"
+            (input)="checkBothPasswords()">
+            <input 
+            formControlName="check-password"
+            type="password"
+            placeholder="Повторите пароль"
+            name="check-password"
+            [ngClass]="errorField ? 'success-border' : 'error-border'"
+            (input)="checkBothPasswords()">
             <label for="remember">
-                <input id="remember" type="checkbox">
-                <span>Запомнить меня?</span>
- 
+            <input id="remember" type="checkbox">
+            <span>Запомнить меня?</span>
             </label>
             <div class="btn-wrap">
-                <button [ngClass]="changeDialogLogin ? 'btn-yellow' : 'btn-yellow-big'">
+                <button [ngClass]="changeDialogLogin ? 'btn-yellow' : 'btn-yellow-big'" (click)="registr()">
                     {{changeDialogLogin ? 'Войти' : 'Зарегистрироваться'}}
                 </button>
             </div>
-        </div>
+        </form>
         
         
     </div>

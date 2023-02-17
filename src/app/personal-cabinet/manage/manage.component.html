@@ -7,24 +7,27 @@
             Создать заявку
         </button>
     </div>
-    <div class="manage__body table-responsive-sm">
+    <div class="manage__body">
         <table class="table">
+            <caption *ngIf="ordersData.length === 0">
+                Здесь будут отображаться ваши заявки
+            </caption>
             <thead>
                 <tr>
-                <th>Номер</th>
-                <th>Статус</th>
-                <th>Дата</th>
-                <th>К обмену</th>
-                <th>К получению</th>
+                    <th>Номер</th>
+                    <th>Статус</th>
+                    <th>Дата</th>
+                    <th>К обмену</th>
+                    <th>К получению</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
+                <tr *ngFor="let item of ordersData; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.createdAt}}</td>
+                    <td>{{item.symbolFrom}} {{item.valueFrom}}</td>
+                    <td>{{item.symbolTo}} {{item.valueTo}}</td>
                 </tr>
             </tbody>
         </table>
