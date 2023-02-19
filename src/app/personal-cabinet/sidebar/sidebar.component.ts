@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserAccessService } from 'src/app/share/user-access.service';
+import { AuthService } from 'src/app/services/auth.service';
+
+
 
 @Component({
   selector: 'app-sidebar',
@@ -10,12 +12,12 @@ import { UserAccessService } from 'src/app/share/user-access.service';
 export class SidebarComponent {
 
   constructor(
-    private readonly userAccessService: UserAccessService,
-    private readonly router: Router
+    private readonly authService: AuthService,
+    private readonly router: Router,
   ){}
 
   public logout(): void{
-    this.userAccessService.setAccessToken('');
+    this.authService
     this.router.navigate([''])
   }
 }

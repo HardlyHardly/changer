@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from 'primeng/dynamicdialog';
 import { LoginDialogComponent } from 'src/app/share/login-dialog/login-dialog.component';
-import { LoginService } from 'src/app/share/login.service';
+import { LoginService } from 'src/app/services/login.service';
 import { OrderModalService } from 'src/app/share/order-modal.service';
 import { OrderModalComponent } from 'src/app/share/order-modal/order-modal.component';
 

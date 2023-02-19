@@ -7,26 +7,24 @@ import { orderDataResponseI } from '../interfaces/orderDataResponseI';
 import {  UserLoginDataI } from '../interfaces/userLoginData';
 import { userRegisterDataI } from '../interfaces/userRegisterData';
 import { UserResponseI } from '../interfaces/userRessponseI';
-import { UserAccessService } from './user-access.service';
 
+
+
+export const baseUrl: string = 'http://localhost:3500';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
-
-
-  private baseUrl: string = 'http://localhost:3500';
+  
 
   constructor(
     private http: HttpClient,
-    private httpBackend: HttpBackend,
-    private readonly userAccessService: UserAccessService
   ) { 
   }
 
   public changeCurrencies(data: CurrenciesCalculateI): Observable<number>{
-    return this.http.post<number>(this.baseUrl + '/crypto/calculate', data)
+    return this.http.post<number>(baseUrl + '/crypto/calculate', data)
     .pipe(catchError(this.formatErrors))
   }
 
@@ -36,7 +34,7 @@ export class DatabaseService {
 
   public createOrder(data: CreateOrder, accessHeader: string): Observable<any>{
     console.log(accessHeader)
-    return this.http.post<any>(this.baseUrl + '/orders', data, {
+    return this.http.post<any>(baseUrl + '/orders', data, {
       headers: {
         'Authorization': 'Bearer ' + accessHeader
       }
@@ -44,45 +42,20 @@ export class DatabaseService {
   }
 
   public registerUserFromOrder(data: {email: string}){
-    return this.http.post<UserResponseI>(this.baseUrl + '/users/register', data)
+    return this.http.post<UserResponseI>(baseUrl + '/users/register', data)
     .pipe(catchError(this.formatErrors))
   }
 
   public getOrders(): Observable<orderDataResponseI[]>{
-    return this.http.get<orderDataResponseI[]>(this.baseUrl + '/orders', {
+    return this.http.get<orderDataResponseI[]>(baseUrl + '/orders', {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
-      }
-    }).pipe(
-      catchError((error: any) => {
-        console.log(error.status)
-        if(error.status === 401){
-          this.RefreshToken(localStorage.getItem('refreshToken'))
-          .subscribe((tokens: UserResponseI) => {
-            const {accessToken, refreshToken} = tokens.tokens;
-            this.userAccessService.setAccessToken(accessToken);
-            this.userAccessService.setRefreshToken(refreshToken);
-          })
-        }
-        return throwError(error)
-        })
-      )
-  }
-
-  private RefreshToken(refreshToken: string | null): Observable<any>{
-    return this.http.post(this.baseUrl + '/refresh', '', {
-      headers: {
-        'Authorization': 'Bearer ' + refreshToken,
       }
     })
   }
 
-  public login(userData: UserLoginDataI): Observable<UserResponseI>{
-    return this.http.post<UserResponseI>(this.baseUrl + '/users/login', userData)
-  }
-
   public register(userData: userRegisterDataI): Observable<UserResponseI>{
-    return this.http.post<UserResponseI>(this.baseUrl + '/users/register', userData)
+    return this.http.post<UserResponseI>(baseUrl + '/users/register', userData)
   }
 
 

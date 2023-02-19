@@ -10,6 +10,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { PersonalCabinetHeaderComponent } from './personal-cabinet-header/personal-cabinet-header.component';
 import { RouterModule } from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
+import { ApplyTokenInterceptor } from './interceptors/apply-token.interceptor';
+import { RefreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,18 @@ import {MatTableModule} from '@angular/material/table';
     PersonalCabinetRoutingModule,
     RouterModule,
     MatTableModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApplyTokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RefreshTokenInterceptor,
+      multi: true
+    }
   ]
 })
 export class PersonalCabinetModule { }

@@ -3,11 +3,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { userRegisterDataI } from 'src/app/interfaces/userRegisterData';
 import { UserResponseI } from 'src/app/interfaces/userRessponseI';
 import { DatabaseService } from '../database.service';
-import { LoginService } from '../login.service';
-import { UserAccessService } from '../user-access.service';
+import { LoginService } from '../../services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-login-dialog',
@@ -35,9 +35,9 @@ export class LoginDialogComponent {
     private loginService: LoginService,
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dataBaseService: DatabaseService,
-    private userAccessService: UserAccessService,
     private router: Router,
     private dialog: MatDialog,
+    private authService: AuthService
   ){
     this.changeDialogLogin = this.data;
   }
@@ -51,13 +51,13 @@ export class LoginDialogComponent {
   }
   
   public login(): void{
-    this.dataBaseService
+    this.authService
     .login(this.userLoginForm.value)
     .subscribe((res: UserResponseI) => {
       if(res){
         const {accessToken, refreshToken} = res.tokens;
-        this.userAccessService.setAccessToken(accessToken)
-        this.userAccessService.setRefreshToken(refreshToken)
+        localStorage.setItem('access_token', accessToken);
+        localStorage.setItem('refresh_token', refreshToken);
         this.dialog.closeAll();
         this.router.navigate(['Identity', 'Account', 'Manage'])
       } else {
@@ -82,8 +82,8 @@ export class LoginDialogComponent {
       console.log(userTokens)
       if(userTokens){
         const {accessToken, refreshToken} = userTokens.tokens;
-        this.userAccessService.setAccessToken(accessToken);
-        this.userAccessService.setRefreshToken(refreshToken);
+        localStorage.setItem('access_token', accessToken);
+        localStorage.setItem('refresh_token', refreshToken);
         this.dialog.closeAll();
         this.router.navigate(['Identity', 'Account', 'Manage'])
       }

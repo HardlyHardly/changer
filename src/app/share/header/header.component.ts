@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { LoginService } from '../login.service';
-import { UserAccessService } from '../user-access.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { LoginService } from '../../services/login.service';
+
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit{
 
   constructor(
     private loginService: LoginService,
-    private userAccessService: UserAccessService
+    private authService: AuthService
   ){}
 
   ngOnInit(): void {
@@ -20,11 +21,8 @@ export class HeaderComponent implements OnInit{
   }
 
   public checkUserLogin(): boolean{
-    if(localStorage.getItem('accessToken') !== ''){
-      return true
-    } else {
-      return false
-    }
+
+    return this.authService.checkIsAuthenticated;
   }
 
   public openModal(bool: boolean): void{
@@ -32,8 +30,11 @@ export class HeaderComponent implements OnInit{
     this.openModalE.emit(bool);
   }
 
-  public logout(): void{
-    this.userAccessService.setAccessToken(''),
-    this.userAccessService.setRefreshToken('')
+  public logout(){
+    this.authService.logout();
   }
+
+
+
+
 }

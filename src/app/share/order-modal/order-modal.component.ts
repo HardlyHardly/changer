@@ -10,11 +10,11 @@ import { UserResponseI } from 'src/app/interfaces/userRessponseI';
 import { DatabaseService } from '../database.service';
 import { ErrorLoginDialogComponent } from '../error-login-dialog/error-login-dialog.component';
 import { GlobaldataService } from '../globaldata.service';
-import { HomeSelectService } from '../home-select.service';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../services/login.service';
 import { OrderDataService } from '../order-data.service';
 import { OrderModalService } from '../order-modal.service';
-import { UserAccessService } from '../user-access.service';
+import { HomeSelectService } from 'src/app/services/home-select.service';
+
 
 @Component({
   selector: 'app-order-modal',
@@ -54,8 +54,7 @@ export class OrderModalComponent implements OnInit{
     private readonly router: Router,
     private readonly dialog: MatDialog,
     private readonly orderDataService: OrderDataService,
-    private readonly loginService: LoginService,
-    private readonly userAccessService: UserAccessService
+    private readonly loginService: LoginService
   ){
     this.changeUserForm = this.orderModalService.getChangeUserForm();
     this.homeSelectService
@@ -120,13 +119,12 @@ export class OrderModalComponent implements OnInit{
         )
         .subscribe((body: UserResponseI) => {
           if(body){
-            this.loginService.setIsLoggin(true)
             this.dialog.closeAll();
             this.router.navigate(['Payment']);
           }
           const {accessToken, refreshToken} = body.tokens;
-          this.userAccessService.setAccessToken(accessToken);
-          this.userAccessService.setRefreshToken(refreshToken);
+          localStorage.setItem('access_token', accessToken);
+          localStorage.setItem('refresh_token', refreshToken);
           if(this.selectedCrypto && this.selectedChanged){
             if(this.selectedChanged.type === 'BANK'){
               this.dataBaseService
