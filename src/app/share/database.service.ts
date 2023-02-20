@@ -1,10 +1,11 @@
 import { HttpBackend, HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, Observable, throwError } from 'rxjs';
 import { CreateOrder } from '../interfaces/createOrderI';
 import { CurrenciesCalculateI } from '../interfaces/currenciesCalculateI';
 import { orderDataResponseI } from '../interfaces/orderDataResponseI';
-import {  UserLoginDataI } from '../interfaces/userLoginData';
 import { userRegisterDataI } from '../interfaces/userRegisterData';
 import { UserResponseI } from '../interfaces/userRessponseI';
 
@@ -29,7 +30,7 @@ export class DatabaseService {
   }
 
   private formatErrors(error: any) {
-    return throwError(error);
+    return throwError(error.error);
   }
 
   public createOrder(data: CreateOrder, accessHeader: string): Observable<any>{
@@ -46,16 +47,27 @@ export class DatabaseService {
     .pipe(catchError(this.formatErrors))
   }
 
-  public getOrders(): Observable<orderDataResponseI[]>{
-    return this.http.get<orderDataResponseI[]>(baseUrl + '/orders', {
+  public getOrdersForUser(): Observable<orderDataResponseI[]>{
+    const url = `${baseUrl}/orders/${localStorage.getItem('id')}`
+    return this.http.get<orderDataResponseI[]>(url, {
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      }
+    })
+  }
+
+  public getOrdersForAdmin(): Observable<orderDataResponseI[]>{
+    const url = `${baseUrl}/orders/`
+    return this.http.get<orderDataResponseI[]>(url, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
       }
     })
   }
 
   public register(userData: userRegisterDataI): Observable<UserResponseI>{
     return this.http.post<UserResponseI>(baseUrl + '/users/register', userData)
+    .pipe(catchError(this.formatErrors))
   }
 
 

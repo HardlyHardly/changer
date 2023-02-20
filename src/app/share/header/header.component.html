@@ -25,22 +25,22 @@
             <a class="nav-link" routerLink="News">Новости</a>
           </li>
           <div class="btn-login-wrap-mobile">
-            <div *ngIf="checkUserLogin()" class="d-flex flex-column align-items-start">
+            <div *ngIf="checkIsAuthenticated" class="d-flex flex-column align-items-start">
               <button class="btn btn-login btn-outline-primary me-4 px-4" routerLink="Identity/Account/Manage">Личный кабинет</button>
               <button class="btn btn-login btn-primary my-2 px-5" (click)="logout()">Выйти</button>
             </div>
-            <div *ngIf="!checkUserLogin()" class="d-flex flex-column align-items-start">
+            <div *ngIf="!checkIsAuthenticated" class="d-flex flex-column align-items-start">
               <button class="btn btn-login btn-outline-primary me-4 px-4" (click)="openModal(true)">Войти</button>
               <button class="btn btn-register btn-primary my-2 px-5" (click)="openModal(false)">Регистрация</button>
             </div>
           </div>
         </ul>
       </div>
-      <div *ngIf="checkUserLogin()" class="btn-login-wrap">
+      <div *ngIf="checkIsAuthenticated" class="btn-login-wrap">
         <button class="btn btn-login btn-outline-primary me-4 px-4" routerLink="Identity/Account/Manage">Личный кабинет</button>
         <button class="btn btn-login btn-primary ms-4 px-5" (click)="logout()">Выйти</button>
       </div>
-      <div *ngIf="!checkUserLogin()" class="btn-login-wrap">
+      <div *ngIf="!checkIsAuthenticated" class="btn-login-wrap">
         <button class="btn btn-login btn-outline-primary me-4 px-4" (click)="openModal(true)">Войти</button>
         <button class="btn btn-register btn-primary ms-4 px-5" (click)="openModal(false)">Регистрация</button>
       </div>

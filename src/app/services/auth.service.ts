@@ -1,44 +1,43 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { UserResponseI } from '../interfaces/userRessponseI';
-import { baseUrl, DatabaseService } from '../share/database.service';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { role, UserResponseI } from '../interfaces/userRessponseI';
+import { baseUrl} from '../share/database.service';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { UserLoginDataI } from '../interfaces/userLoginData';
+import { IUser } from '../interfaces/IUser';
+import { tokenI } from '../interfaces/tokenI';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public checkIsAuthenticated = false;
+
 
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router,
-
   ) { }
 
   isAuthenticated() {
+
     const accessToken = localStorage.getItem('access_token');
     const refreshToken = localStorage.getItem('refresh_token');
 
     if (!accessToken || !refreshToken) {
       this.logout()
-      this.checkIsAuthenticated = false;
       return false;
     }
 
     try {
       jwt_decode(accessToken);
       jwt_decode(refreshToken);
-      this.checkIsAuthenticated = true;
       return true;
     } catch (error) {
       this.logout()
       this.clearLocalStorage();
-      this.checkIsAuthenticated = false;
       return false;
     }
   }
@@ -48,7 +47,7 @@ export class AuthService {
   
     return this.http.post<UserResponseI>(url, null, {
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem(''),
+        'Authorization': 'Bearer ' + localStorage.getItem('refresh_token'),
       }
     }).pipe(
       map((response: any) => {
@@ -65,7 +64,6 @@ export class AuthService {
   }
 
   public logout() {
-    console.log('logout')
     this.clearLocalStorage();
     this.router.navigate(['']);
   }
@@ -74,4 +72,11 @@ export class AuthService {
     const url = `${baseUrl}/users/login`
     return this.http.post<UserResponseI>(url, userData)
   }
+
+
+  public getUser(): IUser | null{
+    return JSON.parse(localStorage.getItem('user') as string)
+  }
+
+
 }

@@ -8,12 +8,14 @@ import { CryptoI } from 'src/app/interfaces/cryptoI';
 import { orderDataResponseI } from 'src/app/interfaces/orderDataResponseI';
 import { UserResponseI } from 'src/app/interfaces/userRessponseI';
 import { DatabaseService } from '../database.service';
-import { ErrorLoginDialogComponent } from '../error-login-dialog/error-login-dialog.component';
 import { GlobaldataService } from '../globaldata.service';
 import { LoginService } from '../../services/login.service';
 import { OrderDataService } from '../order-data.service';
 import { OrderModalService } from '../order-modal.service';
 import { HomeSelectService } from 'src/app/services/home-select.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorConfigService } from 'src/app/services/error-config.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -54,7 +56,8 @@ export class OrderModalComponent implements OnInit{
     private readonly router: Router,
     private readonly dialog: MatDialog,
     private readonly orderDataService: OrderDataService,
-    private readonly loginService: LoginService
+    private errorConfigService: ErrorConfigService,
+    private authService: AuthService
   ){
     this.changeUserForm = this.orderModalService.getChangeUserForm();
     this.homeSelectService
@@ -104,61 +107,97 @@ export class OrderModalComponent implements OnInit{
   }
 
   public createOrder(): void{
-    if(this.selectedCrypto && this.selectedChanged){
-      this.dataBaseService
-        .registerUserFromOrder({email: this.userEmail})
-        .pipe(
-          catchError((error: any) => {
-            if(error.status === 500){
-              this.dialog.open(ErrorLoginDialogComponent, {
-                data: error.error
-              })
-            }
-            return throwError(error)
-            })
-        )
-        .subscribe((body: UserResponseI) => {
-          if(body){
-            this.dialog.closeAll();
-            this.router.navigate(['Payment']);
-          }
-          const {accessToken, refreshToken} = body.tokens;
-          localStorage.setItem('access_token', accessToken);
-          localStorage.setItem('refresh_token', refreshToken);
-          if(this.selectedCrypto && this.selectedChanged){
-            if(this.selectedChanged.type === 'BANK'){
-              this.dataBaseService
-              .createOrder({
-                symbolFrom: this.selectedCrypto?.index,
-                valueFrom: this.amountFrom,
-                symbolTo: this.selectedChanged?.index,
-                valueTo: this.amountTo,
-                card: this.userForm.value.card,
-                fio: this.userForm.value.fio,
-              }, accessToken)
-              .subscribe((res: orderDataResponseI) => {
-                if(res)
-                this.orderDataService.orderData.next(res);
-              })
-            }
-            if(this.selectedChanged.type === 'CRYPTO'){
-              this.dataBaseService
-              .createOrder({
-                symbolFrom: this.selectedCrypto?.index,
-                valueFrom: this.amountFrom,
-                symbolTo: this.selectedChanged?.index,
-                valueTo: this.amountTo,
-                wallet: this.userForm.value.wallet
-              }, accessToken)
-              .subscribe((res: orderDataResponseI) => {
-                if(res)
-                this.orderDataService.orderData.next(res);
-              })
-            }
-          }
-        })
+    const bothSelectedCondition = this.selectedCrypto && this.selectedChanged;
+    const accessToken = localStorage.getItem('access_token');
+    if(this.authService.isAuthenticated()){
+      if(this.selectedCrypto && this.selectedChanged){
+        if(this.selectedChanged.type === 'BANK'){
+          this.dataBaseService
+          .createOrder({
+            symbolFrom: this.selectedCrypto?.index,
+            valueFrom: this.amountFrom,
+            symbolTo: this.selectedChanged?.index,
+            valueTo: this.amountTo,
+            card: this.userForm.value.card,
+            fio: this.userForm.value.fio,
+          }, accessToken as string)
+          .subscribe((res: orderDataResponseI) => {
+            if(res)
+            this.orderDataService.orderData.next(res);
+          })
+        }
+        if(this.selectedChanged.type === 'CRYPTO'){
+          this.dataBaseService
+          .createOrder({
+            symbolFrom: this.selectedCrypto?.index,
+            valueFrom: this.amountFrom,
+            symbolTo: this.selectedChanged?.index,
+            valueTo: this.amountTo,
+            wallet: this.userForm.value.wallet
+          }, accessToken as string)
+          .subscribe((res: orderDataResponseI) => {
+            if(res)
+            this.orderDataService.orderData.next(res);
+          })
+        }
+      }
       
+    } else {
+      if(bothSelectedCondition){
+        this.dataBaseService
+          .registerUserFromOrder({email: this.userEmail})
+          .pipe(
+            catchError((error: any) => {
+              this.errorConfigService.errorConfig('Вы уже зарегестрированы, войдите в систему')
+              return throwError(error)
+              })
+          )
+          .subscribe((body: UserResponseI) => {
+            if(body){
+              this.dialog.closeAll();
+              this.router.navigate(['Payment']);
+            } else {
+              this.errorConfigService.errorConfig('Вы уже зарегестрированы, войдите в систему')
+            }
+            const {accessToken, refreshToken} = body.tokens;
+            localStorage.setItem('access_token', accessToken);
+            localStorage.setItem('refresh_token', refreshToken);
+            if(this.selectedCrypto && this.selectedChanged){
+              if(this.selectedChanged.type === 'BANK'){
+                this.dataBaseService
+                .createOrder({
+                  symbolFrom: this.selectedCrypto?.index,
+                  valueFrom: this.amountFrom,
+                  symbolTo: this.selectedChanged?.index,
+                  valueTo: this.amountTo,
+                  card: this.userForm.value.card,
+                  fio: this.userForm.value.fio,
+                }, accessToken)
+                .subscribe((res: orderDataResponseI) => {
+                  if(res)
+                  this.orderDataService.orderData.next(res);
+                })
+              }
+              if(this.selectedChanged.type === 'CRYPTO'){
+                this.dataBaseService
+                .createOrder({
+                  symbolFrom: this.selectedCrypto?.index,
+                  valueFrom: this.amountFrom,
+                  symbolTo: this.selectedChanged?.index,
+                  valueTo: this.amountTo,
+                  wallet: this.userForm.value.wallet
+                }, accessToken)
+                .subscribe((res: orderDataResponseI) => {
+                  if(res)
+                  this.orderDataService.orderData.next(res);
+                })
+              }
+            }
+          })
+        
+      }
     }
+    
   }
 
   public changeForm(){
@@ -188,6 +227,8 @@ export class OrderModalComponent implements OnInit{
   public closeAllDialogs(): void{
     this.dialog.closeAll();
   }
+
+
 
  
 
