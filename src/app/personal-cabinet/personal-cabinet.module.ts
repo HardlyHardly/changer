@@ -13,6 +13,9 @@ import {MatTableModule} from '@angular/material/table';
 import { ApplyTokenInterceptor } from './interceptors/apply-token.interceptor';
 import { RefreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ChangeWalletComponent } from './change-wallet/change-wallet.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,16 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     ManageComponent,
     RefComponent,
     ChangePasswordComponent,
-    PersonalCabinetHeaderComponent
+    PersonalCabinetHeaderComponent,
+    ChangeWalletComponent,
+    AdminPanelComponent
   ],
   imports: [
     CommonModule,
     PersonalCabinetRoutingModule,
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ],
   providers: [
     {

@@ -9,7 +9,7 @@ import { OrderModalComponent } from './order-modal/order-modal.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ErrorLoginDialogComponent } from './error-login-dialog/error-login-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -19,8 +19,6 @@ import { ErrorLoginDialogComponent } from './error-login-dialog/error-login-dial
     LoginDialogComponent,
     OrderModalComponent,
     SpinnerComponent,
-    ErrorLoginDialogComponent,
-
   ],
   imports: [
     CommonModule,
@@ -28,7 +26,8 @@ import { ErrorLoginDialogComponent } from './error-login-dialog/error-login-dial
     HttpClientModule,
     DropdownModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   exports: [
     HeaderComponent,

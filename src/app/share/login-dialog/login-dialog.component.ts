@@ -2,11 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { UserResponseI } from 'src/app/interfaces/userRessponseI';
 import { DatabaseService } from '../database.service';
 import { LoginService } from '../../services/login.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorConfigService } from 'src/app/services/error-config.service';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class LoginDialogComponent {
     private dataBaseService: DatabaseService,
     private router: Router,
     private dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private errorConfigService: ErrorConfigService
   ){
     this.changeDialogLogin = this.data;
   }
@@ -53,22 +55,28 @@ export class LoginDialogComponent {
   public login(): void{
     this.authService
     .login(this.userLoginForm.value)
+    .pipe(
+      catchError((error) => {
+        this.errorConfigService.errorConfig(error);
+        return throwError(error)
+      })
+    )
     .subscribe((res: UserResponseI) => {
       if(res){
         const {accessToken, refreshToken} = res.tokens;
+        const {role, email} = res;
+        localStorage.setItem('id', `${res.id}`);
         localStorage.setItem('access_token', accessToken);
         localStorage.setItem('refresh_token', refreshToken);
+        localStorage.setItem('user', JSON.stringify({role, email}))
         this.dialog.closeAll();
         this.router.navigate(['Identity', 'Account', 'Manage'])
-      } else {
-        console.log('err login')
-      }
+      } 
     })
   }
 
   public checkBothPasswords(): boolean{
     this.errorField = this.userRegistrationForm.get('password')?.value === this.userRegistrationForm.get('check-password')?.value;
-    console.log(this.errorField)
     return this.errorField;
   }
 
@@ -77,9 +85,13 @@ export class LoginDialogComponent {
     .register({
       email: this.userRegistrationForm.get('email')?.value,
       password: this.userRegistrationForm.get('password')?.value
-    })
+    }).pipe(
+      catchError((error) => {
+        this.errorConfigService.errorConfig(error.error);
+        return throwError(error)
+      })
+    )
     .subscribe((userTokens: UserResponseI) => {
-      console.log(userTokens)
       if(userTokens){
         const {accessToken, refreshToken} = userTokens.tokens;
         localStorage.setItem('access_token', accessToken);
@@ -90,7 +102,7 @@ export class LoginDialogComponent {
     })
   }
 
- 
+
 
 
 

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from '../../services/login.service';
 
@@ -9,6 +10,8 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
+  checkIsAuthenticated: boolean = false;
+
   @Output() public openModalE: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
@@ -17,13 +20,21 @@ export class HeaderComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
+    // this.authService.
+    // $checkIsAunthenticated
+    // .subscribe((bool: boolean) => {
+    //   this.checkIsAuthenticated = bool
+    //   console.log(bool)
+    // });
     this.checkUserLogin();
   }
 
-  public checkUserLogin(): boolean{
-
-    return this.authService.checkIsAuthenticated;
+  public checkUserLogin(): void{
+    console.log(this.authService.isAuthenticated());
+    this.checkIsAuthenticated = this.authService.isAuthenticated()
   }
+
+
 
   public openModal(bool: boolean): void{
     this.loginService.openCustomModal(bool)
@@ -32,6 +43,7 @@ export class HeaderComponent implements OnInit{
 
   public logout(){
     this.authService.logout();
+    this.checkUserLogin();
   }
 
 

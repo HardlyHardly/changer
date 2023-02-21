@@ -17,7 +17,11 @@ export class SidebarComponent {
   ){}
 
   public logout(): void{
-    this.authService
+    this.authService.logout();
     this.router.navigate([''])
+  }
+
+  public isAdmin(): boolean{
+    return this.authService.getUser()?.role === 'admin' ? true : false;
   }
 }

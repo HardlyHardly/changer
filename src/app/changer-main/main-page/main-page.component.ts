@@ -38,7 +38,9 @@ export class MainPageComponent implements OnInit {
     .$eventFromHomePage
     .subscribe((event: string) => {
       if(event === 'event'){
-        this.dialog.open(OrderModalComponent)
+        this.dialog.open(OrderModalComponent, {
+          disableClose: true
+        })
       } else {
         return
       }
