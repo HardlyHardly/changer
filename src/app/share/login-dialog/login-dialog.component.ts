@@ -57,7 +57,7 @@ export class LoginDialogComponent {
     .login(this.userLoginForm.value)
     .pipe(
       catchError((error) => {
-        this.errorConfigService.errorConfig(error);
+        this.errorConfigService.errorConfig(error.error);
         return throwError(error)
       })
     )

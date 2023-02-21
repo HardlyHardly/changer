@@ -1,7 +1,13 @@
-<header class="header">
-    <a class="d-block logo-wrap" routerLink="">
+<header [ngClass]="fullScreen ? 'header-open' : 'header'" class="">
+    <a class="d-block logo-wrap" (click)="redirectOnMainPage()">
         <img src="assets/ps-logo.svg" alt="">
     </a>
-    <div class="user__text">Здравствуйте!</div>
-    <div class="user__mail mt-3">{{getUser()?.email}}</div>
+    <div [ngClass]="fullScreen ? 'icon-arrow__wrap-open' : 'icon-arrow__wrap'" (click)="toggleFullScreen()">
+        <svg width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L25.2929 15.2929C25.6834 15.6834 25.6834 16.3166 25.2929 16.7071L12 30" stroke="white" stroke-width="3"/>
+            <path opacity="0.9" d="M2 6L11.2929 15.2929C11.6834 15.6834 11.6834 16.3166 11.2929 16.7071L2 26" stroke="white" stroke-width="3"/>
+        </svg>
+    </div>
+    <div [ngClass]="fullScreen ? 'user__text-open mt-3' : 'user__text mt-3'">Здравствуйте!</div>
+    <div [ngClass]="fullScreen ? 'user__mail-open mt-3' : 'user__mail mt-3'">{{getUser()?.email}}</div>
 </header>

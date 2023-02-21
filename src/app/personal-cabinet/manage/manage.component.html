@@ -1,9 +1,9 @@
 <section class="manage">
     <div class="manage__header">
         <div class="manage__title">
-            История Ваших заявок
+            {{isAdmin() ? 'Заявки' : 'История Ваших заявок'}}
         </div>
-        <button class="btn-yellow">
+        <button *ngIf="!isAdmin()" (click)="createOrder()" class="btn-yellow">
             Создать заявку
         </button>
     </div>

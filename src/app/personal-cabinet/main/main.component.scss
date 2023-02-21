@@ -2,21 +2,35 @@
     background: rgb(6,41,166);
     background: linear-gradient(180deg, rgba(6,41,166,1) 30%, rgba(23,63,208,1) 30%);
     min-height: 100vh;
+    transition: all .3s ease;
+    overflow-x: hidden;
     @media(max-width: 1025px){
         background: linear-gradient(180deg, rgba(6,41,166,1) 10%, rgba(23,63,208,1) 10%);
+    }
+    &-open{
+        transition: all .3s ease;
+        background: rgb(6,41,166);
+        background: linear-gradient(180deg, rgba(6,41,166,1) 30%, rgba(23,63,208,1) 30%);
+        min-height: 100vh;
+        overflow-x: hidden;
     }
 }
 
 .content__wrap{
     background-color: #f4f6f9;
-    width: calc(100% + 30px);
+    width: calc(100vw + 30px);
     min-height: 100vh;
     margin-left: -30px;
     border-radius: 40px 0 0 40px;
     padding: 60px 27px;
+    background-size: contain;
+    transition: all .24s ease;
     @media(max-width: 500px){
         min-height: 129vh;
-        width: calc(100% - 70px)
+        width: calc(100vh - 70px)
+    }
+    &-close{
+        transform: translateX(calc(100% + 30px));
     }
 }
 
@@ -28,9 +42,22 @@
     }
 }
 
+.sidebar-wrap-open{
+    width: 100% !important;
+}
+
 :host {
     ::ng-deep .modal-dialog {
     width: 100% !important;
     }
   }
 
+
+@keyframes closeFullScreen {
+    0%{
+    }
+    100%{
+        
+        display: none;
+    }
+}

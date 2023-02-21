@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { catchError, throwError } from 'rxjs';
 import { orderDataResponseI } from 'src/app/interfaces/orderDataResponseI';
-import { tokenI } from 'src/app/interfaces/tokenI';
 import { UserResponseI } from 'src/app/interfaces/userRessponseI';
 import { AuthService } from 'src/app/services/auth.service';
+import { ChangePasswordService } from 'src/app/services/change-password.service';
 import { DatabaseService } from 'src/app/share/database.service';
 import { GlobalWindowService, ICustomWindow } from 'src/app/share/global-window.service';
+import { OrderModalComponent } from 'src/app/share/order-modal/order-modal.component';
 
 @Component({
   selector: 'app-manage',
@@ -24,7 +26,9 @@ export class ManageComponent implements OnInit{
   constructor(
     private readonly dataBaseService: DatabaseService,
     private readonly windowRef: GlobalWindowService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private changePasswordService:  ChangePasswordService
   ){
     this._window = this.windowRef.nativeWindow;
   }
@@ -65,5 +69,15 @@ export class ManageComponent implements OnInit{
     return newArr.map((el: orderDataResponseI) =>
     ({...el, createdAt: el.createdAt.split('T')[0].split('-').reverse().join('.')})
     )
+  }
+
+  public isAdmin(): boolean{
+    return this.authService.getUser()?.role === 'admin' ? true : false;
+  }
+  
+  public createOrder(): void{
+    this.dialog.open(OrderModalComponent, {
+      data: this.changePasswordService.checkEmail()
+    })
   }
 }

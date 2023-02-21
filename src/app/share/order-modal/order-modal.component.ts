@@ -1,6 +1,6 @@
-import { Component, ErrorHandler, OnInit } from '@angular/core';
+import { Component, ErrorHandler, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ChangeI } from 'src/app/interfaces/changeI';
@@ -16,6 +16,7 @@ import { HomeSelectService } from 'src/app/services/home-select.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorConfigService } from 'src/app/services/error-config.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ChangePasswordService } from 'src/app/services/change-password.service';
 
 
 @Component({
@@ -57,7 +58,9 @@ export class OrderModalComponent implements OnInit{
     private readonly dialog: MatDialog,
     private readonly orderDataService: OrderDataService,
     private errorConfigService: ErrorConfigService,
-    private authService: AuthService
+    private authService: AuthService,
+    private changePasswrodService: ChangePasswordService,
+    @Inject(MAT_DIALOG_DATA) public email: string
   ){
     this.changeUserForm = this.orderModalService.getChangeUserForm();
     this.homeSelectService
@@ -69,6 +72,12 @@ export class OrderModalComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    if(this.email){
+      this.userEmail = this.email;
+    } 
+    if(this.authService.isAuthenticated()){
+      this.userEmail = this.changePasswrodService.checkEmail();
+    }
     this.initCryptos();
     this.initChanged();
   }
@@ -107,8 +116,9 @@ export class OrderModalComponent implements OnInit{
   }
 
   public createOrder(): void{
-    const bothSelectedCondition = this.selectedCrypto && this.selectedChanged;
     const accessToken = localStorage.getItem('access_token');
+
+
     if(this.authService.isAuthenticated()){
       if(this.selectedCrypto && this.selectedChanged){
         if(this.selectedChanged.type === 'BANK'){
@@ -143,7 +153,7 @@ export class OrderModalComponent implements OnInit{
       }
       
     } else {
-      if(bothSelectedCondition){
+      if(this.selectedCrypto && this.selectedChanged){
         this.dataBaseService
           .registerUserFromOrder({email: this.userEmail})
           .pipe(

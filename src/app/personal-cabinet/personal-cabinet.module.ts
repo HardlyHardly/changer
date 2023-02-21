@@ -16,6 +16,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChangeWalletComponent } from './change-wallet/change-wallet.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { FormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,13 @@ import { FormsModule } from '@angular/forms';
     PersonalCabinetRoutingModule,
     RouterModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
     {

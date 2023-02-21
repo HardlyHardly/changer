@@ -10,6 +10,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ChangeWalletDialogComponent } from './change-wallet-dialog/change-wallet-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -19,6 +25,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     LoginDialogComponent,
     OrderModalComponent,
     SpinnerComponent,
+    ChangeWalletDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +34,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     DropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     HeaderComponent,
