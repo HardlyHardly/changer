@@ -9,7 +9,7 @@ export interface orderDataResponseI{
     valueFrom: string,
     valueTo: number,
     wallet: string
-    user: {
+    user?: {
         createdAt: string,
         email: string,
         id: number,

@@ -32,8 +32,9 @@ export class ChangeWalletComponent implements OnInit, AfterViewInit{
 
   private cryptosInit(){
     this.changeCurrencyService.getCurrencies().subscribe((cryptos: ICurrency[]) => {
+      console.log(cryptos)
       this.cryptos = cryptos.map((obj: ICurrency):
-      CryptoI => ({...obj, 'index': obj.symbol, 'imageSrc': '', type: 'CRYPTO', 'price': obj.price, 'wallet': obj.wallet, 'id': obj.id}));
+      CryptoI => ({...obj, 'image': obj.image, type: 'CRYPTO', 'price': obj.price, 'wallet': obj.wallet, 'id': obj.id}));
       this.cryptos = this.cryptos.sort((a: any,b: any) => (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0))
         this.dataSource.data = this.cryptos;
         this.dataSource.paginator = this.paginator;
@@ -45,7 +46,7 @@ export class ChangeWalletComponent implements OnInit, AfterViewInit{
 
 
 
-  displayedColumns: string[] = ['todo', 'id', 'index', 'name', 'price', 'wallet', 'image'];
+  displayedColumns: string[] = ['todo', 'id', 'symbol', 'name', 'price', 'wallet', 'image'];
   dataSource: MatTableDataSource<CryptoI> = new MatTableDataSource();
 
   
@@ -95,6 +96,7 @@ export class ChangeWalletComponent implements OnInit, AfterViewInit{
     .subscribe(() => 
     this.errorConfigService
     .errorConfig(`Продукт с id:${id} успешно удален`))
+    this.cryptosInit();
   }
 
   

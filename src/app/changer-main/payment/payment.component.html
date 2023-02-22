@@ -32,8 +32,8 @@
                 <h5>QR код для оплаты через приложение</h5>
                 <qrcode [allowEmptyString]="true" [qrdata]="orderData!.wallet" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
                 <div class="btn-wrap">
-                    <button class="btn-yellow mx-2">Я оплатил</button>
-                    <button class="btn-grey mx-2">Отмена</button>
+                    <button class="btn-yellow mx-2" (click)="changeOrderStatus('в обработке')">Я оплатил</button>
+                    <button class="btn-grey mx-2" (click)="changeOrderStatus('отменен')">Отмена</button>
                 </div>
             </div>
         </div>

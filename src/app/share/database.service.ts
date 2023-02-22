@@ -50,7 +50,7 @@ export class DatabaseService {
   }
 
   public getOrdersForUser(): Observable<orderDataResponseI[]>{
-    const url = `${baseUrl}/orders/${localStorage.getItem('id')}`
+    const url = `${baseUrl}/users/orders/${localStorage.getItem('id')}`
     return this.http.get<orderDataResponseI[]>(url, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token'),

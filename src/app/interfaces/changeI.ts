@@ -1,6 +1,6 @@
 export interface ChangeI{
   name: string,
-  imageSrc: string,
-  index: string,
+  image: string,
+  symbol: string,
   type: 'BANK' | 'CRYPTO'
 }

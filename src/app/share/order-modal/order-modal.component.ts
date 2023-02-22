@@ -17,6 +17,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorConfigService } from 'src/app/services/error-config.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChangePasswordService } from 'src/app/services/change-password.service';
+import { ChangeCurrencyService } from 'src/app/services/change-currency.service';
+import { ICurrency } from 'src/app/interfaces/ICurrency';
 
 
 @Component({
@@ -60,6 +62,7 @@ export class OrderModalComponent implements OnInit{
     private errorConfigService: ErrorConfigService,
     private authService: AuthService,
     private changePasswrodService: ChangePasswordService,
+    private changeCurrencyService: ChangeCurrencyService,
     @Inject(MAT_DIALOG_DATA) public email: string
   ){
     this.changeUserForm = this.orderModalService.getChangeUserForm();
@@ -83,7 +86,13 @@ export class OrderModalComponent implements OnInit{
   }
 
   private initCryptos(){
-    this.cryptos = this.dataService.getCryptos();
+    this.changeCurrencyService
+    .getCurrencies()
+    .subscribe((res: ICurrency[]) => {
+      this.cryptos = res.map((obj: ICurrency): CryptoI => 
+      ({...obj, 'type': 'CRYPTO'}))
+      .filter((obj: CryptoI) => (obj.symbol !== 'RUB'));
+    })
   }
 
   private initChanged(){
@@ -101,7 +110,7 @@ export class OrderModalComponent implements OnInit{
 
   public setCalculatedDataFrom(): void{
     if(this.selectedCrypto && this.selectedChanged)
-    this.setCalculatedData(this.selectedCrypto.index, this.selectedChanged.index, this.amountFrom)
+    this.setCalculatedData(this.selectedCrypto.symbol, this.selectedChanged.symbol, this.amountFrom)
     .subscribe((amonuntTo: number) => {
       this.amountTo = amonuntTo;
     })
@@ -109,7 +118,7 @@ export class OrderModalComponent implements OnInit{
 
   public setCalculatedDataTo(): void{
     if(this.selectedCrypto && this.selectedChanged)
-    this.setCalculatedData(this.selectedCrypto.index, this.selectedChanged.index, this.amountTo)
+    this.setCalculatedData(this.selectedCrypto.symbol, this.selectedChanged.symbol, this.amountTo)
     .subscribe((amonuntFrom: number) => {
       this.amountFrom = amonuntFrom;
     })
@@ -124,30 +133,39 @@ export class OrderModalComponent implements OnInit{
         if(this.selectedChanged.type === 'BANK'){
           this.dataBaseService
           .createOrder({
-            symbolFrom: this.selectedCrypto?.index,
+            symbolFrom: this.selectedCrypto?.symbol,
             valueFrom: this.amountFrom,
-            symbolTo: this.selectedChanged?.index,
+            symbolTo: this.selectedChanged?.symbol,
             valueTo: this.amountTo,
             card: this.userForm.value.card,
             fio: this.userForm.value.fio,
           }, accessToken as string)
           .subscribe((res: orderDataResponseI) => {
+            console.log(res);
             if(res)
-            this.orderDataService.orderData.next(res);
+            this.orderDataService.setCurrentOrderId(res.id);
+            this.orderModalService.resetChangeUserForm();
+            this.dialog.closeAll();
+            this.router.navigate(['Payment']);
+            
           })
         }
         if(this.selectedChanged.type === 'CRYPTO'){
           this.dataBaseService
           .createOrder({
-            symbolFrom: this.selectedCrypto?.index,
+            symbolFrom: this.selectedCrypto?.symbol,
             valueFrom: this.amountFrom,
-            symbolTo: this.selectedChanged?.index,
+            symbolTo: this.selectedChanged?.symbol,
             valueTo: this.amountTo,
             wallet: this.userForm.value.wallet
           }, accessToken as string)
           .subscribe((res: orderDataResponseI) => {
+            console.log(res);
             if(res)
-            this.orderDataService.orderData.next(res);
+            this.orderDataService.setCurrentOrderId(res.id)
+            this.orderModalService.resetChangeUserForm();
+            this.dialog.closeAll();
+            this.router.navigate(['Payment']);
           })
         }
       }
@@ -176,30 +194,34 @@ export class OrderModalComponent implements OnInit{
               if(this.selectedChanged.type === 'BANK'){
                 this.dataBaseService
                 .createOrder({
-                  symbolFrom: this.selectedCrypto?.index,
+                  symbolFrom: this.selectedCrypto?.symbol,
                   valueFrom: this.amountFrom,
-                  symbolTo: this.selectedChanged?.index,
+                  symbolTo: this.selectedChanged?.symbol,
                   valueTo: this.amountTo,
                   card: this.userForm.value.card,
                   fio: this.userForm.value.fio,
                 }, accessToken)
                 .subscribe((res: orderDataResponseI) => {
+                  console.log(res);
                   if(res)
-                  this.orderDataService.orderData.next(res);
+                  this.orderDataService.setCurrentOrderId(res.id)
+                  this.orderModalService.resetChangeUserForm();
                 })
               }
               if(this.selectedChanged.type === 'CRYPTO'){
                 this.dataBaseService
                 .createOrder({
-                  symbolFrom: this.selectedCrypto?.index,
+                  symbolFrom: this.selectedCrypto?.symbol,
                   valueFrom: this.amountFrom,
-                  symbolTo: this.selectedChanged?.index,
+                  symbolTo: this.selectedChanged?.symbol,
                   valueTo: this.amountTo,
                   wallet: this.userForm.value.wallet
                 }, accessToken)
                 .subscribe((res: orderDataResponseI) => {
+                  console.log(res);
                   if(res)
-                  this.orderDataService.orderData.next(res);
+                  this.orderDataService.setCurrentOrderId(res.id)
+                  this.orderModalService.resetChangeUserForm();
                 })
               }
             }

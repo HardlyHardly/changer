@@ -13,23 +13,16 @@ export class ChangeCurrencyService {
     private http: HttpClient
   ) { }
 
-  public createCurrency(body: ICurrency, image: File | null ): Observable<any>{
+  public createCurrency(body: ICurrency): Observable<any>{
     const url = `${baseUrl}/currencies`
 
-    const formData = new FormData();
+    console.log(body)
 
-    if(body){
-      formData.append('symbol', body.index);
-      formData.append('name', body.name);
-      formData.append('price', body.price.toString());
-      formData.append('wallet', body.wallet);
-    }
-    if(image){
-      formData.append('image', image)
-    }
     
 
-    return this.http.post<any>(url, formData, {
+    
+
+    return this.http.post<any>(url, body, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token')
       }

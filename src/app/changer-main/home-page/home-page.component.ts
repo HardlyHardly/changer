@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { OrderModalComponent } from 'src/app/share/order-modal/order-modal.component';
 import { OrderModalService } from 'src/app/share/order-modal.service';
 import { HomeSelectService } from 'src/app/services/home-select.service';
+import { ChangeCurrencyService } from 'src/app/services/change-currency.service';
+import { ICurrency } from 'src/app/interfaces/ICurrency';
 
 
 
@@ -53,7 +55,8 @@ export class HomePageComponent implements OnInit{
     constructor(
       private readonly dataService: GlobaldataService,
       private readonly homeSelectService: HomeSelectService,
-      private readonly orderModalService: OrderModalService
+      private readonly orderModalService: OrderModalService,
+      private changeCurrencyService: ChangeCurrencyService
     ){
     }
 
@@ -90,7 +93,13 @@ export class HomePageComponent implements OnInit{
     }
 
     private initCryptos(){
-      this.cryptos = this.dataService.getCryptos()
+      this.changeCurrencyService
+      .getCurrencies()
+      .subscribe((res: ICurrency[]) => {
+        this.cryptos = res.map((obj: ICurrency): CryptoI => 
+        ({...obj, 'type': 'CRYPTO'}))
+        .filter((obj: CryptoI) => (obj.symbol !== 'RUB'));
+      })
     }
 
     private initChanged(){
@@ -115,8 +124,10 @@ export class HomePageComponent implements OnInit{
     public openOrderDialog(): void{
       this.orderModalService.eventFromHomePage.next('event');
     }
-    
 
+    
+    
+    
     
 
     

@@ -16,7 +16,7 @@ export class ChangeWalletDialogComponent implements OnInit{
   public imageURL: string = '';
 
   cryptoForm: FormGroup = new FormGroup({
-    'index': new FormControl('', Validators.required),
+    'symbol': new FormControl('', Validators.required),
     'name': new FormControl('', Validators.required),
     'price': new FormControl('', Validators.required),
     'wallet': new FormControl('', Validators.required)
@@ -49,13 +49,12 @@ export class ChangeWalletDialogComponent implements OnInit{
     } else {
       this.changeCurrencyService
       .createCurrency({
-        index: this.cryptoForm.value.index,
+        symbol: this.cryptoForm.value.symbol,
         name: this.cryptoForm.value.name,
         price: this.cryptoForm.value.price,
         wallet: this.cryptoForm.value.wallet,
-        symbol: '',
-        id: this.crypto.id ? this.crypto.id : 0
-      }, this.image)
+        image: this.imageURL.split(';')[1]
+      })
       .subscribe(() => {
         this.errorConfigService.errorConfig('Успешно создан')
       })
@@ -70,6 +69,7 @@ export class ChangeWalletDialogComponent implements OnInit{
       const reader = new FileReader();
       reader.onload = () => {
         this.imageURL = reader.result as string;
+        console.log(this.imageURL.split(';')[1])
       }
       reader.readAsDataURL(this.image)
     }

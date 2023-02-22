@@ -3,7 +3,6 @@ export interface ICurrency{
     name: string;
     price: number;
     wallet: string;
-    index: string;
-    id: number;
-    imageSrc?: string
+    id?: number;
+    image: string
 }
