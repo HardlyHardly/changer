@@ -7,15 +7,50 @@
     @media(max-width: 1025px){
         padding: 33px 40px 46px 27px;
     }
+    &-open{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 33px 40px 46px 33px;
+        color: #fff;
+    }
 }
 
 .logo-wrap{
     max-width: 186px;
     outline: none;
+    cursor: pointer;
+}
+
+.icon-arrow__wrap{
+    display: none;
+    @media(max-width: 1025px){
+        display: block;
+        transition: opacity .24s ease;
+        cursor: pointer;
+        margin-top: 10px;
+        &:hover{
+            opacity: .8;
+        }
+    }
+    &-open{
+        display: none;
+        @media(max-width: 1025px){
+            display: block;
+            transition: opacity .24s ease transform 3s ease;
+            cursor: pointer;
+            margin-top: 10px;
+            &:hover{
+                opacity: .8;
+            }
+            transform: rotate(-180deg);
+        }
+    }
 }
 
 .user{
-    &__text{
+    &__text,
+    &__text-open{
         font-weight: 700;
         font-size: 22px;
         line-height: 1.25;
@@ -24,7 +59,11 @@
             display: none;
         }
     }
-    &__mail{
+    &__text-open{
+        display: block;
+    }
+    &__mail,
+    &__mail-open{
         font-weight: 500;
         font-size: 14px;
         line-height: 1.25;
@@ -32,5 +71,8 @@
         @media(max-width: 1025px){
             display: none;
         }
+    }
+    &__mail-open{
+        display: block;
     }
 }

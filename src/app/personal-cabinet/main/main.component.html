@@ -1,10 +1,10 @@
-<section class="personal-cabinet">
-    <div class="d-flex">
-        <aside class="d-flex flex-column sidebar-wrap">
+<section [ngClass]="toggleFullScreen ? 'personal-cabinet-open' : 'personal-cabinet'" class="personal-cabinet">
+    <div [ngClass]="toggleFullScreen ? 'd-block' : 'd-flex'">
+        <aside [ngClass]="toggleFullScreen ? 'sidebar-wrap-open d-flex flex-column' : 'd-flex flex-column sidebar-wrap'" class="d-flex flex-column sidebar-wrap">
             <app-personal-cabinet-header></app-personal-cabinet-header>
             <app-sidebar></app-sidebar>
         </aside>
-        <div class="content__wrap">
+        <div class="content__wrap" [ngClass]="toggleFullScreen ? 'content__wrap-close' : 'content__wrap'">
             <router-outlet></router-outlet>
         </div>
     </div>

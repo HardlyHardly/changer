@@ -10,15 +10,26 @@
         }
     }
     &__body{
-        margin: 20px 0 40px 0;
+        padding: 20px 0 40px 0;
         display: grid;
         gap: 20px;
-        grid-template-columns: minmax(55%) minmax(15%);
-        grid-template-rows: minmax(165px) minmax(50px) minmax(330px);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-rows: 165px 100px 530px;
         grid-template-areas: 
         'change loader'
         'alert alert'
-        'qr qr'
+        'qr qr';
+        @media(max-width: 800px){
+            grid-template-rows: repeat(2, 165px) 140px 530px;
+            grid-template-areas: 
+            'change change'
+            'loader loader'
+            'alert alert'
+            'qr qr';
+        }
+        @media(max-width: 500px){
+            grid-template-rows: repeat(2, 165px) 140px 570px;
+        }
     }
 }
 
@@ -57,6 +68,7 @@
 
 .text-yellow{
     color: #fcbf11;
+    word-break: break-all;
 }
 
 .timer{
@@ -74,6 +86,9 @@
 
 .btn-wrap{
     display: flex;
+    @media(max-width: 800px){
+        justify-content: space-around;
+    }
 }
 
 .btn-yellow{
@@ -89,6 +104,13 @@
     &:hover{
         box-shadow: 0 0 35px rgb(252 191 17 / 45%);
     }
+    @media(max-width: 800px){
+        padding: 18px 18px;
+    }
+    @media(max-width: 500px){
+        width: 38%;
+        padding: 8px 16px;
+    }
 }
 
 .btn-grey{
@@ -103,6 +125,13 @@
     font-weight: 600;
     &:hover{
         box-shadow: 0 0 35px rgb(252 191 17 / 45%);
+    }
+    @media(max-width: 800px){
+        padding: 18px 18px;
+    }
+    @media(max-width: 500px){
+        width: 38%;
+        padding: 8px 16px;
     }
 }
 

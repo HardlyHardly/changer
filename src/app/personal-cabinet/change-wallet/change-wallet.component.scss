@@ -1,0 +1,31 @@
+.change-wallet{
+    &__header{
+        height: 76px;
+        padding: 6px 62px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(33, 33, 33, .1);
+        border-bottom: 1px solid rgba(33, 33, 33, .1);
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 1.25;
+        color: #212121;
+        @media(max-width: 800px){
+            padding: 6px 22px;
+            font-size: 16px;
+            height: 38px;
+        }
+    }
+    &__body{
+        margin-top: 45px;
+    }
+}
+
+.btn-wrapper{
+    width: 90px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

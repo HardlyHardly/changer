@@ -4,10 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, Observable, throwError } from 'rxjs';
 import { CreateOrder } from '../interfaces/createOrderI';
+import { CryptoI } from '../interfaces/cryptoI';
 import { CurrenciesCalculateI } from '../interfaces/currenciesCalculateI';
+import { ICurrency } from '../interfaces/ICurrency';
 import { orderDataResponseI } from '../interfaces/orderDataResponseI';
 import { userRegisterDataI } from '../interfaces/userRegisterData';
 import { UserResponseI } from '../interfaces/userRessponseI';
+
 
 
 
@@ -34,7 +37,6 @@ export class DatabaseService {
   }
 
   public createOrder(data: CreateOrder, accessHeader: string): Observable<any>{
-    console.log(accessHeader)
     return this.http.post<any>(baseUrl + '/orders', data, {
       headers: {
         'Authorization': 'Bearer ' + accessHeader
@@ -48,7 +50,7 @@ export class DatabaseService {
   }
 
   public getOrdersForUser(): Observable<orderDataResponseI[]>{
-    const url = `${baseUrl}/orders/${localStorage.getItem('id')}`
+    const url = `${baseUrl}/users/orders/${localStorage.getItem('id')}`
     return this.http.get<orderDataResponseI[]>(url, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
@@ -69,6 +71,8 @@ export class DatabaseService {
     return this.http.post<UserResponseI>(baseUrl + '/users/register', userData)
     .pipe(catchError(this.formatErrors))
   }
+
+
 
 
 }

@@ -1,7 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { debounceTime, delay, distinctUntilChanged, Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { catchError, debounceTime, delay, distinctUntilChanged, Observable, throwError } from 'rxjs';
 import { orderDataResponseI } from 'src/app/interfaces/orderDataResponseI';
+import { ErrorConfigService } from 'src/app/services/error-config.service';
 import { OrderDataService } from 'src/app/share/order-data.service';
 
 @Component({
@@ -10,6 +12,8 @@ import { OrderDataService } from 'src/app/share/order-data.service';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit{
+
+  currentOrderId: number = +(localStorage.getItem('last_order') as string);
 
   minutes: number = 14;
   seconds: number = 60;
@@ -24,6 +28,7 @@ export class PaymentComponent implements OnInit{
       }
       if(this.minutes == 0){
         clearInterval(ticker);
+        this.changeOrderStatus('отменен');
       }
     }, 1000);
     
@@ -33,16 +38,37 @@ export class PaymentComponent implements OnInit{
   orderData: orderDataResponseI | null = null;
   constructor(
     private readonly orderDataService: OrderDataService,
-    private readonly dialog: MatDialog
-  ){
+    private readonly dialog: MatDialog,
+    private errorConfigService: ErrorConfigService,
+    private router: Router
+  ){}
+
+
+  ngOnInit(): void {
+    this.dialog.closeAll();
+    this.$timer
+    .subscribe((time: {minutes: number, seconds: number}) => {
+      this.minutes = time.minutes;
+      this.seconds = time.seconds;
+    })
+    this.initOrder();
+  }
+
+  private resetSeconds(): void{
+    this.seconds = 60;
+  }
+
+  private initOrder(): void{
     this.orderDataService
-      .$getOrderData
-      .pipe(
-        distinctUntilChanged(),
-        debounceTime(500),
-        )
-      .subscribe((data: orderDataResponseI | null) => {
-        if(data !== null)
+    .getCurrentOrderById(+(localStorage.getItem('last_order') as string))
+    .pipe(
+      catchError((error) => {
+        this.errorConfigService.errorConfig('Вы не авторизованы')
+        return throwError(error)})
+    )
+    .subscribe((data: orderDataResponseI) => {
+      console.log(data)
+      if(data !== null)
         for(let key in data){
           if(key === 'createdAt'){
             data = {
@@ -52,23 +78,25 @@ export class PaymentComponent implements OnInit{
           }
         }
         this.orderData = data;
-      })
-  }
-
-
-  ngOnInit(): void {
-    this.dialog.closeAll();
-    this.$timer
-    .subscribe((time: {minutes: number, seconds: number}) => {
-      this.minutes = time.minutes;
-      this.seconds = time.seconds
     })
   }
 
-  private resetSeconds(): void{
-    this.seconds = 60;
+  public changeOrderStatus(status: string): void{
+    this.orderDataService
+    .changeStatus({id: this.currentOrderId, status})
+    .subscribe(() => {
+      this.errorConfigService.errorConfig('Ваш заказ ' + status)
+      if(status === 'отменен'){
+        this.dialog.closeAll();
+        localStorage.removeItem('last_order');
+        this.router.navigate(['Identity','Account','Manage'])
+      } else {
+        this.router.navigate(['Identity','Account','Manage'])
+      }
+    })
   }
-  
+
+
 
 
 }

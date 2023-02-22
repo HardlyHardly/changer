@@ -1,4 +1,4 @@
-<div mat-dialog-content>
+
     <div *ngIf="!changeUserForm; else userDataForm">
         <button type="button" class="btn-close" (click)="closeAllDialogs()"></button>
         <div class="modal-header">
@@ -15,12 +15,12 @@
             >
             <ng-template pTemplate="selectedItem">
             <div class="country-item country-item-value" *ngIf="selectedCrypto">
-                <div><img class="img-select" [src]="selectedCrypto.imageSrc" alt="">{{selectedCrypto.name}}</div>
+                <div><img class="img-select" [src]="'data:image/svg+xml;' + selectedCrypto.image" alt="">{{selectedCrypto.name}}</div>
             </div>
             </ng-template>
             <ng-template let-crypto pTemplate="item">
             <div class="country-item">
-                <div><img class="img-select" [src]="crypto.imageSrc" alt="">{{crypto.name}}</div>
+                <div><img class="img-select" [src]="'data:image/svg+xml;' + crypto.image" alt="">{{crypto.name}}</div>
             </div>
             </ng-template>
             </p-dropdown>
@@ -38,12 +38,12 @@
         >
         <ng-template pTemplate="selectedItem">
             <div class="country-item country-item-value" *ngIf="selectedChanged">
-            <div><img class="img-select" [src]="selectedChanged.imageSrc" alt="">{{selectedChanged.name}}</div>
+            <div><img class="img-select" [src]="selectedChanged.image" alt="">{{selectedChanged.name}}</div>
             </div>
         </ng-template>
         <ng-template let-changed pTemplate="item">
             <div class="country-item">
-            <div><img class="img-select" [src]="changed.imageSrc" alt="">{{changed.name}}</div>
+            <div><img class="img-select" [src]="changed.image" alt="">{{changed.name}}</div>
             </div>
         </ng-template>
             </p-dropdown>
@@ -134,5 +134,5 @@
         </div>
     </div>
     </ng-template>
-</div>
+
 

@@ -121,3 +121,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --mdc-snackbar-supporting-text-color: #ffffff;
   }
 }
+
+:host .mat-mdc-button>.mat-icon{
+  margin: 0;
+}
+
+
+

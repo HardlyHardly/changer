@@ -13,12 +13,12 @@
         [showClear]="true" placeholder="Select a Crypto">
         <ng-template pTemplate="selectedItem">
           <div class="country-item country-item-value" *ngIf="selectedCrypto">
-            <div><img class="img-select" [src]="selectedCrypto.imageSrc" alt="">{{selectedCrypto.name}}</div>
+            <div><img class="img-select" [src]="'data:image/svg+xml;' + selectedCrypto.image" alt="">{{selectedCrypto.name}}</div>
           </div>
         </ng-template>
         <ng-template let-crypto pTemplate="item">
           <div class="country-item">
-            <div><img class="img-select" [src]="crypto.imageSrc" alt="">{{crypto.name}}</div>
+            <div><img class="img-select" [src]="'data:image/svg+xml;' + crypto.image" alt="">{{crypto.name}}</div>
           </div>
         </ng-template>
         </p-dropdown>
@@ -29,12 +29,12 @@
       [showClear]="true" placeholder="Select a Crypto or Bank">
       <ng-template pTemplate="selectedItem">
         <div class="country-item country-item-value" *ngIf="selectedChanged">
-          <div><img class="img-select" [src]="selectedChanged.imageSrc" alt="">{{selectedChanged.name}}</div>
+          <div><img class="img-select" [src]="selectedChanged.image" alt="">{{selectedChanged.name}}</div>
         </div>
       </ng-template>
       <ng-template let-changed pTemplate="item">
         <div class="country-item">
-          <div><img class="img-select" [src]="changed.imageSrc" alt="">{{changed.name}}</div>
+          <div><img class="img-select" [src]="changed.image" alt="">{{changed.name}}</div>
         </div>
       </ng-template>
         </p-dropdown>
@@ -90,7 +90,7 @@
     <div class="reserve__cards-wrap">
       <div *ngFor="let card of cards" class="reserve__card">
         <div class="reserve__card-img-wrap">
-          <img class="reserve__card-img" [src]="card.imageSrc" alt="">
+          <img class="reserve__card-img" [src]="card.image" alt="">
         </div>
         <div class="reserve__card-content ps-3">
           <p class="reserve__card-title m-0">{{card.name}}<br><span>{{card.valute}}</span></p>

@@ -15,7 +15,7 @@ const routes: Routes = [
     {path: 'Ref', component: RefComponent},
     {path: 'ChangePassword', component: ChangePasswordComponent},
     {path: 'ChangeWallet', component: ChangeWalletComponent},
-    {path: 'AdminPanel', component: AdminPanelComponent}
+    // {path: 'AdminPanel', component: AdminPanelComponent}
   ]}
 
     

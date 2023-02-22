@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { UserLoginDataI } from '../interfaces/userLoginData';
 import { IUser } from '../interfaces/IUser';
 import { tokenI } from '../interfaces/tokenI';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router,
+    private dialog: MatDialog
   ) { }
 
   isAuthenticated() {
@@ -65,6 +67,7 @@ export class AuthService {
 
   public logout() {
     this.clearLocalStorage();
+    this.dialog.closeAll();
     this.router.navigate(['']);
   }
 
