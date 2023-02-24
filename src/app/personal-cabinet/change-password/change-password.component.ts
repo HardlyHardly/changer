@@ -22,6 +22,10 @@ export class ChangePasswordComponent {
     return this.newPass === this.newPassCheck;
   }
 
+  public isAdmin(): boolean{
+    return this.changePasswordService.checkRole() === 'admin'
+  }
+
   public changePassword(): void{
     if(this.changePasswordService.checkRole() === 'admin'){
       if(this.checkPasswords()){

@@ -100,9 +100,10 @@ font-weight: 600;
     }
   }
   
-  ::ng-deep .user-form{
+::ng-deep .user-form{
     & .field-input > input[type="text"],
-    & .field-input > input[type="email"]{
+    & .field-input > input[type="email"],
+    & .field-input > input[type="tel"]{
       background: #ececec;
       border-radius: 7px;
       width: 100%;

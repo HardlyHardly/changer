@@ -16,6 +16,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { OrderBannerComponent } from './order-banner/order-banner.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MatInputModule } from '@angular/material/input';
     OrderModalComponent,
     SpinnerComponent,
     ChangeWalletDialogComponent,
+    OrderBannerComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { MatInputModule } from '@angular/material/input';
     FooterComponent,
     LoginDialogComponent,
     OrderModalComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    OrderBannerComponent
   ]
 })
 export class ShareModule { }

@@ -3,7 +3,10 @@
         <div class="manage__title">
             {{isAdmin() ? 'Заявки' : 'История Ваших заявок'}}
         </div>
-        <button *ngIf="!isAdmin()" (click)="createOrder()" class="btn-yellow">
+        <button *ngIf="isOrder()" routerLink="/Payment" class="btn-yellow mx-2">
+            Вернутся к Заявке
+        </button>
+        <button *ngIf="!isAdmin()" (click)="createOrder()" class="btn-yellow mx-2">
             Создать заявку
         </button>
     </div>

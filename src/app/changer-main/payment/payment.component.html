@@ -7,9 +7,9 @@
         <div class="payment__body">
             <div class="card-type card-type__change">
                 <h5>Вы меняете {{orderData.valueFrom}} 
-                    Bitcoin {{orderData.symbolFrom}} на {{orderData.valueTo}} Bitcoin {{orderData.symbolTo}}</h5>
+                   {{symbolNames.valueFromName}} {{orderData.symbolFrom}} на {{orderData.valueTo}} {{symbolNames.valueToName}} {{orderData.symbolTo}}</h5>
                 <p>Получаете на</p>
-                <p class="text-yellow">{{orderData.wallet}}</p> 
+                <p class="text-yellow">{{getUserWallet()}}</p> 
                 <p>Чтобы совершить обмен выполните следующие шаги.</p> 
             </div>
             <div class="card-type__loader">

@@ -9,12 +9,20 @@ import { baseUrl } from './database.service';
 })
 export class OrderDataService {
 
+  removeOrderSubject: BehaviorSubject<null> = new BehaviorSubject<null>(null);
+  removeOrderObservable$: Observable<null> = this.removeOrderSubject.asObservable();
+ 
+
+  isOrdered: BehaviorSubject<orderDataResponseI | null> = new BehaviorSubject<orderDataResponseI | null>(null);
+  isOrdered$: Observable<orderDataResponseI | null> = this.isOrdered.asObservable();
+
 
   constructor(
     private http: HttpClient
   ) { }
 
   public changeStatus(body: {id: number, status: string}): Observable<any>{
+    console.log(body);
     const url = `${baseUrl}/orders/update`
     return this.http.post(url, body, {
       headers: {
@@ -23,8 +31,12 @@ export class OrderDataService {
     })
   }
 
-  setCurrentOrderId(value: number): void{
-    localStorage.setItem('last_order', value.toString());
+  setLastOrder(value: orderDataResponseI): void{
+    localStorage.setItem('last_order', JSON.stringify(value));
+  }
+
+  getLastOrder(): orderDataResponseI{
+    return JSON.parse(localStorage.getItem('last_order') as any);
   }
 
   public getCurrentOrderById(id: number): Observable<orderDataResponseI>{
@@ -37,6 +49,7 @@ export class OrderDataService {
     })
   }
 
+  
 
 
 }

@@ -1,12 +1,8 @@
-import { HttpBackend, HttpClient, HttpContext } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, Observable, throwError } from 'rxjs';
 import { CreateOrder } from '../interfaces/createOrderI';
-import { CryptoI } from '../interfaces/cryptoI';
 import { CurrenciesCalculateI } from '../interfaces/currenciesCalculateI';
-import { ICurrency } from '../interfaces/ICurrency';
 import { orderDataResponseI } from '../interfaces/orderDataResponseI';
 import { userRegisterDataI } from '../interfaces/userRegisterData';
 import { UserResponseI } from '../interfaces/userRessponseI';
@@ -14,7 +10,7 @@ import { UserResponseI } from '../interfaces/userRessponseI';
 
 
 
-export const baseUrl: string = 'http://localhost:3500';
+export const baseUrl: string = 'http://localhost:3500/api';
 
 @Injectable({
   providedIn: 'root'

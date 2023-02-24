@@ -1,6 +1,5 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter, fromEvent, Observable, Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 import { FullScreenService } from 'src/app/services/full-screen.service';
 
 @Component({

@@ -25,7 +25,7 @@
             </ng-template>
             </p-dropdown>
         </div>
-        <input type="tel" class="form-input" [(ngModel)]="amountFrom" [ngModelOptions]="{standalone: true}" (input)="setCalculatedDataFrom()">
+        <input type="tel" class="form-input" min="1" [(ngModel)]="amountFrom" [ngModelOptions]="{standalone: true}" (input)="setCalculatedDataFrom()">
         <div class="change-icon-wrap">
             <i class="pi pi-sort-alt change-icon my-2"></i>
         </div>
@@ -65,43 +65,33 @@
         
         </div>
         <div class="modal-body">
-        <form class="user-form">
-            <div *ngIf="selectedChanged?.type === 'BANK'">
-            <div class="field-title">
-                Реквизиты отправителя:
-            </div>
-            <div class="field-input position-relative">
+        <form [formGroup]="userForm" class="user-form">
+            <div class="field-input position-relative" *ngIf="selectedChanged?.type === 'BANK'">
                 <div class="icon-wrap">
                 <img src="assets/icons/i1.svg" alt="">
                 </div>
-                <input class="form-control my-3" type="text" placeholder="Номер карты" id="card">
+                <input formControlName="card" class="form-control my-3" type="tel" placeholder="Номер карты" id="card" minlength="16" maxlength="16">
             </div>
-            <div class="field-input position-relative">
+            <div class="field-input position-relative" *ngIf="selectedChanged?.type === 'BANK'">
                 <div class="icon-wrap">
                 <img src="assets/icons/i2.svg" alt="">
                 </div>
-                <input class="form-control my-3" type="text" placeholder="ФИО" id="fio">
+                <input formControlName="fio" class="form-control my-3" type="text" placeholder="ФИО" id="fio">
             </div>
             <div class="field-title mt-4">
                 Реквизиты получателя:
             </div>
             <div class="field-input position-relative">
                 <div class="icon-wrap">
-                <img src="assets/icons/i1.svg" alt="">
+                    <img src="assets/icons/i1.svg" alt="">
                 </div>
-                <input class="form-control position-relative mt-2" type="text" placeholder="Адрес получения" id="address">
-            </div>
-            </div>
-            <div *ngIf="selectedChanged?.type === 'CRYPTO'">
-            <div class="field-title">
-                Реквизиты получателя
-            </div>
-            <div class="field-input position-relative">
-                <div class="icon-wrap">
-                <img src="assets/icons/i1.svg" alt="">
-                </div>
-                <input class="form-control my-3" type="text" placeholder="Адрес получения" id="wallet">
-            </div>
+                <input 
+                formControlName="wallet"
+                class="form-control position-relative mt-2"
+                type="text"
+                placeholder="Адрес получения"
+                (change)="triggerWallet()"
+                id="wallet">
             </div>
             <div class="field-title mt-4">
             Email:
@@ -110,7 +100,7 @@
             <div class="icon-wrap">
                 <img src="assets/icons/i1.svg" alt="">
             </div>
-            <input [(ngModel)]="userEmail" name="user-email" class="form-control position-relative mt-2" type="email" placeholder="user@email.com" id="email">
+            <input [(ngModel)]="userEmail" name="user-email" class="form-control position-relative mt-2" type="email" placeholder="user@email.com" id="email" [ngModelOptions]="{standalone: true}">
             </div>
             <div class="field-title mt-4 cursor-p" (click)="showPromoField()">
             Есть промокод?
@@ -125,9 +115,9 @@
             <button type="button" class="btn-yellow btn-big my-2 w-100 btn-font" (click)="createOrder()" >Продолжить</button>
             </div>
             <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" id="defaultCheck1" formControlName="access">
             <label class="form-check-label" for="defaultCheck1">
-                Вы соглашаетесь с <a routerLink="Rules">правилами</a> сервиса и регламентом проведения AML-проверок
+                Вы соглашаетесь с <a  (click)="redirectOnRules()">правилами</a> сервиса и регламентом проведения AML-проверок
             </label>
             </div>
         </form>

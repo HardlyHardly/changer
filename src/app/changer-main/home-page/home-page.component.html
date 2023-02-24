@@ -7,7 +7,7 @@
       Быстрый и безопасный способ обменять более 20 популярных криптовалют
     </p>
     <form class="welcome__form">
-      <div class="col-md-4 col-8 p-drop-container">
+      <div class="col-md-4 col-8 p-drop-container mx-2">
         <p-dropdown class="drop-crypto" autoWidth="false" [style]="{'width':'100%'}"  [options]="cryptos" [(ngModel)]="selectedCrypto" (ngModelChange)="setSelectedCrypto($event)" optionLabel="name" [filter]="true" filterBy="name"
         name="crypto"
         [showClear]="true" placeholder="Select a Crypto">
@@ -23,7 +23,7 @@
         </ng-template>
         </p-dropdown>
       </div>
-      <div class="col-md-4 col-8 p-drop-container">
+      <div class="col-md-4 col-8 p-drop-container mx-2">
         <p-dropdown autoWidth="false" [style]="{'width':'100%'}" [options]="changed" [(ngModel)]="selectedChanged" (ngModelChange)="setSelectedChanged($event)" optionLabel="name" [filter]="true" filterBy="name"
         name="changed"
       [showClear]="true" placeholder="Select a Crypto or Bank">

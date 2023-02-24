@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit{
   checkIsAuthenticated: boolean = false;
 
   @Output() public openModalE: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() public removeOrder: EventEmitter<null> = new EventEmitter<null>();
 
   constructor(
     private loginService: LoginService,
@@ -44,6 +45,8 @@ export class HeaderComponent implements OnInit{
   public logout(){
     this.authService.logout();
     this.checkUserLogin();
+    localStorage.removeItem('last_order');
+    this.removeOrder.emit(null)
   }
 
 

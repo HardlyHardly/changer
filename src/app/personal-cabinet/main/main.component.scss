@@ -1,6 +1,6 @@
 .personal-cabinet{
     background: rgb(6,41,166);
-    background: linear-gradient(180deg, rgba(6,41,166,1) 30%, rgba(23,63,208,1) 30%);
+    background: linear-gradient(180deg, rgba(6,41,166,1) 250px, rgba(23,63,208,1) 250px);
     min-height: 100vh;
     transition: all .3s ease;
     overflow-x: hidden;
@@ -10,7 +10,7 @@
     &-open{
         transition: all .3s ease;
         background: rgb(6,41,166);
-        background: linear-gradient(180deg, rgba(6,41,166,1) 30%, rgba(23,63,208,1) 30%);
+        background: linear-gradient(180deg, rgba(6,41,166,1) 250px, rgba(23,63,208,1) 250px);
         min-height: 100vh;
         overflow-x: hidden;
     }

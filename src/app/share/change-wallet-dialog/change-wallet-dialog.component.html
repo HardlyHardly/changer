@@ -9,7 +9,7 @@
     <form [formGroup]="cryptoForm"  class="content">
         <div class="block" [ngClass]="isEditMode() ? 'block-big' : 'block'">
             <mat-form-field *ngIf="!isEditMode()" appearance="outline">
-                <input formControlName="symbol" matInput placeholder="Абревиатура">
+                <input formControlName="symbol" matInput placeholder="Аббревиатура">
             </mat-form-field>
             <mat-form-field *ngIf="!isEditMode()" appearance="outline">
                 <input formControlName="name" matInput placeholder="Название">

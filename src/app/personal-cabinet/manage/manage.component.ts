@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ChangePasswordService } from 'src/app/services/change-password.service';
 import { DatabaseService } from 'src/app/share/database.service';
 import { GlobalWindowService, ICustomWindow } from 'src/app/share/global-window.service';
+import { OrderDataService } from 'src/app/share/order-data.service';
 import { OrderModalComponent } from 'src/app/share/order-modal/order-modal.component';
 
 @Component({
@@ -28,7 +29,8 @@ export class ManageComponent implements OnInit{
     private readonly windowRef: GlobalWindowService,
     private authService: AuthService,
     private dialog: MatDialog,
-    private changePasswordService:  ChangePasswordService
+    private changePasswordService:  ChangePasswordService,
+    private orderDataService: OrderDataService
   ){
     this._window = this.windowRef.nativeWindow;
   }
@@ -80,4 +82,10 @@ export class ManageComponent implements OnInit{
       data: this.changePasswordService.checkEmail()
     })
   }
+
+  isOrder(): boolean{
+    return !!this.orderDataService.getLastOrder();
+  }
+
+  
 }

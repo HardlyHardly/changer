@@ -1,5 +1,5 @@
 import { Component, ErrorHandler, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
@@ -34,15 +34,16 @@ export class OrderModalComponent implements OnInit{
 
   public amountTo: number = 0;
 
-  public amountFrom: number = 0;
+  public amountFrom: number = 1;
 
   cryptos: CryptoI[] = [];
   changed: ChangeI[] = [];
 
   userForm = new FormGroup({
-    'card': new FormControl(''),
-    'fio': new FormControl(''),
-    'wallet': new FormControl('')
+    'card': new FormControl('', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]),
+    'fio': new FormControl('', Validators.minLength(3)),
+    'wallet': new FormControl('', [Validators.required, Validators.minLength(40), Validators.pattern(/^[A-Za-z0-9]*$/)]), 
+    'access': new FormControl(false, Validators.required)
   })
 
 
@@ -72,17 +73,18 @@ export class OrderModalComponent implements OnInit{
     this.homeSelectService
     .$getSelectedChanged()
     .subscribe((selectedChanged: ChangeI | CryptoI | null) => (this.selectedChanged = selectedChanged))
-  }
-
-  ngOnInit(): void {
-    if(this.email){
-      this.userEmail = this.email;
-    } 
     if(this.authService.isAuthenticated()){
       this.userEmail = this.changePasswrodService.checkEmail();
     }
+  }
+
+  ngOnInit(): void {
+    if(this.email !== null){
+      this.userEmail = this.email
+    }
     this.initCryptos();
     this.initChanged();
+    this.setCalculatedDataFrom();
   }
 
   private initCryptos(){
@@ -125,8 +127,19 @@ export class OrderModalComponent implements OnInit{
   }
 
   public createOrder(): void{
-    const accessToken = localStorage.getItem('access_token');
+    if(this.userForm.get('wallet')?.errors){
+      this.errorConfigService.errorConfig('Некоректные данные');
+      return
+    }
+    if(this.userForm.value.access === false){
+      this.errorConfigService.errorConfig('Примите соглашение');
+      return
+    }
+    
 
+
+    const accessToken = localStorage.getItem('access_token');
+    
 
     if(this.authService.isAuthenticated()){
       if(this.selectedCrypto && this.selectedChanged){
@@ -141,12 +154,14 @@ export class OrderModalComponent implements OnInit{
             fio: this.userForm.value.fio,
           }, accessToken as string)
           .subscribe((res: orderDataResponseI) => {
-            console.log(res);
             if(res)
-            this.orderDataService.setCurrentOrderId(res.id);
+            this.saveUserWalletToLocalStorage();
             this.orderModalService.resetChangeUserForm();
+            this.saveLastOrderData(res);
             this.dialog.closeAll();
             this.router.navigate(['Payment']);
+            this.resetTimer();
+            this.orderDataService.isOrdered.next(res);
             
           })
         }
@@ -160,12 +175,14 @@ export class OrderModalComponent implements OnInit{
             wallet: this.userForm.value.wallet
           }, accessToken as string)
           .subscribe((res: orderDataResponseI) => {
-            console.log(res);
             if(res)
-            this.orderDataService.setCurrentOrderId(res.id)
+            this.saveUserWalletToLocalStorage();
             this.orderModalService.resetChangeUserForm();
+            this.saveLastOrderData(res);
             this.dialog.closeAll();
             this.router.navigate(['Payment']);
+            this.resetTimer();
+            this.orderDataService.isOrdered.next(res);
           })
         }
       }
@@ -202,10 +219,12 @@ export class OrderModalComponent implements OnInit{
                   fio: this.userForm.value.fio,
                 }, accessToken)
                 .subscribe((res: orderDataResponseI) => {
-                  console.log(res);
                   if(res)
-                  this.orderDataService.setCurrentOrderId(res.id)
+                  this.saveUserWalletToLocalStorage();
+                  this.saveLastOrderData(res);
                   this.orderModalService.resetChangeUserForm();
+                  this.resetTimer();
+                  this.orderDataService.isOrdered.next(res);
                 })
               }
               if(this.selectedChanged.type === 'CRYPTO'){
@@ -218,10 +237,12 @@ export class OrderModalComponent implements OnInit{
                   wallet: this.userForm.value.wallet
                 }, accessToken)
                 .subscribe((res: orderDataResponseI) => {
-                  console.log(res);
                   if(res)
-                  this.orderDataService.setCurrentOrderId(res.id)
+                  this.saveUserWalletToLocalStorage();
+                  this.saveLastOrderData(res);
                   this.orderModalService.resetChangeUserForm();
+                  this.resetTimer();
+                  this.orderDataService.isOrdered.next(res);
                 })
               }
             }
@@ -229,7 +250,14 @@ export class OrderModalComponent implements OnInit{
         
       }
     }
-    
+  }
+
+  private saveUserWalletToLocalStorage(): void{
+    localStorage.setItem('wallet', this.userForm.value.wallet as string);
+  }
+
+  private saveLastOrderData(obj: orderDataResponseI): void{
+    localStorage.setItem('last_order', JSON.stringify(obj))
   }
 
   public changeForm(){
@@ -260,9 +288,24 @@ export class OrderModalComponent implements OnInit{
     this.dialog.closeAll();
   }
 
-
+  public createOrderBanner(obj: orderDataResponseI): void{
+    this.orderDataService.isOrdered.next(obj)
+  }
 
  
-
+  public triggerWallet(): void{
+    if(this.userForm.get('wallet')?.invalid){
+      this.errorConfigService.errorConfig('Некоректный кошилек');
+    }
+  }
     
+
+  public redirectOnRules(): void{
+    this.dialog.closeAll();
+    this.router.navigate(['Rules']);
+  }
+
+  private resetTimer(): void{
+    localStorage.setItem('save_time', JSON.stringify({minutes: 14, seconds: 59}))
+  }
 }

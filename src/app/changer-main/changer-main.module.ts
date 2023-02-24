@@ -1,7 +1,6 @@
 import { ShareModule } from './../share/share.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ChangerMainRoutingModule } from './changer-main-routing.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import { RulesPageComponent } from './rules-page/rules-page.component';

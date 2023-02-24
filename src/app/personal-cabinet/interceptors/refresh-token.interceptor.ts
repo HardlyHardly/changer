@@ -38,8 +38,8 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
           .pipe(
             catchError((error) => {
               if(error.status === 401){
-                this.errorConfigService.errorConfig('Время сессии истекло')
                 this.authService.logout();
+                this.errorConfigService.errorConfig('Время сессии истекло')
               }
               return throwError(error)
             })

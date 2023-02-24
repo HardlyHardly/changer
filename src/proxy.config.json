@@ -1,7 +1,7 @@
 {
-    "/api": {
-      "target": "https://4b17-95-47-122-109.eu.ngrok.io",
-      "secure": false,
-      "changeOrigin": true
-    }
+  "*": {
+    "target": "http://157.90.119.44:3500",
+    "secure": true,
+    "changeOrigin": true
   }
+}

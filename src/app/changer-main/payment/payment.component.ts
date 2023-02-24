@@ -1,8 +1,10 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { catchError, debounceTime, delay, distinctUntilChanged, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, Observer, throwError } from 'rxjs';
+import { ICurrency } from 'src/app/interfaces/ICurrency';
 import { orderDataResponseI } from 'src/app/interfaces/orderDataResponseI';
+import { ChangeCurrencyService } from 'src/app/services/change-currency.service';
 import { ErrorConfigService } from 'src/app/services/error-config.service';
 import { OrderDataService } from 'src/app/share/order-data.service';
 
@@ -11,15 +13,27 @@ import { OrderDataService } from 'src/app/share/order-data.service';
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit{
+export class PaymentComponent implements OnInit, OnDestroy{
 
-  currentOrderId: number = +(localStorage.getItem('last_order') as string);
+  
+
+
+  currentOrderId: number = JSON.parse(localStorage.getItem('last_order') as any).id;
+
+  symbolNames: 
+  {valueFromName: string, valueToName: string} = 
+  {
+    valueFromName: '',
+    valueToName: ''
+  }
+
 
   minutes: number = 14;
-  seconds: number = 60;
+  seconds: number = 59;
 
 
-  $timer: Observable<{minutes: number, seconds: number}> = new Observable((suber) =>{
+  $timer: Observable<{minutes: number, seconds: number}> = 
+  new Observable((suber: Observer<{minutes: number, seconds: number}>) =>{
     const ticker = setInterval(() => {
       this.seconds = this.seconds - 1;
       if(this.seconds === 0){
@@ -40,7 +54,8 @@ export class PaymentComponent implements OnInit{
     private readonly orderDataService: OrderDataService,
     private readonly dialog: MatDialog,
     private errorConfigService: ErrorConfigService,
-    private router: Router
+    private router: Router,
+    private changeCurrencyService: ChangeCurrencyService,
   ){}
 
 
@@ -48,26 +63,33 @@ export class PaymentComponent implements OnInit{
     this.dialog.closeAll();
     this.$timer
     .subscribe((time: {minutes: number, seconds: number}) => {
-      this.minutes = time.minutes;
-      this.seconds = time.seconds;
+        if(this.getSaveTime() != null){
+          this.seconds = this.getSaveTime()!.seconds;
+          this.minutes = this.getSaveTime()!.minutes;
+        } else {
+          this.minutes = this.minutes,
+          this.seconds = this.seconds
+        }
     })
     this.initOrder();
+    this.initSymbolNames()
   }
 
   private resetSeconds(): void{
-    this.seconds = 60;
+    this.seconds = 59;
   }
 
   private initOrder(): void{
     this.orderDataService
-    .getCurrentOrderById(+(localStorage.getItem('last_order') as string))
+    .getCurrentOrderById(this.getLastOrder().id)
     .pipe(
       catchError((error) => {
         this.errorConfigService.errorConfig('Вы не авторизованы')
         return throwError(error)})
     )
-    .subscribe((data: orderDataResponseI) => {
-      console.log(data)
+    .subscribe(() => {
+      let data: orderDataResponseI =  this.getLastOrder()
+      console.log(data);
       if(data !== null)
         for(let key in data){
           if(key === 'createdAt'){
@@ -81,6 +103,10 @@ export class PaymentComponent implements OnInit{
     })
   }
 
+  public getLastOrder(): orderDataResponseI{
+    return JSON.parse(localStorage.getItem('last_order') as any);
+  }
+
   public changeOrderStatus(status: string): void{
     this.orderDataService
     .changeStatus({id: this.currentOrderId, status})
@@ -89,14 +115,46 @@ export class PaymentComponent implements OnInit{
       if(status === 'отменен'){
         this.dialog.closeAll();
         localStorage.removeItem('last_order');
+        this.orderDataService.removeOrderSubject.next(null);
         this.router.navigate(['Identity','Account','Manage'])
       } else {
+        localStorage.removeItem('last_order');
+        this.orderDataService.removeOrderSubject.next(null);
         this.router.navigate(['Identity','Account','Manage'])
       }
     })
   }
 
+  public getUserWallet(): string{
+    return localStorage.getItem('wallet') as string;
+  }
+
+  public initSymbolNames(): void{
+    this.changeCurrencyService
+    .getCurrencies()
+    .subscribe((currencies: ICurrency[]) => {
+      const arr = [...currencies];
+      this.symbolNames.valueFromName = arr.filter((obj: ICurrency) => (obj.symbol === this.getLastOrder().symbolFrom))[0].name;
+      this.symbolNames.valueToName = arr.filter((obj: ICurrency) => (obj.symbol === this.getLastOrder().symbolTo))[0].name;
+    })
+  }
 
 
+  ngOnDestroy(){
+    this.saveTime();
+  }
+
+
+  private saveTime(): void{
+    localStorage.setItem('save_time', JSON.stringify({minutes: this.minutes, seconds: this.seconds}))
+  }
+
+  private getSaveTime(): {minutes: number, seconds: number} | null{
+    return JSON.parse(localStorage.getItem('save_time') as any);
+  }
+
+
+
+  
 
 }

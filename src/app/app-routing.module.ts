@@ -9,7 +9,8 @@ const routes: Routes = [
   {
     path: 'Identity',
     loadChildren: () => import('./personal-cabinet/personal-cabinet.module').then(m => m.PersonalCabinetModule)
-  }
+  },
+  {path: '**', redirectTo: ''}
 ];
 
 

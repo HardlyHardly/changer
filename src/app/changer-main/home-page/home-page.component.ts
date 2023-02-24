@@ -3,11 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChangeI } from 'src/app/interfaces/changeI';
 import { CryptoI } from 'src/app/interfaces/cryptoI';
 import { GlobaldataService } from 'src/app/share/globaldata.service';
-import { DatabaseService } from 'src/app/share/database.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { UserResponseI } from 'src/app/interfaces/userRessponseI';
-import { Router } from '@angular/router';
+
 
 import { MatDialog } from '@angular/material/dialog';
 import { OrderModalComponent } from 'src/app/share/order-modal/order-modal.component';
@@ -15,6 +12,8 @@ import { OrderModalService } from 'src/app/share/order-modal.service';
 import { HomeSelectService } from 'src/app/services/home-select.service';
 import { ChangeCurrencyService } from 'src/app/services/change-currency.service';
 import { ICurrency } from 'src/app/interfaces/ICurrency';
+import { OrderDataService } from 'src/app/share/order-data.service';
+import { orderDataResponseI } from 'src/app/interfaces/orderDataResponseI';
 
 
 
@@ -56,7 +55,8 @@ export class HomePageComponent implements OnInit{
       private readonly dataService: GlobaldataService,
       private readonly homeSelectService: HomeSelectService,
       private readonly orderModalService: OrderModalService,
-      private changeCurrencyService: ChangeCurrencyService
+      private changeCurrencyService: ChangeCurrencyService,
+      private dialog: MatDialog,
     ){
     }
 
@@ -124,6 +124,8 @@ export class HomePageComponent implements OnInit{
     public openOrderDialog(): void{
       this.orderModalService.eventFromHomePage.next('event');
     }
+    
+
 
     
     
